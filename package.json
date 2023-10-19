@@ -5,7 +5,7 @@
   "homepage": "https://github.com/kglanos/goit-project-js",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url goit-project-js"
+    "build": "parcel build src/*.html --public-url/goit-project-js/"
   },
   "repository": {
     "type": "git",
