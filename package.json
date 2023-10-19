@@ -2,24 +2,27 @@
   "name": "parcel-project-template",
   "version": "1.1.0",
   "description": "",
-  "homepage": "https://github.com/migace/parcel-project-template-pl-main",
+  "homepage": "https://github.com/kglanos/goit-project-js",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url parcel-project-template-pl-main"
+    "build": "parcel build src/*.html --public-url goit-project-js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/migace/parcel-project-template-pl-main.git"
+    "url": "git+https://github.com/kglanos/goit-project-js.git"
   },
   "keywords": [],
-  "author": "Alexander Repeta <alexander.repeta@gmail.com>",
+  "author": "Grupa-projektowa_1",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/migace/parcel-project-template-pl-main/issues"
+    "url": "https://github.com/kglanos/goit-project-js/issues"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.3",
     "parcel": "^2.8.3",
     "posthtml-include": "^1.7.4"
+  },
+  "dependencies": {
+    "axios": "^1.5.1"
   }
 }
