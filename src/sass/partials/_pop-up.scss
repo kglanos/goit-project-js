@@ -44,7 +44,20 @@
     right: 12px;
     width: 24px;
     height: 24px;
-    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__icon-close {
+    fill: var(--denary-font-color);
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover,
+    &:focus {
+      fill: var(--secondary-font-color);
+      cursor: pointer;
+    }
   }
 
   &__details {
@@ -87,6 +100,27 @@
     line-height: 18px;
     letter-spacing: -0.56px;
     margin: 18px 0;
+  }
+
+  &__amazon {
+    display: flex;
+    align-items: center;
+    background-color: var(--quaternary-object-background-color);
+    width: 115px;
+  }
+
+  &__amazon-logo {
+    width: 82px;
+    height: 20px;
+    background-image: url('../images/amazon.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+  }
+
+  &__amazon-logo-book {
+    width: 32px;
+    height: 32px;
+    background-image: url('../images/amazon-book.png');
   }
 
   &__btn-add,
@@ -166,7 +200,6 @@
       margin-right: 24px;
     }
 
-
     &__description {
       max-width: 279px;
     }
@@ -198,7 +231,6 @@
       font-size: 18px;
       line-height: 24px;
       letter-spacing: -0.18px;
-
     }
 
     &__comment {

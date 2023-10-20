@@ -1,11 +1,18 @@
-<div class="backdrop-popup popup-is-hidden">
+<div class="backdrop-popup">
     <div class="popup">
-        <button type="button" class="popup__btn-close"></button>
+        <button type="button" class="popup__btn-close">
+            <svg class="popup__icon-close" width="18.67" height="18.67">
+                <use href="./images/clouse.svg#icon-close"></use>
+            </svg>
+        </button>
         <div class="popup__details">
             <div class="popup__photo"><img src="./images/placeholder-book-cover-icon.svg" alt="book cover photo"
                     class="popup__img"></div>
             <div class="popup__description">
-                <a href="" class="popup__amazon" target="_blank">Lorem</a>
+                <a href="" class="popup__amazon" target="_blank">
+                    <div class="popup__amazon-logo"></div>
+                    <div class="popup__amazon-logo-book"></div>
+                </a>
             </div>
         </div>
         <button type="button" class="popup__btn-add">add to shopping list</button>
