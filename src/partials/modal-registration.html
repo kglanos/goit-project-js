@@ -1,48 +1,60 @@
-<!-- <div class="registration-backdrop is-hidden">
+<div class="registration-backdrop is-hidden">
   <div class="registration-modal">
-    <button type="button">
-      <svg class="" width="28" height="28">
-        <use href=""></use>
+    <button class="registration-close-btn" type="button">
+      <svg class="registration-close-icon" width="28" height="28">
+        <use href="./images/icons.svg#icon-x-close"></use>
       </svg>
     </button>
 
-    <form>
-      <div>
+    <form clas="registration-modal-form">
+      <div class="registration-modal-field">
         <label></label>
-        <input type="text" id="user-name" class="" name="userName" placeholder="Name" />
+        <input
+          type="text"
+          id="user-name"
+          class="registration-modal-input"
+          name="userName"
+          placeholder="Name"
+        />
       </div>
 
-      <div>
+      <div class="registration-modal-field">
         <label></label>
-        <div>
-          <input type="text" id="user-email" class="" placeholder="Email" name="userEmail" />
-          <svg class="" width="28" height="28">
-            <use href=""></use>
+        <div class="registration-modal__field-wrapper">
+          <input
+            type="text"
+            id="user-email"
+            class="registration-modal-input"
+            placeholder="Email"
+            name="userEmail"
+          />
+          <svg class="registration-modal-icon" width="28" height="28">
+            <use href="./images/icons.svg#icon-mail"></use>
           </svg>
         </div>
       </div>
 
-      <div>
+      <div class="registration-modal-field">
         <label></label>
-        <div>
+        <div class="registration-modal-field-wrapper">
           <input
             type="password"
             id="user-password"
-            class=""
+            class="registration-modal-input"
             name="userPassword"
             placeholder="Password"
           />
-          <svg class="" width="28" height="28">
-            <use href=""></use>
+          <svg class="registration-modal-icon" width="28" height="28">
+            <use href="./images/icons.svg#icon-lock"></use>
           </svg>
         </div>
       </div>
       <button type="submit">Sign up</button>
     </form>
 
-    <div>
-      <button type="button">Sing up</button>
-      <button type="button">Sing in</button>
+    <div class="registration-sending">
+      <button class="sing-link sing-up-link" type="button">Sing up</button>
+      <button class="sing-link sing-in-link" type="button">Sing in</button>
     </div>
   </div>
-</div> -->
+</div>
