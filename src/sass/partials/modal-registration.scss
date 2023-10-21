@@ -15,16 +15,22 @@
 
 .registration-modal {
   position: absolute;
+  height: 384px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: calc(100% - 20px);
   max-width: 579px;
   transform: translate(calc(-50% - 10px), -50%) scale(1);
-  padding: 80px 40px 40px;
+  padding: 40px 20px;
   border: 2px solid var(--primary-border-color);
   background-color: var(--tertiary-object-background-color);
   border-radius: 18px;
+
+  @include large {
+    height: 579px;
+    padding: 80px 40px 40px;
+  }
 }
 .registration-close-icon {
   pointer-events: none;
@@ -32,10 +38,11 @@
 
 .registration-close-btn {
   position: absolute;
-  top: 24px;
-  right: 24px;
-  width: 14px;
-  height: 14px;
+  top: 14px;
+  right: 14px;
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
   margin-left: auto;
   display: flex;
   align-items: center;
@@ -49,13 +56,23 @@
   transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
 
+  @include large {
+    top: 24px;
+    right: 24px;
+    font-size: 18px;
+  }
+
   &:hover {
     stroke: var(--secondary-font-color);
   }
 }
 
-.registration-modal-field + .registration-modal-field {
-  margin-top: 28px;
+.registration-modal-field {
+  margin-top: 24px;
+
+  @include large {
+    margin-top: 28px;
+  }
 }
 
 .registration-modal-field-wrapper {
@@ -68,16 +85,23 @@
 
 .registration-modal-icon {
   position: absolute;
+  width: 18px;
+  height: 18px;
   right: 32px;
   top: 50%;
   transform: translateY(-50%);
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
   // stroke: var(--secondary-icon-color);
+
+  @include large {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .registration-modal-input {
   width: 100%;
-  height: 64px;
+  height: 50px;
   padding: 18px 32px;
   border: 2px solid var(--primary-border-color);
   border-radius: 40px;
@@ -87,15 +111,25 @@
   background-color: transparent;
   transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
+  @include large {
+    height: 100%;
+  }
+
   &::placeholder {
     text-transform: uppercase;
     color: var(--primary-font-color);
     font-weight: 700;
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 16px;
+    line-height: 18px;
+
+    @include large {
+      font-size: 18px;
+      line-height: 24px;
+    }
   }
 
-  &:focus {
+  &:focus,
+  &:hover {
     border-color: var(--secondary-border-color);
   }
 }
@@ -105,16 +139,25 @@
   text-align: center;
   text-transform: uppercase;
   color: var(--septenary-font-color);
-  padding: 20px;
+  padding: 12px;
   width: 100%;
-  margin-top: 40px;
+  height: 50px;
+  margin-top: 24px;
   font-weight: 700;
-  font-size: 18px;
-  line-height: 24px;
-  background-color: var(--secondary-object-background-color);
+  font-size: 16px;
+  line-height: 18px;
+  background-color: rgba(17, 17, 17, 1);
   letter-spacing: -1px;
   border-radius: 40px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @include large {
+    padding: 20px;
+    font-size: 18px;
+    height: 100%;
+    line-height: 24px;
+    margin-top: 40px;
+  }
 }
 
 .signup-btn:hover {
@@ -122,133 +165,25 @@
 }
 
 .registration-sending {
-  margin-top: 20px;
+  margin-top: 14px;
   text-align: center;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 20px;
+
+  @include large {
+    margin-top: 20px;
+  }
 }
 .sign-link {
+  border: none;
   font-weight: 600;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  &:hover {
-    color: var(--secondary-font-color);
-  }
-}
-
-.registration-link {
   text-transform: uppercase;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 24px;
   color: rgba(17, 17, 17, 0.5);
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover {
+  &:hover,
+  &:focus {
     color: var(--secondary-font-color);
     text-decoration: underline;
-  }
-}
-
-.registration-link + .registration-link {
-  margin-left: 20px;
-}
-
-@media screen and (min-width: 320px) and (max-width: 767px) {
-  .registration-modal {
-    height: 384px;
-    padding: 40px 20px;
-  }
-  .registration-close-btn {
-    top: 14px;
-    right: 14px;
-    font-size: 16px;
-  }
-  .registration-modal-input {
-    height: 50px;
-  }
-
-  .registration-modal-field + .registration-modal-field {
-    margin-top: 24px;
-  }
-  .signup-btn {
-    padding: 12px;
-    font-size: 16px;
-    height: 50px;
-    line-height: 18px;
-    margin-top: 24px;
-  }
-
-  .registration-modal-icon {
-    width: 18px;
-    height: 18px;
-  }
-
-  .registration-modal-input::placeholder {
-    font-size: 16px;
-    line-height: 18px;
-  }
-
-  .registration-sending {
-    margin-top: 14px;
-  }
-
-  .registration-link {
-    font-size: 14px;
-  }
-}
-
-.dark {
-  .registration-modal {
-    background-color: var(--main-dark-background-color);
-    color: rgba(246, 246, 246, 1);
-    border-color: rgba(246, 246, 246, 1);
-  }
-
-  .registration-close-btn,
-  .registration-modal-icon {
-    stroke: rgba(246, 246, 246, 1);
-    transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-    &:hover {
-      stroke: var(--secondary-font-color);
-    }
-  }
-
-  .registration-modal-input {
-    border-color: rgba(246, 246, 246, 1);
-    color: rgba(246, 246, 246, 1);
-    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    &:focus {
-      border-color: var(--secondary-font-color);
-    }
-  }
-
-  .registration-modal-input::placeholder {
-    color: rgba(246, 246, 246, 1);
-  }
-
-  .signup-btn {
-    background-color: rgba(246, 246, 246, 1);
-    color: rgba(32, 32, 36, 1);
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-      color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-    &:hover {
-      background-color: var(--secondary-object-background-color);
-      color: rgba(246, 246, 246, 1);
-    }
-  }
-
-  .registration-link {
-    color: rgba(246, 246, 246, 0.5);
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-    &:hover {
-      color: var(--secondary-font-color);
-      text-decoration: underline;
-    }
-  }
-  .sign-link {
-    color: rgba(246, 246, 246, 1);
   }
 }
