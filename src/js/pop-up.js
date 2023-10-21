@@ -1,7 +1,7 @@
 import { fetchBooksByCategory, fetchBookById } from './api';
 
 console.log(fetchBooksByCategory('Hardcover Nonfiction'));
-console.log(fetchBookById('643282b1e85766588626a07d'));
+console.log(fetchBookById('643282b2e85766588626a122'));
 
 const bookCover = document.querySelector('.popup__img');
 const bookAmazonLink = document.querySelector('.popup__amazon');
@@ -12,6 +12,7 @@ const btnClosePopUp = document.querySelector('.popup__btn-close');
 const backdrop = document.querySelector('.backdrop-popup');
 const popUp = document.querySelector('.popup');
 const comment = document.querySelector('.popup__comment');
+const shopsList = document.querySelector('.popup__shops-list');
 
 let isBookAlreadyInShoppingList = false;
 
@@ -36,6 +37,15 @@ const createPopUp = async bookId => {
                 <p class="popup__text">${bookData.description}</p>`;
   bookDescription.insertAdjacentHTML('afterbegin', markup);
 
+  const shopsBooks = bookData.buy_links
+    .slice(1)
+    .map(
+      link =>
+        `<li class="popup__shops-item"><a class="popup__shops-link" href="${link.url}" target="_blank">${link.name}</a></li>`,
+    )
+    .join('');
+  shopsList.insertAdjacentHTML('afterbegin', shopsBooks);
+
   const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
   isBookAlreadyInShoppingList = storedBooks.some(book => book._id === bookData._id);
   toggleButtonsVisibility();
@@ -49,10 +59,20 @@ const createPopUp = async bookId => {
     }
   };
 
+  const removeFromLocalStorage = () => {
+    if (isBookAlreadyInShoppingList) {
+      const filteredBooks = storedBooks.filter(book => book._id !== bookData._id);
+      localStorage.setItem('books', JSON.stringify(filteredBooks));
+      isBookAlreadyInShoppingList = false;
+      toggleButtonsVisibility();
+    }
+  };
+
+  btnRemoveFromShoppingList.addEventListener('click', removeFromLocalStorage);
   btnAddToShoppingList.addEventListener('click', addToLocalStorage);
 };
 
-createPopUp('643282b1e85766588626a07d');
+createPopUp('643282b3e85766588626a1d6');
 
 const closePopUp = () => {
   backdrop.classList.add('popup-is-hidden');
@@ -80,4 +100,4 @@ btnClosePopUp.addEventListener('click', closePopUp);
 backdrop.addEventListener('click', backdropClickHandler);
 document.addEventListener('keydown', keydownHandler);
 
-localStorage.clear();
+// localStorage.clear();

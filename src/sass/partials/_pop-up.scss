@@ -102,32 +102,57 @@
     margin: 18px 0;
   }
 
-  &__amazon {
+  &__shops {
+    display: flex;
+    align-items: first baseline;
+  }
+
+  &__amazon-book {
     display: flex;
     align-items: center;
-    background-color: var(--quaternary-object-background-color);
     width: 115px;
+    justify-content: space-between;
   }
 
-  &__amazon-logo {
-    width: 82px;
-    height: 20px;
+  &__amazon {
+    width: 62px;
+    height: 28px;
+    background-color: var(--quaternary-object-background-color);
     background-image: url('../images/amazon.png');
     background-repeat: no-repeat;
-    background-position: center left;
+    background-position: bottom;
+    border-radius: 8px;
   }
 
-  &__amazon-logo-book {
+  &__icon-book {
     width: 32px;
     height: 32px;
     background-image: url('../images/amazon-book.png');
+  }
+
+  &__shops-list {
+    font-size: 16px;
+    line-height: 25px;
+    letter-spacing: -0.56px;
+    margin-left: 5px;
+    font-weight: 500;
+  }
+
+  &__shops-link {
+    color: orange;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover,
+    &:focus {
+      color: var(--secondary-font-color);
+    }
   }
 
   &__btn-add,
   &__btn-remove {
     display: block;
     margin: 0 auto;
-    margin-top: 58px;
+    margin-top: 40px;
     border: 2px solid var(--secondary-border-color);
     padding: 14px 23px;
     border-radius: 40px;
@@ -157,7 +182,7 @@
     color: var(--tertiary-font-color);
     line-height: 12px;
     letter-spacing: -0.4px;
-    max-width: 242px;
+    max-width: 235px;
     width: 100%;
     margin: 0 auto;
     margin-top: 8px;
@@ -167,6 +192,20 @@
 .popup-dark-theme {
   background-color: var(--main-dark-background-color);
   border: 2px solid var(--quaternary-border-color);
+  color: var(--quaternary-font-color);
+}
+
+.icon-close-dark-theme {
+  fill: var(--quaternary-font-color);
+}
+
+.author-dark-theme {
+  color: var(--tenth-font-color);
+}
+
+.btn-add-dark-theme,
+.btn-remove-dark-theme {
+  color: var(--quaternary-font-color);
 }
 
 .comment-dark-theme {
@@ -181,8 +220,8 @@
     position: relative;
 
     &__btn-close {
-      top: 24px;
-      right: 24px;
+      top: 20px;
+      right: 20px;
       width: 28px;
       height: 28px;
       cursor: pointer;
@@ -224,7 +263,6 @@
 
     &__btn-add,
     &__btn-remove {
-      margin-top: 40px;
       max-width: 499px;
       width: 100%;
       padding: 20px 0;
