@@ -1,3 +1,4 @@
+'use strict';
 import { fetchBooksByCategory, fetchBookById } from './api';
 
 console.log(fetchBooksByCategory('Hardcover Nonfiction'));
