@@ -1,0 +1,42 @@
+.support {
+    z-index: 0;
+
+    width: 335px;
+    height: 460px;
+    border-radius: 16px;
+    background: radial-gradient(189.32% 190.93% at 59.76% -23.42%,
+            #4f2ee8 18.03%,
+            #fff 100%);
+    box-shadow: 0px 10px 10px 0px rgba(245, 245, 247, 0.1);
+
+    @include large {
+        widht: 356px;
+        height: 474px;
+    }
+
+    &__title {
+        color: var(--quaternary-font-color);
+        font-style: normal;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 24px;
+        letter-spacing: -0.08em;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        padding: 28px 40px;
+
+        @include large {
+            font-size: 24px;
+            padding: 26px;
+            line-height: 28px 40px;
+            letter-spacing: -0.96px;
+        }
+    }
+
+    &__icon-ua {
+        fill: var(--quaternary-font-color);
+    }
+
+
+}
