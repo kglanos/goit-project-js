@@ -1,24 +1,28 @@
 body {
   background-color: var(--main-light-background-color);
   font-family: 'DM Sans', sans-serif;
-  color: var(--primary-font-color);
+  color: var(--denary-font-color);
 }
+
 * {
   margin: 0;
   padding: 0;
 }
+
 ul {
   list-style: none;
 }
 svg {
   display: block;
 }
+
 img {
   display: block;
   max-width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
 }
+
 a {
   text-decoration: none;
   cursor: pointer;
@@ -33,6 +37,7 @@ a {
   @include medium {
     max-width: 768px;
   }
+
   @include large {
     max-width: 1440px;
   }
