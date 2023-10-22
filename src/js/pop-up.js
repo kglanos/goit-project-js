@@ -121,5 +121,21 @@ listBooks.addEventListener('click', openPopUp);
 btnRemoveFromShoppingList.addEventListener('click', removeFromLocalStorage);
 btnAddToShoppingList.addEventListener('click', addToLocalStorage);
 
+const toggleDarkThemePopUp = () => {
+  const btnAddToShoppingList = document.querySelector('.popup__btn-add');
+  const btnRemoveFromShoppingList = document.querySelector('.popup__btn-remove');
+  const popUp = document.querySelector('.popup');
+  const comment = document.querySelector('.popup__comment');
+  const iconClose = document.querySelector('.popup__icon-close');
+
+  popUp.classList.toggle('popup-dark-theme');
+  iconClose.classList.toggle('icon-close-dark-theme');
+  btnAddToShoppingList.classList.toggle('btn-add-dark-theme');
+  btnRemoveFromShoppingList.classList.toggle('btn-remove-dark-theme');
+  comment.classList.toggle('comment-dark-theme');
+};
+
+// toggleDarkThemePopUp();
+
 // openPopUp();
 // localStorage.clear();
