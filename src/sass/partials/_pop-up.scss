@@ -35,6 +35,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  max-height: 100vh;
+  overflow-y: auto;
 
   &__btn-close {
     background-color: transparent;
@@ -199,10 +201,6 @@
   fill: var(--quaternary-font-color);
 }
 
-.author-dark-theme {
-  color: var(--tenth-font-color);
-}
-
 .btn-add-dark-theme,
 .btn-remove-dark-theme {
   color: var(--quaternary-font-color);
@@ -211,6 +209,7 @@
 .comment-dark-theme {
   color: var(--nonary-font-color);
 }
+
 
 @include medium {
   .popup {
