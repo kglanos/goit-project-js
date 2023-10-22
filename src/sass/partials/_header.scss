@@ -162,3 +162,8 @@
     display: none;
   }
 }
+
+.js-open-menu:disabled,
+.js-close-menu:disabled {
+  display: none;
+}

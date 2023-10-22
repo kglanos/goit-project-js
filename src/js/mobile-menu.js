@@ -23,3 +23,21 @@
     bodyScrollLock.enableBodyScroll(document.body);
   });
 })();
+
+const openMenuBtn = document.querySelector('.js-open-menu');
+const closeMenuBtn = document.querySelector('.js-close-menu');
+closeMenuBtn.disabled = true;
+
+openMenuBtn.addEventListener('click', () => {
+  setTimeout(() => {
+    openMenuBtn.disabled = true;
+    closeMenuBtn.disabled = false;
+  }, 800);
+});
+
+closeMenuBtn.addEventListener('click', () => {
+  setTimeout(() => {
+    closeMenuBtn.disabled = true;
+    openMenuBtn.disabled = false;
+  }, 800);
+});
