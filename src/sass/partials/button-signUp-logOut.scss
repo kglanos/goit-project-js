@@ -6,9 +6,12 @@
   width: 184px;
   height: 45px;
   padding: 0 14px;
+  border: 1.5px solid #111;
   border-radius: 18px;
-  font-weight: 700;
   color: white;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
   position: relative;
   cursor: pointer;
 }
@@ -16,6 +19,12 @@
 .right-arrow-icon {
   align-items: baseline;
   stroke: var(--primary-object-background-color);
+  fill: white;
+}
+
+.down-arrow-icon {
+  align-items: baseline;
+  stroke: white;
   fill: white;
 }
 
@@ -30,9 +39,10 @@
   padding: 0 14px;
   border-radius: 18px;
   font-weight: 700;
-  color: var(--secondary-object-background-color);
-  border: 1px solid black;
+  color: var(--secondary-icon-color);
+  border: 1px solid var(--secondary-icon-color);
   position: absolute;
+  cursor: pointer;
   @include large {
     width: 184px;
     justify-content: space-between;
@@ -45,16 +55,6 @@
   @include medium {
     display: block;
   }
-}
-.sign-up-btn {
-  border: 1.5px solid #111;
-}
-
-.sign-up-btn-text {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 18px;
-  justify-content: center;
 }
 
 .visually-hidden {
@@ -69,4 +69,29 @@
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+.user-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--secondary-object-background-color);
+  width: 184px;
+  height: 45px;
+  padding: 0 14px;
+  border-radius: 36px;
+  border: none;
+  color: white;
+  position: relative;
+  cursor: pointer;
+
+  &__img {
+    border-radius: 50px;
+  }
+}
+
+.userName {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
 }
