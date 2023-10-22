@@ -1,4 +1,7 @@
 .header {
+  position: fixed;
+  left: 0;
+  top: 0;
   background-color: var(--header-light-background-color);
   border-radius: 0px 0px 8px 8px;
   border: 1.5px solid var(--primary-border-color);
