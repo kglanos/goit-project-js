@@ -1,10 +1,10 @@
 body {
   background-color: var(--main-light-background-color);
-  font-family: 'DM Sans', sans-serif;
   color: var(--denary-font-color);
 }
 
 * {
+  font-family: 'DM Sans', sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -29,16 +29,16 @@ a {
 }
 
 .container {
-  max-width: 375px;
+  max-width: 100%;
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;
 
-  @include medium {
-    max-width: 768px;
-  }
+  // @include medium {
+  //   max-width: 768px;
+  // }
 
-  @include large {
-    max-width: 1440px;
-  }
+  // @include large {
+  //   max-width: 1440px;
+  // }
 }
