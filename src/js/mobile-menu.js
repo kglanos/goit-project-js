@@ -32,12 +32,12 @@ openMenuBtn.addEventListener('click', () => {
   setTimeout(() => {
     openMenuBtn.disabled = true;
     closeMenuBtn.disabled = false;
-  }, 800);
+  }, 200);
 });
 
 closeMenuBtn.addEventListener('click', () => {
   setTimeout(() => {
     closeMenuBtn.disabled = true;
     openMenuBtn.disabled = false;
-  }, 800);
+  }, 200);
 });

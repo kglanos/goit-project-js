@@ -1,9 +1,16 @@
 <div class="menu-container js-menu-container" id="mobile-menu">
   <nav>
-    <div>
-      <a class="menu-container__link" href="./index.html">Home</a>
+    <div class="menu-container__navigation">
+      <a class="menu-container__navigation-link" href="#">Home</a>
 
-      <a class="menu-container__link" href="./index.html">Shopping list</a>
+      <a
+        class="menu-container__navigation-link menu-container__navigation-link--shopping-list"
+        href="#"
+        >Shopping list
+        <svg class="menu-container__navigation-icon" width="20" height="20">
+          <use href="./images/icons.svg#icon-shopping-list-cart"></use>
+        </svg>
+      </a>
     </div>
   </nav>
   <div class="menu-container__image"></div>
