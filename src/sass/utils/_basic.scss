@@ -34,11 +34,11 @@ a {
   margin: 0 auto;
   padding: 0 20px;
 
-  // @include medium {
-  //   max-width: 768px;
-  // }
+    @include medium {
+    max-width: 768px;
+  }
 
-  // @include large {
-  //   max-width: 1440px;
-  // }
+    @include large {
+      max-width: 1440px;
+  }
 }
