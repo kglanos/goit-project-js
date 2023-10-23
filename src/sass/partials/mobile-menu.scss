@@ -1,7 +1,7 @@
 .menu-container {
   margin-top: 60px;
   display: flex;
-
+  position: relative;
   position: fixed;
   top: 0;
   left: 0;
@@ -20,5 +20,16 @@
   }
   &.is-open {
     transform: translateX(0);
+  }
+  &__image {
+    background-image: url('../images/books-background@1x.png');
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 }
