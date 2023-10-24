@@ -1,47 +1,17 @@
-body {
-  background-color: var(--main-light-background-color);
-  font-family: 'DM Sans', sans-serif;
-  color: var(--denary-font-color);
-}
+.h1-shopping {
+  font-family: DM Sans;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 38px;
+  letter-spacing: -0.04em;
+  text-align: left;
+  width: 193px;
+  height: 38px;
+  padding: 20px 40px 142px 120px;
+  color: #111111;
 
-* {
-  margin: 0;
-  padding: 0;
-}
-
-ul {
-  list-style: none;
-}
-
-/* .container {
-  max-width: 375px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 20px;//
-
-  @include medium {
-    max-width: 768px;
-  }
-
-  @include large {
-    max-width: 1440px;
-  }
-} */
-
-  .h1-shopping {
-    font-family: DM Sans;
-    font-size: 32px;
-    font-weight: 700;
-    line-height: 38px;
-    letter-spacing: -0.04em;
-    text-align: left;
-    width: 193px;
-    height: 38px;
-    padding: 20px 40px 142px 120px;
-    color: #111111;
-
-&__list {
-  color: #4F2EE8;
+  &__list {
+    color: #4f2ee8;
   }
 }
 
