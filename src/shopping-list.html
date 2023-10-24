@@ -19,17 +19,11 @@
     />
   </head>
   <body>
-    <header>
       <include src="./partials/header.html"></include>
-      <include src="./partials/mobile-menu.html"></include>
-      <include src="./partials/support.html"></include>
-      <include src="./partials/pop-up.html"></include>
-      <include src="./partials/helper.html"></include>
-      <script src="./js/pop-up.js" type="module"></script>
-      <script src="./js/helper.js" type="module"></script>
       <script src="./js/shopping-list.js" type="module"></script>
+      <include src="./partials/mobile-menu.html"></include>
+      <include src="./partials/modal-registration.html"></include>
       <!-- Dodaj elementy nagłówka, takie jak menu, logo, itp. -->
-    </header>
 
     <h1 class="h1-shopping">Shopping <span class="h1-shopping__list">List</span></h1>
 
@@ -41,7 +35,8 @@
       <p class="empty-list__text">This page is empty, add some books and proceed to order.</p>
       <img class="empty-list__image" src="/src/images/books-empty-page@1x.png" alt="Książki" />
     </div>
-
+    
+    <include src="./partials/support.html"></include>
     <script src="./index.js" type="module"></script>
   </body>
 </html>
