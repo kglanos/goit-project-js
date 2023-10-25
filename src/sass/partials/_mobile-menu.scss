@@ -1,4 +1,5 @@
 .menu-container {
+  z-index: 300;
   margin-top: 60px;
   display: flex;
   position: fixed;
@@ -23,7 +24,7 @@
     top: 30%;
     transform: translate(-50%, -50%);
     display: flex;
-
+    z-index: 301;
     flex-direction: column;
     row-gap: 16px;
     &-link {
@@ -35,10 +36,6 @@
       letter-spacing: -0.56px;
       padding: 8px 16px;
       display: inline-block;
-      &:hover,
-      :focus {
-        background-color: var(--primary-object-background-color);
-      }
 
       &--shopping-list {
         display: flex;
@@ -64,5 +61,75 @@
   }
   @include medium {
     display: none;
+  }
+}
+.sign-up-mobile-btn {
+  position: absolute;
+  left: 20px;
+  top: 40px;
+  z-index: 301;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1.5px solid var(--primary-border-color);
+  border-radius: 18px;
+  padding: 14px;
+  width: 118px;
+  height: 48px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: var(--secondary-object-background-color);
+  color: var(--quaternary-font-color);
+  &__icon {
+    fill: var(--primary-object-background-color);
+  }
+}
+.log-out-mobile-btn {
+  position: absolute;
+  left: 20px;
+  bottom: 100px;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 301;
+  background-color: var(--quaternary-object-background-color);
+  width: 118px;
+  height: 48px;
+  padding: 14px;
+  font-size: 14px;
+  border-radius: 18px;
+  font-weight: 500;
+  color: var(--secondary-icon-color);
+  border: 1px solid var(--secondary-icon-color);
+  cursor: pointer;
+
+  &__icon {
+    fill: var(--primary-object-background-color);
+  }
+}
+
+.user-mobile-btn {
+  z-index: 301;
+  position: absolute;
+  left: 20px;
+  top: 40px;
+  display: none;
+  align-items: center;
+  column-gap: 9px;
+  background-color: inherit;
+  width: 184px;
+  height: 45px;
+  padding: 0 12px;
+  border-radius: 36px;
+  border: none;
+  cursor: pointer;
+  color: var(--quaternary-font-color);
+  &__img {
+    border-radius: 50%;
+  }
+  &__userName {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.4;
   }
 }

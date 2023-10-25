@@ -1,4 +1,5 @@
 .header {
+  z-index: 200;
   position: fixed;
   left: 0;
   top: 0;
@@ -83,6 +84,9 @@
   cursor: pointer;
   &__icon {
     fill: var(--secondary-icon-color);
+    &:hover {
+      fill: var(--secondary-object-background-color);
+    }
   }
   @include medium {
     display: none;
