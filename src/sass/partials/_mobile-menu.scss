@@ -1,4 +1,5 @@
 .menu-container {
+  z-index: 300;
   margin-top: 60px;
   display: flex;
   position: fixed;
@@ -23,7 +24,7 @@
     top: 30%;
     transform: translate(-50%, -50%);
     display: flex;
-    z-index: 1;
+    z-index: 301;
     flex-direction: column;
     row-gap: 16px;
     &-link {
@@ -66,7 +67,7 @@
   position: absolute;
   left: 20px;
   top: 40px;
-  z-index: 1;
+  z-index: 301;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -90,7 +91,7 @@
   display: none;
   align-items: center;
   justify-content: space-between;
-  z-index: 1;
+  z-index: 301;
   background-color: var(--quaternary-object-background-color);
   width: 118px;
   height: 48px;
@@ -108,6 +109,7 @@
 }
 
 .user-mobile-btn {
+  z-index: 301;
   position: absolute;
   left: 20px;
   top: 40px;
