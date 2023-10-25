@@ -1,42 +1,89 @@
 .support {
     z-index: 0;
-
+    padding: 24px 40px;
+    list-style-type: none;
     width: 335px;
-    height: 460px;
+    max-width: 100%;
     border-radius: 16px;
     background: radial-gradient(189.32% 190.93% at 59.76% -23.42%,
             #4f2ee8 18.03%,
-            #fff 100%);
+            var(--quaternary-object-background-color) 100%);
     box-shadow: 0px 10px 10px 0px rgba(245, 245, 247, 0.1);
 
-    @include large {
-        widht: 356px;
-        height: 474px;
+    @include medium {
+        width: 356px;
     }
 
     &__title {
-        color: var(--quaternary-font-color);
+        color: var(--quinary-font-color);
         font-style: normal;
         font-weight: 700;
         font-size: 22px;
         line-height: 24px;
-        letter-spacing: -0.08em;
+        letter-spacing: -0.88px;
         display: flex;
         gap: 12px;
         align-items: center;
-        padding: 28px 40px;
+        margin-left: auto;
+        margin-right: auto;
 
-        @include large {
+        @include medium {
             font-size: 24px;
-            padding: 26px;
-            line-height: 28px 40px;
+            line-height: 28px;
             letter-spacing: -0.96px;
         }
     }
 
     &__icon-ua {
-        fill: var(--quaternary-font-color);
+        fill: var(--primary-icon-color);
     }
 
 
+
+    &__item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+        color: var(--quinary-font-color);
+
+    }
+
+    &__link {
+        display: flex;
+        align-items: center;
+    }
+
+    &__index {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: -0.56px;
+    }
+}
+
+.swiper {
+    height: 292px;
+    margin-top: 40px;
+
+
+    @include medium {
+        margin-bottom: 24px;
+    }
+}
+
+.next {
+    display: flex;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin: 0 auto;
+
+    @include medium {
+        width: 38px;
+        height: 38px;
+
+    }
 }
