@@ -27,6 +27,7 @@
   "dependencies": {
     "axios": "^1.5.1",
     "firebase": "^10.5.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "swiper": "^11.0.2"
   }
 }
