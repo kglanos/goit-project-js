@@ -118,12 +118,11 @@
 
   &__amazon {
     width: 62px;
-    height: 28px;
-    background-color: var(--quaternary-object-background-color);
+    height: 20px;
     background-image: url('../images/amazon.png');
     background-repeat: no-repeat;
-    background-position: bottom;
-    border-radius: 8px;
+
+
   }
 
   &__icon-book {
@@ -199,6 +198,10 @@
 
 .icon-close-dark-theme {
   fill: var(--quaternary-font-color);
+}
+
+.amazon-dark-theme {
+  background-image: url('../images/amazon-white.png');
 }
 
 .btn-add-dark-theme,
