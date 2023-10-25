@@ -1,6 +1,8 @@
 'use strict';
 import axios from 'axios';
 
+
+// kategorie książek 
 const fetchBooksCategoryList = async () => {
   try {
     const response = await axios.get(
@@ -13,6 +15,8 @@ const fetchBooksCategoryList = async () => {
 };
 // console.log(fetchBooksCategoryList());
 
+
+// bestsellery
 const fetchTopBooksInCategories = async () => {
   try {
     const response = await axios.get(
@@ -25,6 +29,8 @@ const fetchTopBooksInCategories = async () => {
 };
 // console.log(fetchTopBooksInCategories());
 
+
+// książki z danej kategorii
 const fetchBooksByCategory = async selectedCategory => {
   try {
     const response = await axios.get(
@@ -37,6 +43,9 @@ const fetchBooksByCategory = async selectedCategory => {
 };
 // console.log(fetchBooksByCategory('Hardcover Nonfiction'));
 
+
+
+// szczegółowa informacja o książce
 const fetchBookById = async id => {
   try {
     const response = await axios.get(

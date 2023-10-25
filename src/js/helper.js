@@ -1,7 +1,7 @@
 'use strict';
 import { fetchBooksByCategory } from './api';
 
-console.log(fetchBooksByCategory('Hardcover Nonfiction'));
+// console.log(fetchBooksByCategory('Hardcover Nonfiction'));
 
 const listBooksByCategory = document.querySelector('.list-books-by-category');
 

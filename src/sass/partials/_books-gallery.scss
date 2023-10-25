@@ -1,0 +1,13 @@
+.books-gallery {
+    display: flex;
+    flex-direction: column;
+    min-width: 600px;
+    min-height: 200px;
+    background-color: peru;
+    gap: 50px;
+    margin: 50px;
+}
+
+.books-gallery__section{
+    display: flex;
+}

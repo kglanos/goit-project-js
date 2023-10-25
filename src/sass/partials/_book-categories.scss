@@ -1,0 +1,42 @@
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    // background: rgba(17, 17, 17, 0.6);
+    background: var(--primary-scrollbar-color);
+    border-radius: 12px;
+    height: 114px;
+  }
+  
+
+.side-bar__categories {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 335px;
+    max-height: 228px;
+    
+    margin: 104 20 40;
+    overflow: auto;
+    line-height: 18px;
+    color: var(--eleventh-font-color)
+    
+}
+
+
+
+.side-bar__categories-item:focus{
+    font-weight: 700;
+    color: var(--secondary-border-color);
+    text-transform: uppercase;
+}
+
+
+li:hover{
+    cursor: pointer;
+  }
