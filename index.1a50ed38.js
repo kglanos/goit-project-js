@@ -2847,7 +2847,7 @@ e._initializeWithPersistence(n,null==t?void 0:t.popupRedirectResolver)}(l,t),l},
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */function(e){switch(e){case"Node"/* ClientPlatform.NODE */:return"node";case"ReactNative"/* ClientPlatform.REACT_NATIVE */:return"rn";case"Worker"/* ClientPlatform.WORKER */:return"webworker";case"Cordova"/* ClientPlatform.CORDOVA */:return"cordova";default:return}}(c)),tw(ri,rn,"esm2017"),ty({apiKey:"AIzaSyAjvSJvQxu47W-Oa1JrSyOVnKx1KBTL5UA",authDomain:"goit-project-js-bookshelf.firebaseapp.com",projectId:"goit-project-js-bookshelf",storageBucket:"goit-project-js-bookshelf.appspot.com",messagingSenderId:"93438368377",appId:"1:93438368377:web:063f56aa4bd4ee23e1d2a8",measurementId:"G-BRZ6Z5X8NQ"});const rl=document.querySelector(".sign-up-link"),rc=document.querySelector(".sign-in-link");document.querySelector(".log-out-btn"),document.querySelector(".registration-modal-form"),document.querySelector(".registration-backdrop"),document.querySelector(".sign-up-modal"),document.querySelector(".registration-close-btn");const rd=[...document.querySelectorAll(".sign-up-btn")],ru=[...document.querySelectorAll(".log-out-btn")];document.querySelector("#user-name");const rp=document.querySelector("#user-email"),rh=document.querySelector("#user-password"),rm=/**
+ */function(e){switch(e){case"Node"/* ClientPlatform.NODE */:return"node";case"ReactNative"/* ClientPlatform.REACT_NATIVE */:return"rn";case"Worker"/* ClientPlatform.WORKER */:return"webworker";case"Cordova"/* ClientPlatform.CORDOVA */:return"cordova";default:return}}(c)),tw(ri,rn,"esm2017"),ty({apiKey:"AIzaSyAjvSJvQxu47W-Oa1JrSyOVnKx1KBTL5UA",authDomain:"goit-project-js-bookshelf.firebaseapp.com",projectId:"goit-project-js-bookshelf",storageBucket:"goit-project-js-bookshelf.appspot.com",messagingSenderId:"93438368377",appId:"1:93438368377:web:063f56aa4bd4ee23e1d2a8",measurementId:"G-BRZ6Z5X8NQ"});const rl=document.querySelector(".sign-up-modal");document.querySelector(".sign-up-link");const rc=document.querySelector(".sign-in-link"),rd=document.querySelector(".log-out-btn");document.querySelector(".registration-modal-form"),document.querySelector(".registration-backdrop"),document.querySelector(".registration-close-btn"),[...document.querySelectorAll(".sign-up-btn")],[...document.querySelectorAll(".log-out-btn")],document.querySelector("#user-name");const ru=document.querySelector("#user-email"),rp=document.querySelector("#user-password"),rh=/**
  * Returns the Auth instance associated with the provided {@link @firebase/app#FirebaseApp}.
  * If no instance exists, initializes an Auth instance with platform-specific default dependencies.
  *
@@ -2944,10 +2944,10 @@ e._initializeWithPersistence(n,null==t?void 0:t.popupRedirectResolver)}(l,t),l},
  * @public
  */function(e,t,i){let n=e$(e);tj(n._canInitEmulator,n,"emulator-config-failed"/* AuthErrorCode.EMULATOR_CONFIG_FAILED */),tj(/^https?:\/\//.test(t),n,"invalid-emulator-scheme"/* AuthErrorCode.INVALID_EMULATOR_SCHEME */);let r=!!(null==i?void 0:i.disableWarnings),a=iD(t),{host:s,port:o}=function(e){let t=iD(e),i=/(\/\/)?([^?#/]+)/.exec(e.substr(t.length));if(!i)return{host:"",port:null};let n=i[2].split("@").pop()||"",r=/^(\[[^\]]+\])(:|$)/.exec(n);// Strip out "username:password@".
 if(r){let e=r[1];return{host:e,port:iz(n.substr(e.length+1))}}{let[e,t]=n.split(":");return{host:e,port:iz(t)}}}(t),l=null===o?"":`:${o}`;// Always replace path with "/" (even if input url had no path at all, or had a different one).
-n.config.emulator={url:`${a}//${s}${l}/`},n.settings.appVerificationDisabledForTesting=!0,n.emulatorConfig=Object.freeze({host:s,port:o,protocol:a.replace(":",""),options:Object.freeze({disableWarnings:r})}),r||function(){function e(){let e=document.createElement("p"),t=e.style;e.innerText="Running in emulator mode. Do not use with production credentials.",t.position="fixed",t.width="100%",t.backgroundColor="#ffffff",t.border=".1em solid #000000",t.color="#b50000",t.bottom="0px",t.left="0px",t.margin="0px",t.zIndex="10000",t.textAlign="center",e.classList.add("firebase-emulator-warning"),document.body.appendChild(e)}"undefined"!=typeof console&&"function"==typeof console.info&&console.info("WARNING: You are using the Auth Emulator, which is intended for local testing only.  Do not use with production credentials."),"undefined"!=typeof window&&"undefined"!=typeof document&&("loading"===document.readyState?window.addEventListener("DOMContentLoaded",e):e())}()}(i,`http://${r}`),i}(rf),rf=ty(firebaseConfig);// Sign up
-rl.addEventListener("click",e=>{e.preventDefault(),ns(rm,rp.value,inpotPassword.value).then(e=>{e.user}).catch(e=>{let t=e.message;console.log(t,errorMessage)})}),// Sign in
-rc.addEventListener("click",e=>{var t,i;e.preventDefault(),(t=rp.value,i=rh.value,nr(e$(rm),iZ.credential(t,i)).catch(async e=>{throw"auth/password-does-not-meet-requirements"===e.code&&na(rm),e})).then(e=>{user=e.user,document.querySelector("[login-modal]").classList.toggle("is-hidden"),(0,eo.Notify).success("You're logged in!")}).catch(e=>{e.code,e.message,(0,eo.Notify).failure("Wrong email or password. Try again.")})}),// Log out
-ru.addEventListener("click",e=>{e.preventDefault(),e$(rm).signOut().then(()=>(rd.classList.toggle("is-hidden"),ru.classList.toggle("is-hiddeb"),(0,eo.Notify).info("You are logged out!"))).catch(e=>{(0,eo.Notify).info("You are logged out!")})}),e$(rm).onAuthStateChanged(e=>{e&&(rd.classList.toggle("is-hidden"),ru.classList.toggle("is-hidden"),e.uid)},void 0,void 0);var rg={},rv={},rb={};rb=/**
+n.config.emulator={url:`${a}//${s}${l}/`},n.settings.appVerificationDisabledForTesting=!0,n.emulatorConfig=Object.freeze({host:s,port:o,protocol:a.replace(":",""),options:Object.freeze({disableWarnings:r})}),r||function(){function e(){let e=document.createElement("p"),t=e.style;e.innerText="Running in emulator mode. Do not use with production credentials.",t.position="fixed",t.width="100%",t.backgroundColor="#ffffff",t.border=".1em solid #000000",t.color="#b50000",t.bottom="0px",t.left="0px",t.margin="0px",t.zIndex="10000",t.textAlign="center",e.classList.add("firebase-emulator-warning"),document.body.appendChild(e)}"undefined"!=typeof console&&"function"==typeof console.info&&console.info("WARNING: You are using the Auth Emulator, which is intended for local testing only.  Do not use with production credentials."),"undefined"!=typeof window&&"undefined"!=typeof document&&("loading"===document.readyState?window.addEventListener("DOMContentLoaded",e):e())}()}(i,`http://${r}`),i}(rm),rm=ty(firebaseConfig);// Sign up
+rl.addEventListener("click",e=>{e.preventDefault(),ns(rh,ru.value,rp.value).then(e=>{user=e.user,document.querySelector(".sign-up-btn").classList.toggle(".is-hidden"),document.querySelector(".user-btn").classList.remove(".is-hidden"),(0,eo.Notify).success("You're signed up!")}).catch(e=>{let t=e.message;console.log(t,errorMessage)})}),// Sign in
+rc.addEventListener("click",e=>{var t,i;e.preventDefault(),(t=ru.value,i=rp.value,nr(e$(rh),iZ.credential(t,i)).catch(async e=>{throw"auth/password-does-not-meet-requirements"===e.code&&na(rh),e})).then(e=>{user=e.user,document.querySelector("[registration-data-modal]").classList.toggle("is-hidden"),document.querySelector(".sign-up-btn").classList.toggle(".is-hidden"),document.querySelector(".user-btn").classList.remove(".is-hidden"),document.querySelector(".log-out-btn").classList.remove(".visually-hiden"),(0,eo.Notify).success("You're logged in!")}).catch(e=>{e.code,e.message,(0,eo.Notify).failure("Wrong email or password. Try again.")})}),// Log out
+rd.addEventListener("click",e=>{e.preventDefault(),e$(rh).signOut().then(()=>(rl.classList.toggle("is-hidden"),rd.classList.toggle("is-hidden"),(0,eo.Notify).info("You are logged out!"))).catch(e=>{(0,eo.Notify).info("You are logged out!")})}),e$(rh).onAuthStateChanged(e=>{e&&(rl.classList.toggle("is-hidden"),rd.classList.toggle("is-hidden"),e.uid)},void 0,void 0);var rf={},rg={},rv={};rv=/**
  * Checks if `value` is the
  * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
  * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
@@ -2971,38 +2971,38 @@ ru.addEventListener("click",e=>{e.preventDefault(),e$(rm).signOut().then(()=>(rd
  *
  * _.isObject(null);
  * // => false
- */function(e){var t=typeof e;return null!=e&&("object"==t||"function"==t)};var ry={},rw={},rx={};rx="object"==typeof f&&f&&f.Object===Object&&f;/** Detect free variable `self`. */var rk="object"==typeof self&&self&&self.Object===Object&&self;rw=rx||rk||Function("return this")(),ry=function(){return rw.Date.now()};var rS={},rT={},rI={},rE=/\s/;rI=/**
+ */function(e){var t=typeof e;return null!=e&&("object"==t||"function"==t)};var rb={},ry={},rw={};rw="object"==typeof f&&f&&f.Object===Object&&f;/** Detect free variable `self`. */var rx="object"==typeof self&&self&&self.Object===Object&&self;ry=rw||rx||Function("return this")(),rb=function(){return ry.Date.now()};var rk={},rS={},rT={},rI=/\s/;rT=/**
  * Used by `_.trim` and `_.trimEnd` to get the index of the last non-whitespace
  * character of `string`.
  *
  * @private
  * @param {string} string The string to inspect.
  * @returns {number} Returns the index of the last non-whitespace character.
- */function(e){for(var t=e.length;t--&&rE.test(e.charAt(t)););return t};/** Used to match leading whitespace. */var rC=/^\s+/;rT=/**
+ */function(e){for(var t=e.length;t--&&rI.test(e.charAt(t)););return t};/** Used to match leading whitespace. */var rE=/^\s+/;rS=/**
  * The base implementation of `_.trim`.
  *
  * @private
  * @param {string} string The string to trim.
  * @returns {string} Returns the trimmed string.
- */function(e){return e?e.slice(0,rI(e)+1).replace(rC,""):e};var rN={},r_={},rA={};rA=rw.Symbol;var rL={},rP=Object.prototype,rO=rP.hasOwnProperty,rM=rP.toString,rR=rA?rA.toStringTag:void 0;rL=/**
+ */function(e){return e?e.slice(0,rT(e)+1).replace(rE,""):e};var rC={},rN={},r_={};r_=ry.Symbol;var rA={},rL=Object.prototype,rP=rL.hasOwnProperty,rO=rL.toString,rM=r_?r_.toStringTag:void 0;rA=/**
  * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
  *
  * @private
  * @param {*} value The value to query.
  * @returns {string} Returns the raw `toStringTag`.
- */function(e){var t=rO.call(e,rR),i=e[rR];try{e[rR]=void 0;var n=!0}catch(e){}var r=rM.call(e);return n&&(t?e[rR]=i:delete e[rR]),r};var rD={},rz=Object.prototype.toString;rD=/**
+ */function(e){var t=rP.call(e,rM),i=e[rM];try{e[rM]=void 0;var n=!0}catch(e){}var r=rO.call(e);return n&&(t?e[rM]=i:delete e[rM]),r};var rR={},rD=Object.prototype.toString;rR=/**
  * Converts `value` to a string using `Object.prototype.toString`.
  *
  * @private
  * @param {*} value The value to convert.
  * @returns {string} Returns the converted string.
- */function(e){return rz.call(e)};/** Built-in value references. */var rW=rA?rA.toStringTag:void 0;r_=/**
+ */function(e){return rD.call(e)};/** Built-in value references. */var rz=r_?r_.toStringTag:void 0;rN=/**
  * The base implementation of `getTag` without fallbacks for buggy environments.
  *
  * @private
  * @param {*} value The value to query.
  * @returns {string} Returns the `toStringTag`.
- */function(e){return null==e?void 0===e?"[object Undefined]":"[object Null]":rW&&rW in Object(e)?rL(e):rD(e)};var rB={};rB=/**
+ */function(e){return null==e?void 0===e?"[object Undefined]":"[object Null]":rz&&rz in Object(e)?rA(e):rR(e)};var rW={};rW=/**
  * Checks if `value` is object-like. A value is object-like if it's not `null`
  * and has a `typeof` result of "object".
  *
@@ -3025,7 +3025,7 @@ ru.addEventListener("click",e=>{e.preventDefault(),e$(rm).signOut().then(()=>(rd
  *
  * _.isObjectLike(null);
  * // => false
- */function(e){return null!=e&&"object"==typeof e},rN=/**
+ */function(e){return null!=e&&"object"==typeof e},rC=/**
  * Checks if `value` is classified as a `Symbol` primitive or object.
  *
  * @static
@@ -3041,7 +3041,7 @@ ru.addEventListener("click",e=>{e.preventDefault(),e$(rm).signOut().then(()=>(rd
  *
  * _.isSymbol('abc');
  * // => false
- */function(e){return"symbol"==typeof e||rB(e)&&"[object Symbol]"==r_(e)};/** Used as references for various `Number` constants. */var rF=0/0,rj=/^[-+]0x[0-9a-f]+$/i,rV=/^0b[01]+$/i,rU=/^0o[0-7]+$/i,rH=parseInt;rS=/**
+ */function(e){return"symbol"==typeof e||rW(e)&&"[object Symbol]"==rN(e)};/** Used as references for various `Number` constants. */var rB=0/0,rF=/^[-+]0x[0-9a-f]+$/i,rj=/^0b[01]+$/i,rV=/^0o[0-7]+$/i,rU=parseInt;rk=/**
  * Converts `value` to a number.
  *
  * @static
@@ -3063,7 +3063,7 @@ ru.addEventListener("click",e=>{e.preventDefault(),e$(rm).signOut().then(()=>(rd
  *
  * _.toNumber('3.2');
  * // => 3.2
- */function(e){if("number"==typeof e)return e;if(rN(e))return rF;if(rb(e)){var t="function"==typeof e.valueOf?e.valueOf():e;e=rb(t)?t+"":t}if("string"!=typeof e)return 0===e?e:+e;e=rT(e);var i=rV.test(e);return i||rU.test(e)?rH(e.slice(2),i?2:8):rj.test(e)?rF:+e};/* Built-in method references for those with the same name as other `lodash` methods. */var rG=Math.max,r$=Math.min;rv=/**
+ */function(e){if("number"==typeof e)return e;if(rC(e))return rB;if(rv(e)){var t="function"==typeof e.valueOf?e.valueOf():e;e=rv(t)?t+"":t}if("string"!=typeof e)return 0===e?e:+e;e=rS(e);var i=rj.test(e);return i||rV.test(e)?rU(e.slice(2),i?2:8):rF.test(e)?rB:+e};/* Built-in method references for those with the same name as other `lodash` methods. */var rH=Math.max,rG=Math.min;rg=/**
  * Creates a debounced function that delays invoking `func` until after `wait`
  * milliseconds have elapsed since the last time the debounced function was
  * invoked. The debounced function comes with a `cancel` method to cancel
@@ -3119,13 +3119,13 @@ ru.addEventListener("click",e=>{e.preventDefault(),e$(rm).signOut().then(()=>(rd
  */function(e,t,i){var n,r,a,s,o,l,c=0,d=!1,u=!1,p=!0;if("function"!=typeof e)throw TypeError("Expected a function");function h(t){var i=n,a=r;return n=r=void 0,c=t,s=e.apply(a,i)}function m(e){var i=e-l,n=e-c;// Either this is the first call, activity has stopped and we're at the
 // trailing edge, the system time has gone backwards and we're treating
 // it as the trailing edge, or we've hit the `maxWait` limit.
-return void 0===l||i>=t||i<0||u&&n>=a}function f(){var e,i,n,r=ry();if(m(r))return g(r);// Restart the timer.
-o=setTimeout(f,(e=r-l,i=r-c,n=t-e,u?r$(n,a-i):n))}function g(e){return(// Only invoke if we have `lastArgs` which means `func` has been
+return void 0===l||i>=t||i<0||u&&n>=a}function f(){var e,i,n,r=rb();if(m(r))return g(r);// Restart the timer.
+o=setTimeout(f,(e=r-l,i=r-c,n=t-e,u?rG(n,a-i):n))}function g(e){return(// Only invoke if we have `lastArgs` which means `func` has been
 // debounced at least once.
-(o=void 0,p&&n)?h(e):(n=r=void 0,s))}function v(){var e,i=ry(),a=m(i);if(n=arguments,r=this,l=i,a){if(void 0===o)return(// Reset any `maxWait` timer.
+(o=void 0,p&&n)?h(e):(n=r=void 0,s))}function v(){var e,i=rb(),a=m(i);if(n=arguments,r=this,l=i,a){if(void 0===o)return(// Reset any `maxWait` timer.
 c=e=l,// Start the timer for the trailing edge.
 o=setTimeout(f,t),d?h(e):s);if(u)return(// Handle invocations in a tight loop.
-clearTimeout(o),o=setTimeout(f,t),h(l))}return void 0===o&&(o=setTimeout(f,t)),s}return t=rS(t)||0,rb(i)&&(d=!!i.leading,a=(u="maxWait"in i)?rG(rS(i.maxWait)||0,t):a,p="trailing"in i?!!i.trailing:p),v.cancel=function(){void 0!==o&&clearTimeout(o),c=0,n=l=r=o=void 0},v.flush=function(){return void 0===o?s:g(ry())},v},rg=/**
+clearTimeout(o),o=setTimeout(f,t),h(l))}return void 0===o&&(o=setTimeout(f,t)),s}return t=rk(t)||0,rv(i)&&(d=!!i.leading,a=(u="maxWait"in i)?rH(rk(i.maxWait)||0,t):a,p="trailing"in i?!!i.trailing:p),v.cancel=function(){void 0!==o&&clearTimeout(o),c=0,n=l=r=o=void 0},v.flush=function(){return void 0===o?s:g(rb())},v},rf=/**
  * Creates a throttled function that only invokes `func` at most once per
  * every `wait` milliseconds. The throttled function comes with a `cancel`
  * method to cancel delayed `func` invocations and a `flush` method to
@@ -3168,6 +3168,6 @@ clearTimeout(o),o=setTimeout(f,t),h(l))}return void 0===o&&(o=setTimeout(f,t)),s
  *
  * // Cancel the trailing throttled invocation.
  * jQuery(window).on('popstate', throttled.cancel);
- */function(e,t,i){var n=!0,r=!0;if("function"!=typeof e)throw TypeError("Expected a function");return rb(i)&&(n="leading"in i?!!i.leading:n,r="trailing"in i?!!i.trailing:r),rv(e,t,{leading:n,maxWait:t,trailing:r})};const rX=document.querySelector(".scroll-to-top"),rq=((d=rg)&&d.__esModule?d.default:d)(function(){let e=window.scrollY,t=document.documentElement.clientHeight;function i(){window.scrollTo({top:0,behavior:"smooth"})}e>=t?(rX.addEventListener("click",i),rX.classList.remove("unvisually")):(rX.classList.add("unvisually"),rX.addEventListener("click",i))}//# sourceMappingURL=index.0ae66749.js.map
-,500);window.addEventListener("scroll",rq);
-//# sourceMappingURL=index.0ae66749.js.map
+ */function(e,t,i){var n=!0,r=!0;if("function"!=typeof e)throw TypeError("Expected a function");return rv(i)&&(n="leading"in i?!!i.leading:n,r="trailing"in i?!!i.trailing:r),rg(e,t,{leading:n,maxWait:t,trailing:r})};const r$=document.querySelector(".scroll-to-top"),rX=((d=rf)&&d.__esModule?d.default:d)(function(){let e=window.scrollY,t=document.documentElement.clientHeight;function i(){window.scrollTo({top:0,behavior:"smooth"})}e>=t?(r$.addEventListener("click",i),r$.classList.remove("unvisually")):(r$.classList.add("unvisually"),r$.addEventListener("click",i))}//# sourceMappingURL=index.1a50ed38.js.map
+,500);window.addEventListener("scroll",rX);
+//# sourceMappingURL=index.1a50ed38.js.map
