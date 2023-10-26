@@ -61,7 +61,8 @@ signInLink.addEventListener('click', e => {
         (user = userCredential.user),
           document.querySelector('[registration-data-modal]').classList.toggle('is-hidden'),
           document.querySelector('.sign-up-btn').classList.toggle('.is-hidden'),
-          document.querySelector('.user-btn').classList.remove('.is-hidden');
+          document.querySelector('.user-btn').classList.remove('.is-hidden'),
+          document.querySelector('.log-out-btn').classList.remove('.visually-hiden');
         Notify.success(`You're logged in!`);
       })
       .catch(error => {
