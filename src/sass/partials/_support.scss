@@ -38,23 +38,17 @@
         fill: var(--primary-icon-color);
     }
 
-    &__list {
-        display: flex;
-        flex-direction: column;
-    }
-
     &__item {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 16px;
-        color: var(--quinary-font-color);
-    }
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 16px;
+            color: var(--quinary-font-color);
+            }
 
     &__link {
-        height: 32px;
         display: flex;
-        align-items: center;
+       
     }
 
     &__index {
@@ -62,21 +56,38 @@
         font-weight: 400;
         font-size: 14px;
         line-height: 18px;
+        letter-spacing: -0.56px;
+    }
+
+    &__icon-down {
+        width: 20px;
+        height: 20px;
+        fill: #4F2EE8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 
 .swiper {
-    width: 149px;
     height: 292px;
-    margin: 40px;
+    width: 149px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-left: 0 !important;
+
+    @include medium {
+        margin-bottom: 24px;
+    }
 }
 
 .next {
-    display: flex;
     border: none;
     border-radius: 50%;
     width: 32px;
     height: 32px;
+    display: grid;
+    place-items: center;
     margin: 0 auto;
 
     @include medium {
