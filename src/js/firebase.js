@@ -1,4 +1,4 @@
-import { Notify } from 'Notiflix';
+import { Notify } from 'notiflix';
 import { initializeApp } from 'firebase/app';
 import {
   getAuth,
@@ -21,98 +21,16 @@ const firebaseApp = initializeApp({
 
 const signUpLink = document.querySelector('.sign-up-link');
 const signInLink = document.querySelector('.sign-in-link');
-const signOutLink = document.querySelector('.sign-out-link');
+const signOutLink = document.querySelector('.log-out-btn');
 const registrationForm = document.querySelector('.registration-modal-form');
 const authorizationModal = document.querySelector('.registration-backdrop');
-const signInBtnModal = document.querySelector('.signin-btn');
+const signInBtnModal = document.querySelector('.sign-up-modal');
 const closeBtn = document.querySelector('.registration-close-btn');
 const signUpBtn = [...document.querySelectorAll('.sign-up-btn')];
-const signOutBtn = [...document.querySelectorAll('.sign-out-btn')];
+const signOutBtn = [...document.querySelectorAll('.log-out-btn')];
 const inputName = document.querySelector('#user-name');
 const inputEmail = document.querySelector('#user-email');
 const inputPassword = document.querySelector('#user-password');
-
-// // Log in
-// const loginEmailPassword = async () => {
-//   const loginEmail = inputEmail.value;
-//   const loginPassword = inputPassword.value;
-
-// const showLoginForm = () => {
-//   login.style.display = 'block';
-//   app.style.display = 'none';
-// };
-
-// const showApp = () => {
-//   login.style.display = 'none';
-//   app.style.display = 'block';
-// };
-
-// const hideLoginError = () => {
-//   divLoginError.style.display = 'none';
-//   lblLoginErrorMessage.innerHTML = '';
-// };
-
-// const showLoginError = error => {
-//   divLoginError.style.display = 'block';
-//   if (error.code == AuthErrorCodes.INVALID_PASSWORD) {
-//     lblLoginErrorMessage.innerHTML = `Wrong password. Try again.`;
-//   } else {
-//     lblLoginErrorMessage.innerHTML = `Error: ${error.message}`;
-//   }
-// };
-
-// const showLoginState = user => {
-//   lblAuthState.innerHTML = `You're logged in as ${user.displayName} (uid: ${user.uid}, email: ${user.email}) `;
-// };
-
-// hideLoginError();
-
-//   await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-// };
-
-// // Log up
-// const createAccount = async () => {
-//   const email = inputEmail.value;
-//   const password = inputPassword.value;
-
-//   try {
-//     await createUserWithEmailAndPassword(auth, email, password);
-//   } catch (error) {
-//     console.log(`There was an error: ${error}`);
-//     showLoginError(error);
-//   }
-// };
-
-// // Monitor auth state
-// const monitorAuthState = async () => {
-//   onAuthStateChanged(auth, user => {
-//     if (user) {
-//       console.log(user);
-//       showApp();
-//       showLoginState(user);
-
-//       hideLoginError();
-//       hideLinkError();
-//     } else {
-//       showLoginForm();
-//       lblAuthState.innerHTML = `You're not logged in.`;
-//     }
-//   });
-// };
-
-// // Log out
-// const logout = async () => {
-//   await signOut(auth);
-// };
-
-// signInBtnModal.addEventListener('click', loginEmailPassword);
-// signUpLink.addEventListener('click', createAccount);
-// signOutBtn.addEventListener('click', logout);
-
-// const auth = getAuth(firebaseApp);
-// connectAuthEmulator(auth, 'http://localhost:1234');
-
-// monitorAuthState();
 
 const auth = getAuth(app);
 const app = initializeApp(firebaseConfig);
