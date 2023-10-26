@@ -1,0 +1,34 @@
+.books-gallery {
+    display: flex;
+    flex-direction: column;
+    background-color: #cd853f;
+    margin: 50px;
+    &__title{
+        font-size: 32x;
+        line-height: 38px;
+        @include medium{
+            font-size: 48px;
+            line-height: 52px;
+        }
+        color: var(--denary-font-color);
+        margin-bottom: 40px;
+        &--accent{
+            color: var(--secondary-font-color);
+        }
+    }
+    &__category-title{
+        font-size: 14px;
+        line-height: 24px;
+        text-transform: uppercase;
+        color: var(--tenth-font-color);
+    }
+    &__image{
+        width: 335px;
+        height: 485px;
+        border-radius: 8px;
+    }
+}
+
+.books-gallery__section{
+    display: flex;
+}
