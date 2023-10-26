@@ -9,25 +9,25 @@ const list = document.querySelector('.support__list');
 const html = charities.map(makeMarkup).join('');
 
 function makeMarkup({ url, title, img }, index) {
-  const numbers = (index + 1).toString().padStart(2, '0');
+  const digits = (index + 1).toString().padStart(2, '0');
 
   return `
   <li class="swiper-slide">
         <div class="support__item">
-        <span class="support__index">${numbers}</span>
+        <span class="support__index">${digits}</span>
         <a class="support__link" href="${url}" target="_blank" rel="noopener noreferrer nofollow">
             <img
                 srcset="${img}" 1x
-                src="${img}" type="png" alt="${title}">
+                src="${img}" type="image/png" alt="${title}">
         </a>
     </li>`;
 }
 
-list.insertAdjacentHTML('beforeend', html);
+list.innerHTML = html;
 
 const swiper = new Swiper('.swiper', {
-    direction: 'vertical',
-    slidesPerView: 6,
+  direction: 'vertical',
+  slidesPerView: 6,
   rewind: true,
   spaceBetween: 20,
   effect: 'slide',
