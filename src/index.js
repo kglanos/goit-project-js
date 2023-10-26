@@ -1,5 +1,6 @@
 import './sass/main.scss';
 import './js/mobile-menu';
+import './js/theme-changer';
 import './js/book-categories';
 import './js/support.js';
 import './js/books-gallery';
