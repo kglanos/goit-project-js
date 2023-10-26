@@ -19,12 +19,12 @@ const firebaseApp = initializeApp({
   measurementId: 'G-BRZ6Z5X8NQ',
 });
 
+const signUpBtnModal = document.querySelector('.sign-up-modal');
 const signUpLink = document.querySelector('.sign-up-link');
 const signInLink = document.querySelector('.sign-in-link');
-const signOutLink = document.querySelector('.log-out-btn');
+const logOutLink = document.querySelector('.log-out-btn');
 const registrationForm = document.querySelector('.registration-modal-form');
 const authorizationModal = document.querySelector('.registration-backdrop');
-const signInBtnModal = document.querySelector('.sign-up-modal');
 const closeBtn = document.querySelector('.registration-close-btn');
 const signUpBtn = [...document.querySelectorAll('.sign-up-btn')];
 const signOutBtn = [...document.querySelectorAll('.log-out-btn')];
@@ -37,11 +37,14 @@ const app = initializeApp(firebaseConfig);
 
 // Sign up
 
-signUpLink.addEventListener('click', e => {
+signUpBtnModal.addEventListener('click', e => {
   e.preventDefault(),
-    createUserWithEmailAndPassword(auth, inputEmail.value, inpotPassword.value)
+    createUserWithEmailAndPassword(auth, inputEmail.value, inputPassword.value)
       .then(userCredential => {
-        const user = userCredential.user;
+        (user = userCredential.user),
+          document.querySelector('.sign-up-btn').classList.toggle('.is-hidden'),
+          document.querySelector('.user-btn').classList.remove('.is-hidden');
+        Notify.success(`You're signed up!`);
       })
       .catch(error => {
         const errorCode = error.message;
@@ -56,7 +59,10 @@ signInLink.addEventListener('click', e => {
     signInWithEmailAndPassword(auth, inputEmail.value, inputPassword.value)
       .then(userCredential => {
         (user = userCredential.user),
-          document.querySelector('[login-modal]').classList.toggle('is-hidden');
+          document.querySelector('[registration-data-modal]').classList.toggle('is-hidden'),
+          document.querySelector('.sign-up-btn').classList.toggle('.is-hidden'),
+          document.querySelector('.user-btn').classList.remove('.is-hidden'),
+          document.querySelector('.log-out-btn').classList.remove('.visually-hiden');
         Notify.success(`You're logged in!`);
       })
       .catch(error => {
@@ -68,13 +74,13 @@ signInLink.addEventListener('click', e => {
 
 // Log out
 
-signOutBtn.addEventListener('click', e => {
+logOutLink.addEventListener('click', e => {
   e.preventDefault(),
     signOut(auth)
       .then(() => {
         return (
-          signUpBtn.classList.toggle('is-hidden'),
-          signOutBtn.classList.toggle('is-hiddeb'),
+          signUpBtnModal.classList.toggle('is-hidden'),
+          logOutLink.classList.toggle('is-hidden'),
           Notify.info('You are logged out!')
         );
       })
@@ -85,7 +91,7 @@ signOutBtn.addEventListener('click', e => {
 
 onAuthStateChanged(auth, user => {
   if (user) {
-    signUpBtn.classList.toggle('is-hidden'), signOutBtn.classList.toggle('is-hidden');
+    signUpBtnModal.classList.toggle('is-hidden'), logOutLink.classList.toggle('is-hidden');
     const uid = user.uid;
   } else {
     //User is signed out
