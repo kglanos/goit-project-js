@@ -38,7 +38,7 @@
 // WALIDACJA Z EMAIL I NAME
 
 // const form = document.querySelector('.registration-modal-form');
-// const btnSubmit = document.querySelector('.signup-btn');
+// const btnSubmit = document.querySelector('.sign-up-btn');
 // const inputName = document.querySelector('#user-name');
 // const inputEmail = document.querySelector('#user-email');
 
