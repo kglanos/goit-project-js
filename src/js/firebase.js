@@ -26,6 +26,7 @@ const signUpHeader = document.querySelector('.sign-up-btn');
 const inputName = document.querySelector('#user-name');
 const inputEmail = document.querySelector('#user-email');
 const inputPassword = document.querySelector('#user-password');
+const registrationForm = document.querySelector('.registration-modal-form');
 let user;
 
 const app = initializeApp(firebaseConfig);
@@ -38,8 +39,11 @@ signUpBtnModal.addEventListener('click', e => {
     createUserWithEmailAndPassword(auth, inputEmail.value, inputPassword.value)
       .then(userCredential => {
         (user = userCredential.user),
-          document.querySelector('.sign-up-btn').classList.toggle('visually-hidden'),
-          document.querySelector('.user-btn').classList.remove('visually-hidden');
+          document.querySelector('[registration-data-modal]').classList.toggle('is-hidden'),
+          document.querySelector('.sign-up-btn').classList.toggle('is-hidden'),
+          document.querySelector('.user-btn').classList.remove('visually-hidden'),
+          document.querySelector('.log-out-btn').classList.remove('visually-hidden');
+        registrationForm.reset();
         Notify.success(`You're signed up!`);
       })
       .catch(error => {
@@ -56,10 +60,11 @@ signInLink.addEventListener('click', e => {
     signInWithEmailAndPassword(auth, inputEmail.value, inputPassword.value)
       .then(userCredential => {
         (user = userCredential.user),
-          document.querySelector('[registration-data-modal]').classList.toggle('visually-hidden'),
-          document.querySelector('.sign-up-btn').classList.toggle('visually-hidden'),
+          document.querySelector('[registration-data-modal]').classList.toggle('is-hidden'),
+          document.querySelector('.sign-up-btn').classList.toggle('is-hidden'),
           document.querySelector('.user-btn').classList.remove('visually-hidden'),
           document.querySelector('.log-out-btn').classList.remove('visually-hidden');
+        registrationForm.reset();
         Notify.success(`You're logged in!`);
       })
       .catch(error => {
@@ -94,4 +99,15 @@ onAuthStateChanged(auth, user => {
   } else {
     //User is signed out
   }
+});
+
+signInLink.addEventListener('click', e => {
+  e.preventDefault();
+  // registrationForm.elements.userName.style.display = 'none';
+  signUpBtnModal.textContent = 'Sign in';
+});
+
+signUpLink.addEventListener('click', e => {
+  e.preventDefault();
+  signUpBtnModal.textContent = 'Sign up';
 });
