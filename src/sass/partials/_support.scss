@@ -6,15 +6,15 @@
     max-width: 100%;
     border-radius: 16px;
     background: radial-gradient(189.32% 190.93% at 59.76% -23.42%,
-            #4f2ee8 18.03%,
+            var(--secondary-font-color) 18.03%,
             var(--quaternary-object-background-color) 100%);
     box-shadow: 0px 10px 10px 0px rgba(245, 245, 247, 0.1);
 
-    @include medium {
+    @include large {
         width: 356px;
     }
 
-    &__title {
+ &__title {
         color: var(--quinary-font-color);
         font-style: normal;
         font-weight: 700;
@@ -38,17 +38,26 @@
         fill: var(--primary-icon-color);
     }
 
-    &__item {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 16px;
-            color: var(--quinary-font-color);
-            }
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        transition: transform 0.5s ease-in-out;
+      
+    }
+
+     &__item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+        color: var(--quinary-font-color);
+        height: 32px;
+    }
 
     &__link {
         display: flex;
-       
+        
     }
 
     &__index {
@@ -70,6 +79,7 @@
 }
 
 .swiper {
+    overflow: hidden;
     height: 292px;
     width: 149px;
     margin-top: 40px;
@@ -79,9 +89,14 @@
     @include medium {
         margin-bottom: 24px;
     }
+
+   @include large {
+    width: 159px;
+   }
 }
 
-.next {
+.next,
+.back {
     border: none;
     border-radius: 50%;
     width: 32px;
@@ -93,6 +108,10 @@
     @include medium {
         width: 38px;
         height: 38px;
-
+        
     }
+}
+
+.btn-hidden {
+    display: none;
 }

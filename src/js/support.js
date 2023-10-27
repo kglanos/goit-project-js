@@ -1,10 +1,8 @@
 import charities from './charities';
-import Swiper from 'swiper';
-import { Navigation } from 'swiper/modules';
-
-import 'swiper/swiper.min.css';
 
 const list = document.querySelector('.support__list');
+const btnNext = document.querySelector('.next');
+const btnBack = document.querySelector('.back');
 
 const html = charities.map(makeMarkup).join('');
 
@@ -25,14 +23,19 @@ function makeMarkup({ url, title, img }, index) {
 
 list.innerHTML = html;
 
-const swiper = new Swiper('.swiper', {
-  direction: 'vertical',
-  slidesPerView: 6,
-  rewind: true,
-  spaceBetween: 20,
-  effect: 'slide',
-  modules: [Navigation],
-  navigation: {
-    nextEl: '.swiper-next',
-  },
-});
+function toggleCharitiesView(offset) {
+  list.style.transform = `translateY(${offset}px)`;
+  btnNext.classList.toggle('btn-hidden');
+  btnBack.classList.toggle('btn-hidden');
+}
+
+function nextCharities() {
+  toggleCharitiesView(-152);
+}
+
+const prevCharities = () => {
+  toggleCharitiesView(0);
+};
+
+btnNext.addEventListener('click', nextCharities);
+btnBack.addEventListener('click', prevCharities);
