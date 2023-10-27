@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shopping List</title>
+
     <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
     <link
       rel="stylesheet"
@@ -17,26 +18,73 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="./sass/partials/_shopping-list.scss" />
   </head>
+
   <body>
-      <include src="./partials/header.html"></include>
-      <script src="./js/shopping-list.js" type="module"></script>
-      <include src="./partials/mobile-menu.html"></include>
-      <include src="./partials/modal-registration.html"></include>
-      <!-- Dodaj elementy nagłówka, takie jak menu, logo, itp. -->
+    <!-- W taki sposbu dodajemy fragmenty w główny HTML-plik strony.-->
+    <include src="./partials/header.html"></include>
+    <!--<include src="./partials/mobile-menu.html"></include>
+    <include src="./partials/home-page.html"></include>
+    <include src="./partials/modal-registration.html"></include>
+    <include src="./partials/pop-up.html"></include>
+    <include src="./partials/helper.html"></include>-->
 
-    <h1 class="h1-shopping">Shopping <span class="h1-shopping__list">List</span></h1>
-
-    <ul id="shopping-list__element">
-      <!-- Tutaj zostaną wyświetlone elementy listy zakupów -->
-    </ul>
-
-    <div class="empty-list">
-      <p class="empty-list__text">This page is empty, add some books and proceed to order.</p>
-      <img class="empty-list__image" src="/src/images/books-empty-page@1x.png" alt="Książki" />
+    <div class="centering">
+      <!--<div class="support-shopping">-->
+      <include src="./partials/support.html"></include>
+      <!--</div>-->
+      <div class="title">
+        <h1 class="title-shopping">Shopping <span class="title-list">List</span></h1>
+      </div>
+      <div class="empty-list">
+        <p class="empty-list__text">This page is empty, add some books and proceed to order.</p>
+        <img src="/src/images/books-empty-page@1x.png" alt="Książki" />
+      </div>
     </div>
-    
-    <include src="./partials/support.html"></include>
+
+    <!--<div class="backdrop-shop shop-is-hidden">
+      <div class="shop">
+        <button type="button" class="shop__btn-close">
+          <svg class="shop__icon-close" width="18.67" height="18.67">
+            <use href="./images/clouse.svg#icon-close"></use>
+          </svg>
+        </button>
+
+        <div class="shop__details">
+          <div class="shop__photo">
+            <img
+              src="./images/placeholder-book-cover-icon.svg"
+              alt="book cover photo"
+              class="shop__img"
+            />
+          </div>
+
+          <div class="shop__description">
+            <div class="shop__description-details"></div>
+            <div class="shop__books">
+              <div class="shop__amazon-book">
+                <a href="" class="shop__amazon" target="_blank"></a>
+                <div class="shop__icon-book"></div>
+              </div>
+              <ul class="shop__books-list"></ul>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="shop__btn-add">add to shopping list</button>
+        <button type="button" class="shop__btn-remove shop__btn-text-hidden">
+          remove from the shopping list
+        </button>
+        <p class="shop__comment shop__btn-text-hidden">
+          Сongratulations! You have added the book to the shopping list. To delete, press the button
+          “Remove from the shopping list”.
+        </p>
+      </div>
+    </div>-->
+
+    <script src="./js/pop-up.js" type="module"></script>
+    <script src="./js/helper.js" type="module"></script>
+    <!-- Skrypt jest na samym dole kodu. On juz ma w sobie podłączony SAAS plik. -->
     <script src="./index.js" type="module"></script>
   </body>
 </html>
