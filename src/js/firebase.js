@@ -6,10 +6,9 @@ import {
   signOut,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  connectAuthEmulator,
 } from 'firebase/auth';
 
-const firebaseApp = initializeApp({
+const firebaseConfig = {
   apiKey: 'AIzaSyAjvSJvQxu47W-Oa1JrSyOVnKx1KBTL5UA',
   authDomain: 'goit-project-js-bookshelf.firebaseapp.com',
   projectId: 'goit-project-js-bookshelf',
@@ -17,23 +16,20 @@ const firebaseApp = initializeApp({
   messagingSenderId: '93438368377',
   appId: '1:93438368377:web:063f56aa4bd4ee23e1d2a8',
   measurementId: 'G-BRZ6Z5X8NQ',
-});
+};
 
 const signUpBtnModal = document.querySelector('.sign-up-modal');
 const signUpLink = document.querySelector('.sign-up-link');
 const signInLink = document.querySelector('.sign-in-link');
-const logOutLink = document.querySelector('.log-out-btn');
-const registrationForm = document.querySelector('.registration-modal-form');
-const authorizationModal = document.querySelector('.registration-backdrop');
-const closeBtn = document.querySelector('.registration-close-btn');
-const signUpBtn = [...document.querySelectorAll('.sign-up-btn')];
-const signOutBtn = [...document.querySelectorAll('.log-out-btn')];
+const logOutHeader = document.querySelector('.log-out-btn');
+const signUpHeader = document.querySelector('.sign-up-btn');
 const inputName = document.querySelector('#user-name');
 const inputEmail = document.querySelector('#user-email');
 const inputPassword = document.querySelector('#user-password');
+let user;
 
-const auth = getAuth(app);
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 // Sign up
 
@@ -42,12 +38,13 @@ signUpBtnModal.addEventListener('click', e => {
     createUserWithEmailAndPassword(auth, inputEmail.value, inputPassword.value)
       .then(userCredential => {
         (user = userCredential.user),
-          document.querySelector('.sign-up-btn').classList.toggle('.is-hidden'),
-          document.querySelector('.user-btn').classList.remove('.is-hidden');
+          document.querySelector('.sign-up-btn').classList.toggle('visually-hidden'),
+          document.querySelector('.user-btn').classList.remove('visually-hidden');
         Notify.success(`You're signed up!`);
       })
       .catch(error => {
-        const errorCode = error.message;
+        const errorCode = error.code;
+        const errorMessage = error.message;
         console.log(errorCode, errorMessage);
       });
 });
@@ -59,10 +56,10 @@ signInLink.addEventListener('click', e => {
     signInWithEmailAndPassword(auth, inputEmail.value, inputPassword.value)
       .then(userCredential => {
         (user = userCredential.user),
-          document.querySelector('[registration-data-modal]').classList.toggle('is-hidden'),
-          document.querySelector('.sign-up-btn').classList.toggle('.is-hidden'),
-          document.querySelector('.user-btn').classList.remove('.is-hidden'),
-          document.querySelector('.log-out-btn').classList.remove('.visually-hiden');
+          document.querySelector('[registration-data-modal]').classList.toggle('visually-hidden'),
+          document.querySelector('.sign-up-btn').classList.toggle('visually-hidden'),
+          document.querySelector('.user-btn').classList.remove('visually-hidden'),
+          document.querySelector('.log-out-btn').classList.remove('visually-hidden');
         Notify.success(`You're logged in!`);
       })
       .catch(error => {
@@ -74,13 +71,13 @@ signInLink.addEventListener('click', e => {
 
 // Log out
 
-logOutLink.addEventListener('click', e => {
+logOutHeader.addEventListener('click', e => {
   e.preventDefault(),
     signOut(auth)
       .then(() => {
         return (
-          signUpBtnModal.classList.toggle('is-hidden'),
-          logOutLink.classList.toggle('is-hidden'),
+          signUpBtnModal.classList.toggle('visually-hidden'),
+          logOutHeader.classList.toggle('visually-hidden'),
           Notify.info('You are logged out!')
         );
       })
@@ -91,7 +88,8 @@ logOutLink.addEventListener('click', e => {
 
 onAuthStateChanged(auth, user => {
   if (user) {
-    signUpBtnModal.classList.toggle('is-hidden'), logOutLink.classList.toggle('is-hidden');
+    signUpHeader.classList.toggle('visually-hidden'),
+      logOutHeader.classList.toggle('visually-hidden');
     const uid = user.uid;
   } else {
     //User is signed out
