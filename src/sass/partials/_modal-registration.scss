@@ -191,3 +191,35 @@
     text-decoration: underline;
   }
 }
+
+.valid {
+  border-bottom: 1px solid #d9d9d9;
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    border-bottom: 1px solid #4ee1a0;
+  }
+}
+
+.invalid {
+  border-bottom: 1px solid #ff6f5b;
+}
+
+.disabled {
+  border-bottom: 1px solid #d9d9d9;
+
+  &:hover,
+  &:focus {
+    color: #fff;
+    cursor: not-allowed;
+  }
+}
+
+.warning-valid {
+  color: transparent;
+}
+
+.warning-invalid {
+  color: #ff6f5b;
+}
