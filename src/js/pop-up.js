@@ -14,6 +14,9 @@ const popUp = document.querySelector('.popup');
 const comment = document.querySelector('.popup__comment');
 const shopsList = document.querySelector('.popup__shops-list');
 
+const listBooks = document.querySelector('.category__list');
+const listBooksInCategories = document.querySelector('.books-gallery__section');
+
 let isBookAlreadyInShoppingList = false;
 
 const toggleButtonsVisibility = () => {
@@ -82,6 +85,7 @@ const createPopUp = async bookId => {
 
 const closePopUp = () => {
   backdrop.classList.add('popup-is-hidden');
+
   btnClosePopUp.removeEventListener('click', closePopUp);
   backdrop.removeEventListener('click', backdropClickHandler);
   document.removeEventListener('keydown', keydownHandler);
@@ -102,12 +106,11 @@ const keydownHandler = e => {
   }
 };
 
-const listBooks = document.querySelector('.open-list');
-
 const openPopUp = e => {
   if (e.target.closest('li')) {
     const bookId = e.target.closest('li').dataset.id;
     createPopUp(bookId);
+
     btnClosePopUp.addEventListener('click', closePopUp);
     backdrop.addEventListener('click', backdropClickHandler);
     document.addEventListener('keydown', keydownHandler);
@@ -117,6 +120,7 @@ const openPopUp = e => {
 };
 
 listBooks.addEventListener('click', openPopUp);
+listBooksInCategories.addEventListener('click', openPopUp);
 
 btnRemoveFromShoppingList.addEventListener('click', removeFromLocalStorage);
 btnAddToShoppingList.addEventListener('click', addToLocalStorage);
