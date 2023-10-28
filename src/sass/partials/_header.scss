@@ -32,8 +32,11 @@
         flex-direction: row;
         padding: 8px 16px;
         border-radius: 18px;
-
         text-transform: uppercase;
+        transition: transform 300ms;
+        &:hover {
+          transform: scale(1.1);
+        }
       }
       &-icon {
         fill: var(--secondary-icon-color);
@@ -61,6 +64,10 @@
   display: flex;
   align-items: center;
   column-gap: 8px;
+  transition: transform 300ms;
+  &:hover {
+    transform: scale(1.1);
+  }
   &__text {
     fill: var(--primary-font-color);
   }
@@ -97,8 +104,12 @@ body.dark-theme .theme-button {
   cursor: pointer;
   &__icon {
     fill: var(--secondary-icon-color);
+    transition: transform 1000ms ease-out;
     &:hover {
       fill: var(--secondary-object-background-color);
+    }
+    &:active {
+      transform: rotate(380deg);
     }
   }
   @include medium {
