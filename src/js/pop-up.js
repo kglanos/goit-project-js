@@ -1,5 +1,6 @@
 'use strict';
 import { fetchBookById } from './api';
+// console.log('pop-up.js');
 
 let currentBookData = null;
 
@@ -15,7 +16,7 @@ const comment = document.querySelector('.popup__comment');
 const shopsList = document.querySelector('.popup__shops-list');
 
 const listBooks = document.querySelector('.category__list');
-const listBooksInCategories = document.querySelector('.books-gallery__section');
+const listBooksInCategories = document.querySelector('.books-gallery');
 
 let isBookAlreadyInShoppingList = false;
 
