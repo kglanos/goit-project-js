@@ -1,20 +1,26 @@
-const currentURL = window.location.href;
+const setHeaderLinksBackgroundColors = () => {
+  const pageElements = {
+    currentURL: window.location.href,
+    homeLink: document.querySelector('.header__navigation-link--home'),
+    shoppingListLink: document.querySelector('.header__navigation-link--shopping-list'),
+    mobileHomeLink: document.querySelector('.menu-container__navigation-link'),
+    mobileShoppingListLink: document.querySelector(
+      '.menu-container__navigation-link--shopping-list',
+    ),
+    mobileShoppingListLinkIcon: document.querySelector('.menu-container__navigation-icon'),
+  };
 
-const homeLink = document.querySelector('.header__navigation-link--home');
-const shoppingListLink = document.querySelector('.header__navigation-link--shopping-list');
-const mobileHomeLink = document.querySelector('.menu-container__navigation-link');
-const mobileShoppingListLink = document.querySelector(
-  '.menu-container__navigation-link--shopping-list',
-);
-const mobileShoppingListLinkIcon = document.querySelector('.menu-container__navigation-icon');
+  if (pageElements.currentURL.includes('index.html')) {
+    pageElements.homeLink.style.backgroundColor = 'var(--primary-object-background-color)';
+    pageElements.mobileHomeLink.style.backgroundColor = 'var(--primary-object-background-color)';
+    pageElements.mobileHomeLink.style.color = 'var(--denary-font-color)';
+  } else if (pageElements.currentURL.includes('shopping-list.html')) {
+    pageElements.shoppingListLink.style.backgroundColor = 'var(--primary-object-background-color)';
+    pageElements.mobileShoppingListLink.style.backgroundColor =
+      'var(--primary-object-background-color)';
+    pageElements.mobileShoppingListLink.style.color = 'var(--denary-font-color)';
+    pageElements.mobileShoppingListLinkIcon.style.fill = 'var(--secondary-icon-color)';
+  }
+};
 
-if (currentURL.includes('index.html')) {
-  homeLink.style.backgroundColor = 'var(--primary-object-background-color)';
-  mobileHomeLink.style.backgroundColor = 'var(--primary-object-background-color)';
-  mobileHomeLink.style.color = 'var(--denary-font-color)';
-} else if (currentURL.includes('shopping-list.html')) {
-  shoppingListLink.style.backgroundColor = 'var(--primary-object-background-color)';
-  mobileShoppingListLink.style.backgroundColor = 'var(--primary-object-background-color)';
-  mobileShoppingListLink.style.color = 'var(--denary-font-color)';
-  mobileShoppingListLinkIcon.style.fill = 'var(--secondary-icon-color)';
-}
+setHeaderLinksBackgroundColors();
