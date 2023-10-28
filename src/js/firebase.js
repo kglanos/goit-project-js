@@ -23,6 +23,7 @@
 // const signInLink = document.querySelector('.sign-in-link');
 // const logOutHeader = document.querySelector('.log-out-btn');
 // const signUpHeader = document.querySelector('.sign-up-btn');
+// const userStephen = document.querySelector('.user-btn');
 // const inputName = document.querySelector('#user-name');
 // const inputEmail = document.querySelector('#user-email');
 // const inputPassword = document.querySelector('#user-password');
@@ -34,7 +35,7 @@
 
 // signInLink.addEventListener('click', e => {
 //   e.preventDefault();
-//   // registrationForm.elements.userName.style.display = 'none';
+//   registrationForm.elements.inputName.style.display = 'none';
 //   signUpBtnModal.textContent = 'Sign in';
 // });
 
@@ -49,11 +50,10 @@
 //   e.preventDefault(),
 //     createUserWithEmailAndPassword(auth, inputEmail.value, inputPassword.value)
 //       .then(userCredential => {
-//         (user = userCredential.user),
-//           document.querySelector('[registration-data-modal]').classList.toggle('is-hidden'),
-//           document.querySelector('.sign-up-btn').classList.toggle('visually-hidden'),
-//           document.querySelector('.user-btn').classList.remove('visually-hidden'),
-//           document.querySelector('.log-out-btn').classList.remove('visually-hidden');
+//         (user = userCredential.user), registrationForm.classList.toggle('is-hidden');
+//         signUpHeader.classList.toggle('visually-hidden');
+//         userStephen.classList.remove('visually-hidden');
+//         document.querySelector('.log-out-btn').classList.remove('visually-hidden');
 //         registrationForm.reset();
 //         Notify.success(`You're signed up!`);
 //       })
@@ -79,8 +79,8 @@
 //         Notify.success(`You're logged in!`);
 //       })
 //       .catch(error => {
-//         const errorCode = error.code;
-//         const errorMessage = error.message;
+//         // const errorCode = error.code;
+//         // const errorMessage = error.message;
 //         Notify.failure(`Wrong email or password. Try again.`);
 //       });
 // });
