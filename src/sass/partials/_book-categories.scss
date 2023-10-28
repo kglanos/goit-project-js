@@ -17,13 +17,20 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    max-width: 335px;
+    margin-bottom: 40px;
+    width: 335px;
     max-height: 228px;
-    
-    margin: 104 20 40;
     overflow: auto;
     line-height: 18px;
-    color: var(--eleventh-font-color)
+    color: var(--tertiary-font-color);
+    @include medium{
+      max-height: 472px;
+      max-width: 337px;
+      font-size: 18px;
+      line-height: 24px;
+      margin: 0;
+      gap: 32px;
+    }
     
 }
 
@@ -35,7 +42,3 @@
     text-transform: uppercase;
 }
 
-
-li:hover{
-    cursor: pointer;
-  }

@@ -1,0 +1,19 @@
+.main-content-wrapper{
+  @include large {
+    display: flex;
+    column-gap: 40px;
+  }
+}
+
+.side-bar{
+    margin: 104px 0 40px 0;
+    @include medium{
+      display: flex;
+      column-gap: 32px;
+      margin: 112px 0 100px 0;
+    }
+    @include large {
+        flex-direction: column;
+        row-gap: 32px ;
+    }
+  }
