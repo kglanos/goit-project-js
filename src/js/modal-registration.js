@@ -1,100 +1,164 @@
-(() => {
-  const refs = {
-    openModalBtns: document.querySelectorAll('[registration-data-modal-open]'),
-    closeModalBtn: document.querySelector('[registration-data-modal-close]'),
-    modal: document.querySelector('[registration-data-modal]'),
-  };
-  refs.openModalBtns.forEach(btn => {
-    btn.addEventListener('click', toggleModal);
-  });
-  refs.closeModalBtn.addEventListener('click', toggleModal);
-  function toggleModal() {
-    refs.modal.classList.toggle('is-hidden');
-  }
-})();
+'use strict';
 
-let emailError = document.getElementById('emailError');
-let passwordError = document.getElementById('passwordError');
-const email = document.querySelector('#user-email');
-const password = document.querySelector('#user-password');
-const form = document.querySelector('.registration-modal-form');
-const msg = document.querySelector('.msg');
-const signUpBtnModal = document.querySelector('.sign-up-modal');
+const headerSingUpBtn = document.querySelector('.sign-up-btn');
+const headerUserBtn = document.querySelector('.user-btn');
+const registrationBackdrop = document.querySelector('.registration-backdrop');
 const signUpLink = document.querySelector('.sign-up-link');
 const signInLink = document.querySelector('.sign-in-link');
-const logOutHeader = document.querySelector('.log-out-btn');
-const signUpHeader = document.querySelector('.sign-up-btn');
-const userStephen = document.querySelector('.user-btn');
+const btnSignUp = document.querySelector('.sign-up-modal');
+const btnSignIn = document.querySelector('.sign-in-modal');
+const nameInputContainer = document.querySelector('.name-input-container');
+const btnCloseRegistrationModal = document.querySelector('.registration-close-btn');
+const formRegistration = document.querySelector('.registration-modal-form');
+const nameInput = document.querySelector('.input-name');
+const emailInput = document.querySelector('.input-email');
+const passwordInput = document.querySelector('.input-password');
+const messageErrorName = document.querySelector('.name-error');
+const messageErrorEmail = document.querySelector('.email-error');
+const messageErrorPassword = document.querySelector('.password-error');
+const logOutBtn = document.querySelector('.log-out-btn');
 
-// Function to validate the email
-const validateEmail = inputEmail =>
-  inputEmail.value.match(
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-  );
-
-// Function to validate password
-const validatePassword = inputPassword =>
-  inputPassword.value.match(
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-  );
-
-// Function used to display errors
-const generateError = (errorName, errorMsg) => {
-  if (errorName == 'email') {
-    emailError.innerText = errorMsg;
-  } else if (errorName == 'password') {
-    passwordError.innerText = errorMsg;
-  }
-};
-const formValidate = (inputEmail, inputPassword) => {
-  emailError.innerText = '';
-  passwordError.innerText = '';
-  if (!validateEmail(inputEmail)) {
-    emailError = 'please enter a valid email address';
-    generateError('email', emailError);
-    return false;
-  }
-  if (!validatePassword(inputPassword)) {
-    passwordError = 'please enter correct password';
-    generateError(generateError('password', passwordError));
-    return false;
-  }
-  return true;
+const openRegistrationModal = () => {
+  formRegistration.reset();
+  resetValidation();
+  registrationBackdrop.classList.toggle('registration-hidden');
 };
 
-//triggers when user submits the form
-form?.addEventListener('submit', e => {
-  e.preventDefault();
-  formValidate(email, password);
-  document.querySelector('[registration-data-modal]').classList.add('visually-hidden');
-  document.querySelector('.sign-up-btn').classList.add('visually-hidden');
-  document.querySelector('.user-btn').classList.remove('visually-hidden');
-  document.querySelector('.log-out-btn').classList.remove('visually-hidden');
-});
-signUpBtnModal.addEventListener('click', e => {
-  e.preventDefault();
-  formValidate(email, password);
-  document.querySelector('[registration-data-modal]').classList.add('visually-hidden');
-  document.querySelector('.sign-up-btn').classList.add('visually-hidden');
-  document.querySelector('.user-btn').classList.remove('visually-hidden');
-  document.querySelector('.log-out-btn').classList.remove('visually-hidden');
-  form.reset();
-});
+const toggleBtnRegistrationSinIn = () => {
+  btnSignIn.classList.remove('btn-sing-in-up-hidden');
+  btnSignUp.classList.add('btn-sing-in-up-hidden');
+  nameInputContainer.classList.add('name-input-hidden');
+  messageErrorName.classList.add('warning-valid');
+  messageErrorName.classList.remove('warning-invalid');
+};
 
-// Focusout event listener. Triggers when the user clicks anywhere else besides the input
-email.addEventListener('focusout', e => {
-  if (!validateEmail(email)) {
-    email.style.borderColor = 'red';
-    generateError('email', 'Please enter a valid email');
-    email.parentElement.classList.add('error');
-  }
-});
+const toggleBtnRegistrationSinUp = () => {
+  btnSignIn.classList.add('btn-sing-in-up-hidden');
+  btnSignUp.classList.remove('btn-sing-in-up-hidden');
+  nameInputContainer.classList.remove('name-input-hidden');
+};
 
-// Focusout event listener triggers when the user clicks anywhere else besides the input
-password.addEventListener('focusout', e => {
-  if (!validatePassword(password)) {
-    password.style.borderColor = 'red';
-    generateError('password', 'Please enter a valid password');
-    password.parentElement.classList.add('error');
+const closeRegistrationModal = () => {
+  registrationBackdrop.classList.toggle('registration-hidden');
+};
+
+const regexName = /^[\p{L}\s]+$/u;
+const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const regexPassword = /^.{7,}$/;
+
+const validateButton = (buttonUp, buttonIn, elements) => {
+  const allValid = elements.every(element => element.classList.contains('valid'));
+  if (allValid) {
+    buttonUp.disabled = false;
+    buttonUp.classList.remove('disabled');
+    buttonIn.disabled = false;
+    buttonIn.classList.remove('disabled');
+  } else {
+    buttonUp.disabled = true;
+    buttonUp.classList.add('disabled');
+    buttonIn.disabled = true;
+    buttonIn.classList.add('disabled');
   }
-});
+};
+
+const doValidation = (element, message, regex, buttonUp, buttonIn, elements) => {
+  if (!regex.test(element.value)) {
+    element.classList.remove('valid');
+    element.classList.add('invalid');
+    message.classList.remove('warning-valid');
+    message.classList.add('warning-invalid');
+  } else {
+    element.classList.add('valid');
+    element.classList.remove('invalid');
+    message.classList.add('warning-valid');
+    message.classList.remove('warning-invalid');
+  }
+  validateButton(buttonUp, buttonIn, elements);
+};
+
+const allElementsToValidate = [nameInput, emailInput, passwordInput];
+
+nameInput.addEventListener('input', () =>
+  doValidation(nameInput, messageErrorName, regexName, btnSignUp, btnSignIn, allElementsToValidate),
+);
+nameInput.addEventListener('blur', () =>
+  doValidation(nameInput, messageErrorName, regexName, btnSignUp, btnSignIn, allElementsToValidate),
+);
+
+emailInput.addEventListener('input', () =>
+  doValidation(
+    emailInput,
+    messageErrorEmail,
+    regexEmail,
+    btnSignUp,
+    btnSignIn,
+    allElementsToValidate,
+  ),
+);
+emailInput.addEventListener('blur', () =>
+  doValidation(
+    emailInput,
+    messageErrorEmail,
+    regexEmail,
+    btnSignUp,
+    btnSignIn,
+    allElementsToValidate,
+  ),
+);
+
+passwordInput.addEventListener('input', () =>
+  doValidation(
+    passwordInput,
+    messageErrorPassword,
+    regexPassword,
+    btnSignUp,
+    btnSignIn,
+    allElementsToValidate,
+  ),
+);
+passwordInput.addEventListener('blur', () =>
+  doValidation(
+    passwordInput,
+    messageErrorPassword,
+    regexPassword,
+    btnSignUp,
+    btnSignIn,
+    allElementsToValidate,
+  ),
+);
+
+const resetValidation = () => {
+  allElementsToValidate.forEach(element => {
+    element.classList.remove('invalid');
+    element.classList.add('valid');
+  });
+
+  [messageErrorName, messageErrorEmail, messageErrorPassword].forEach(message => {
+    message.classList.remove('warning-invalid');
+    message.classList.add('warning-valid');
+  });
+
+  btnSignUp.disabled = false;
+  btnSignUp.classList.remove('disabled');
+  btnSignIn.disabled = false;
+  btnSignIn.classList.remove('disabled');
+};
+
+const submitRegistrationForm = e => {
+  e.preventDefault();
+  closeRegistrationModal();
+  headerSingUpBtn.classList.toggle('visually-hidden');
+  headerUserBtn.classList.toggle('visually-hidden');
+  formRegistration.reset();
+};
+
+const logOutUser = () => {
+  logOutBtn.classList.toggle('visually-hidden');
+};
+
+headerSingUpBtn.addEventListener('click', openRegistrationModal);
+signInLink.addEventListener('click', toggleBtnRegistrationSinIn);
+signUpLink.addEventListener('click', toggleBtnRegistrationSinUp);
+btnCloseRegistrationModal.addEventListener('click', closeRegistrationModal);
+formRegistration.addEventListener('submit', submitRegistrationForm);
+headerUserBtn.addEventListener('click', logOutUser);
