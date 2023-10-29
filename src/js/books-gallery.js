@@ -3,11 +3,11 @@ import { fetchTopBooksInCategories } from "./api";
 
 const booksGallery = document.querySelector('.books-gallery')
 const allCategories = document.querySelector('.side-bar__categories-item')
+const category = document.querySelector('.category')
 
 async function renderBestsellerGallery () {
     const bestsellers = await fetchTopBooksInCategories();
     const bestsellersSliced = bestsellers.slice(0,4)
-console.log('aaa')
 
     const bestsellersCategory = bestsellersSliced
     .map(bestseller =>
@@ -29,9 +29,8 @@ console.log('aaa')
 renderBestsellerGallery()
 
 const showAllCategories = () => {
-    console.log('clicked')
-    console.log(booksGallery)
     booksGallery.classList.remove('gallery-hidden')
+    category.classList.add('gallery-hidden')
 }
 
 allCategories.addEventListener('click', showAllCategories);

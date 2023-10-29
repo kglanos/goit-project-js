@@ -6,6 +6,7 @@ const title = document.querySelector('.category__title');
 const listBooksByCategory = document.querySelector('.category__list');
 const bookCategoriesList = document.querySelector('.side-bar__categories');
 const bookGallery = document.querySelector('.books-gallery');
+const category = document.querySelector('.category')
 
 const createListBooksByCategory = async selectedCategory => {
   const books = await fetchBooksByCategory(selectedCategory);
@@ -24,8 +25,8 @@ const createListBooksByCategory = async selectedCategory => {
 const showBooksByCategory = async e => {
 
   if (e.target.closest('li') && e.target.textContent != 'All categories') {
-    console.log(e.target.textContent == "All categories")
     bookGallery.classList.add('gallery-hidden');
+    category.classList.remove('gallery-hidden')
     const selectedCategory = e.target.closest('li').textContent;
 
     const words = selectedCategory.split(' ');
