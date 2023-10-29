@@ -8,6 +8,7 @@
   bottom: 0;
   background-color: var(--secondary-border-color);
   z-index: 400;
+  z-index: 400;
   cursor: not-allowed;
   transition: visibility 250ms cubic-bezier(0.4, 0, 0.2, 1),
     opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -97,7 +98,6 @@
   stroke: var(--secondary-icon-color);
   fill: white;
 
-
   @include medium {
     width: 24px;
     height: 24px;
@@ -160,7 +160,6 @@
   border-radius: 40px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-
 
   &:hover,
   &:focus {
@@ -238,7 +237,6 @@
 }
 
 .disabled {
-
   &:hover,
   &:focus {
     background-color: rgba(17, 17, 17, 1);

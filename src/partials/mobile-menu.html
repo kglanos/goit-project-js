@@ -1,17 +1,31 @@
 <div class="menu-container js-menu-container" id="mobile-menu">
   <nav>
     <div class="menu-container__navigation">
-      <a class="menu-container__navigation-link" href="#">Home</a>
-
-      <a
+      <a class="menu-container__navigation-link" href="./index.html">Home</a
+      ><a
         class="menu-container__navigation-link menu-container__navigation-link--shopping-list"
-        href="#"
-        >Shopping list
-        <svg class="menu-container__navigation-icon" width="20" height="20">
+        href="./shopping-list.html"
+        >Shopping list<svg class="menu-container__navigation-icon" width="20" height="20">
           <use href="./images/icons.svg#icon-shopping-list-cart"></use>
         </svg>
       </a>
     </div>
   </nav>
+  <button class="sign-up-mobile-btn" registration-data-modal-open>
+    Sign up<svg class="sign-up-mobile-btn__icon" width="20" height="20">
+      <use href="./images/icons.svg#icon-circle-right"></use>
+    </svg>
+  </button>
+  <button type="button" class="user-mobile-btn">
+    <img class="user-mobile-btn__img" src="/src/images/user-afterLogin.png" alt="icn" />
+    <span class="user-mobile-btn__userName">Stephen</span>
+  </button>
+
+  <button type="button" class="log-out-mobile-btn js-close-menu">
+    Log out
+    <svg class="log-out-mobile-btn__icon" width="20" height="20">
+      <use href="./images/icons.svg#icon-circle-right"></use>
+    </svg>
+  </button>
   <div class="menu-container__image"></div>
 </div>

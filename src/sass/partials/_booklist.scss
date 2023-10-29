@@ -1,0 +1,121 @@
+.category {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding-bottom: 100px;
+
+  @media screen and (min-width: 768px) and (max-width: 1449px) {
+    max-width: 768px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  &__title {
+    color: var(--denary-font-color);
+    font-family: DM Sans;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: -1.28px;
+    margin-block: 40px;
+    margin-left: 20px;
+
+    @include medium {
+      margin-left: 0;
+      font-size: 48px;
+      line-height: 52px;
+      letter-spacing: 1.92px;
+    }
+    @include large {
+      margin-top: 40px;
+    }
+  }
+
+  &__list {
+    font-size: 28px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: 40px;
+
+    @include medium {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: space-between;
+    }
+    @include large {
+      gap: 24px;
+    }
+  }
+
+  &__item {
+    @include medium {
+      width: 218px;
+    }
+    @include large {
+      width: 180px;
+    }
+  }
+
+  //   &__cover {
+  //
+  //   }
+  &__image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    flex: 1;
+
+    @include medium {
+      height: 316px;
+    }
+    @include large {
+      max-height: 256px;
+    }
+  }
+  &__image-description {
+    padding-top: 14px;
+    margin-bottom: 18px;
+  }
+  &__book-title {
+    color: var(--denary-font-color);
+    font-family: DM Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.64px;
+    text-transform: uppercase;
+    padding-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__book-author {
+    color: var(--tenth-font-color);
+    font-family: DM Sans;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.48px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.gallery-hidden {
+  display: none;
+}
+
+.last-word-color {
+  color: var(--secondary-font-color);
+}

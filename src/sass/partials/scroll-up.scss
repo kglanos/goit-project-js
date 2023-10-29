@@ -1,0 +1,26 @@
+.scroll-up-icon {
+  fill: var(--primary-icon-color);
+}
+.scroll-to-top {
+  position: fixed;
+  outline: 5px solid var(--quinary-border-color);
+  border-radius: 50%;
+  background-color: var(--secondary-object-background-color);
+  width: 54px;
+  height: 54px;
+  bottom: 10vh;
+  right: 6vw;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scroll-to-top:before {
+  right: -100px;
+  border-right: 100px solid transparent;
+  border-top: 100px solid #2d6b9f;
+}
+.unvisually {
+  display: none;
+}

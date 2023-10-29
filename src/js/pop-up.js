@@ -1,5 +1,6 @@
 'use strict';
 import { fetchBookById } from './api';
+// console.log('pop-up.js');
 
 let currentBookData = null;
 
@@ -13,6 +14,9 @@ const backdrop = document.querySelector('.backdrop-popup');
 const popUp = document.querySelector('.popup');
 const comment = document.querySelector('.popup__comment');
 const shopsList = document.querySelector('.popup__shops-list');
+
+const listBooks = document.querySelector('.category__list');
+const listBooksInCategories = document.querySelector('.books-gallery');
 
 let isBookAlreadyInShoppingList = false;
 
@@ -82,6 +86,7 @@ const createPopUp = async bookId => {
 
 const closePopUp = () => {
   backdrop.classList.add('popup-is-hidden');
+
   btnClosePopUp.removeEventListener('click', closePopUp);
   backdrop.removeEventListener('click', backdropClickHandler);
   document.removeEventListener('keydown', keydownHandler);
@@ -102,12 +107,11 @@ const keydownHandler = e => {
   }
 };
 
-const listBooks = document.querySelector('.open-list');
-
 const openPopUp = e => {
   if (e.target.closest('li')) {
     const bookId = e.target.closest('li').dataset.id;
     createPopUp(bookId);
+
     btnClosePopUp.addEventListener('click', closePopUp);
     backdrop.addEventListener('click', backdropClickHandler);
     document.addEventListener('keydown', keydownHandler);
@@ -117,23 +121,26 @@ const openPopUp = e => {
 };
 
 listBooks.addEventListener('click', openPopUp);
+listBooksInCategories.addEventListener('click', openPopUp);
 
 btnRemoveFromShoppingList.addEventListener('click', removeFromLocalStorage);
 btnAddToShoppingList.addEventListener('click', addToLocalStorage);
 
-const toggleDarkThemePopUp = () => {
-  const btnAddToShoppingList = document.querySelector('.popup__btn-add');
-  const btnRemoveFromShoppingList = document.querySelector('.popup__btn-remove');
-  const popUp = document.querySelector('.popup');
-  const comment = document.querySelector('.popup__comment');
-  const iconClose = document.querySelector('.popup__icon-close');
+// const toggleDarkThemePopUp = () => {
+//   const btnAddToShoppingList = document.querySelector('.popup__btn-add');
+//   const btnRemoveFromShoppingList = document.querySelector('.popup__btn-remove');
+//   const popUp = document.querySelector('.popup');
+//   const comment = document.querySelector('.popup__comment');
+//   const iconClose = document.querySelector('.popup__icon-close');
+//   const amazonLogo = document.querySelector('.popup__amazon');
 
-  popUp.classList.toggle('popup-dark-theme');
-  iconClose.classList.toggle('icon-close-dark-theme');
-  btnAddToShoppingList.classList.toggle('btn-add-dark-theme');
-  btnRemoveFromShoppingList.classList.toggle('btn-remove-dark-theme');
-  comment.classList.toggle('comment-dark-theme');
-};
+//   popUp.classList.toggle('popup-dark-theme');
+//   iconClose.classList.toggle('icon-close-dark-theme');
+//   btnAddToShoppingList.classList.toggle('btn-add-dark-theme');
+//   btnRemoveFromShoppingList.classList.toggle('btn-remove-dark-theme');
+//   comment.classList.toggle('comment-dark-theme');
+//   amazonLogo.classList.toggle('amazon-dark-theme');
+// };
 
 // toggleDarkThemePopUp();
 
