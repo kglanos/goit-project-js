@@ -16,6 +16,7 @@ const passwordInput = document.querySelector('.input-password');
 const messageErrorName = document.querySelector('.name-error');
 const messageErrorEmail = document.querySelector('.email-error');
 const messageErrorPassword = document.querySelector('.password-error');
+const logOutBtn = document.querySelector('.log-out-btn');
 
 const openRegistrationModal = () => {
   formRegistration.reset();
@@ -151,8 +152,13 @@ const submitRegistrationForm = e => {
   formRegistration.reset();
 };
 
+const logOutUser = () => {
+  logOutBtn.classList.toggle('visually-hidden');
+};
+
 headerSingUpBtn.addEventListener('click', openRegistrationModal);
 signInLink.addEventListener('click', toggleBtnRegistrationSinIn);
 signUpLink.addEventListener('click', toggleBtnRegistrationSinUp);
 btnCloseRegistrationModal.addEventListener('click', closeRegistrationModal);
 formRegistration.addEventListener('submit', submitRegistrationForm);
+headerUserBtn.addEventListener('click', logOutUser);
