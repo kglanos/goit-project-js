@@ -1,73 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping List</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shopping List</title>
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css"
+      integrity="sha512-ISS7cAi1PEhQ8jnbJpJZMd29NlhNj4AWYyLOSp2CE/CsHxTCu+r+t0D2yoJudVrd0/8fTVPUVDzY5Tvli75u/g=="
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-  <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css"
-    integrity="sha512-ISS7cAi1PEhQ8jnbJpJZMd29NlhNj4AWYyLOSp2CE/CsHxTCu+r+t0D2yoJudVrd0/8fTVPUVDzY5Tvli75u/g=="
-    crossorigin="anonymous" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="./sass/partials/_shopping-list.scss" />
-</head>
-
-<body>
-  <!-- W taki sposbu dodajemy fragmenty w główny HTML-plik strony.-->
+  <body>
+    <!-- W taki sposbu dodajemy fragmenty w główny HTML-plik strony.-->
     <include src="./partials/header.html"></include>
     <include src="./partials/mobile-menu.html"></include>
     <include src="./partials/modal-registration.html"></include>
     <include src="./partials/shopping-list.html"></include>
     <include src="./partials/support.html"></include>
 
-  <!--<div class="backdrop-shop shop-is-hidden">
-      <div class="shop">
-        <button type="button" class="shop__btn-close">
-          <svg class="shop__icon-close" width="18.67" height="18.67">
-            <use href="./images/clouse.svg#icon-close"></use>
-          </svg>
-        </button>
-
-        <div class="shop__details">
-          <div class="shop__photo">
-            <img
-              src="./images/placeholder-book-cover-icon.svg"
-              alt="book cover photo"
-              class="shop__img"
-            />
-          </div>
-
-          <div class="shop__description">
-            <div class="shop__description-details"></div>
-            <div class="shop__books">
-              <div class="shop__amazon-book">
-                <a href="" class="shop__amazon" target="_blank"></a>
-                <div class="shop__icon-book"></div>
-              </div>
-              <ul class="shop__books-list"></ul>
-            </div>
-          </div>
-        </div>
-        <button type="button" class="shop__btn-add">add to shopping list</button>
-        <button type="button" class="shop__btn-remove shop__btn-text-hidden">
-          remove from the shopping list
-        </button>
-        <p class="shop__comment shop__btn-text-hidden">
-          Сongratulations! You have added the book to the shopping list. To delete, press the button
-          “Remove from the shopping list”.
-        </p>
-      </div>
-    </div>-->
-
-
-  <!-- Skrypt jest na samym dole kodu. On juz ma w sobie podłączony SAAS plik. -->
-  <script src="./shopping-list.js" type="module"></script>
-</body>
-
+    <!-- Skrypt jest na samym dole kodu. On juz ma w sobie podłączony SAAS plik. -->
+    <script src="./shopping-list.js" type="module"></script>
+  </body>
 </html>
