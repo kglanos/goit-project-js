@@ -1,108 +1,106 @@
 .books-gallery {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  @include large {
+    margin-top: 115px;
+  }
+  &__title {
+    font-size: 32px;
+    line-height: 38px;
+    @include medium {
+      font-size: 48px;
+      line-height: 52px;
+    }
+    color: var(--denary-font-color);
+    &--accent {
+      color: var(--secondary-font-color);
+    }
+  }
+  &__category-title {
+    font-size: 14px;
+    line-height: 18px;
+    text-transform: uppercase;
+    color: var(--tenth-font-color);
+    margin: 40 0 18 0;
+    @include medium {
+      line-height: 24px;
+    }
+  }
+  &__image {
+    width: 335px;
+    height: 485px;
+    border-radius: 8px;
+    @include medium {
+      width: 218px;
+      height: 316px;
+    }
     @include large {
-        margin-top: 112px;
+      width: 180px;
+      height: 256px;
     }
-    &__title{
-        font-size: 32px;
-        line-height: 38px;
-        @include medium{
-            font-size: 48px;
-            line-height: 52px;
-        }
-        color: var(--denary-font-color);
-        &--accent{
-            color: var(--secondary-font-color);
-        }
-    }
-    &__category-title{
-        font-size: 14px;
-        line-height: 18px;
-        text-transform: uppercase;
-        color: var(--tenth-font-color);
-        margin: 40 0 18 0;
-        @include medium {
-            line-height: 24px;
-        }
-    }
-    &__image{
-        width: 335px;
-        height: 485px;
-        border-radius: 8px;
-        @include medium {
-            width: 218px;
-            height: 316px;
-        }
-        @include large {
-            width: 180px;
-            height: 256px;
-        }
-    }
-    &__book-title{
-        font-size: 16px;
-        line-height: 18px; 
-        margin: 14 0 4 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    
-    }
-    &__book-author{
-        font-size: 12px;
-        line-height: 14px;
-        color: var(--tenth-font-color);
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-    &__button{
-        margin-top: 8px;
-        border: 2px solid var(--secondary-border-color);
-        border-radius: 40px;
-        font-size: 50px;
-        width: 124px;
-        height: 46px;
-        font-size: 14px;
-        line-height: 18px;
-        font-weight: 700;
-    }
-    &__button-wrapper{
-        text-align: right;
-    }
-
+  }
+  &__book-title {
+    font-size: 16px;
+    line-height: 18px;
+    margin: 14 0 4 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  &__book-author {
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--tenth-font-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  &__button {
+    margin-top: 8px;
+    border: 2px solid var(--secondary-border-color);
+    border-radius: 40px;
+    font-size: 50px;
+    width: 124px;
+    height: 46px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 700;
+  }
+  &__button-wrapper {
+    text-align: right;
+  }
 }
 
-.books-gallery__section{
-    display: flex;
-    @include medium{
-        column-gap: 25px;
-    }
-    @include large{
-        column-gap: 24px;
-    }
+.books-gallery__section {
+  display: flex;
+  @include medium {
+    column-gap: 25px;
+  }
+  @include large {
+    column-gap: 24px;
+  }
 }
 
-.books-gallery__section li{
-    max-width: 335px;
-    @include medium{
-        max-width: 218px;
-    }
-    @include large{
-        max-width: 180px;
-    }
+.books-gallery__section li {
+  max-width: 335px;
+  @include medium {
+    max-width: 218px;
+  }
+  @include large {
+    max-width: 180px;
+  }
 }
 
-.is-hidden-tablet{
-    display: none;
-    @include medium{
-        display: block;
-    }
+.is-hidden-tablet {
+  display: none;
+  @include medium {
+    display: block;
+  }
 }
 
-.is-hidden-desktop{
-    display: none;
-    @include large{
-        display: block;
-    }
+.is-hidden-desktop {
+  display: none;
+  @include large {
+    display: block;
+  }
 }
