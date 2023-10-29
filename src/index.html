@@ -24,9 +24,14 @@
     <!-- W taki sposbu dodajemy fragmenty w główny HTML-plik strony. -->
     <include src="./partials/header.html"></include>
     <include src="./partials/mobile-menu.html"></include>
-    <include src="./partials/book-categories.html"></include>
-    <include src="./partials/support.html"></include>
-    <include src="./partials/books-gallery.html"></include>
+    <div class="container main-content-wrapper">
+      <div class="side-bar">
+        <include src="./partials/book-categories.html"></include>
+        <include src="./partials/support.html"></include>
+      </div>
+    
+        <include src="./partials/books-gallery.html"></include>
+      </div>
     <include src="./partials/booklist.html"></include>
     <include src="./partials/modal-registration.html"></include>
     <include src="./partials/pop-up.html"></include>
