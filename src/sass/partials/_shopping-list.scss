@@ -12,12 +12,6 @@
   display: none;
 }
 
-@include large {
-  .support-shopping {
-    display: block;
-  }
-}
-
 .shopping {
   display: flex;
   flex-direction: column;
@@ -41,19 +35,6 @@
 
 .title-list {
   color: #4f2ee8;
-}
-
-@include medium {
-  .title-shopping {
-    padding-left: 32px;
-    padding-bottom: 140px;
-    padding-top: 40px;
-    width: 292px;
-    height: 52px;
-    font-size: 48px;
-    line-height: 52px;
-    color: #111111;
-  }
 }
 
 .empty-list {
@@ -84,7 +65,180 @@
   height: 198px;
 }
 
+.popup-is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0);
+}
+
+.shopping-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(335px, 1fr));
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.shopping-gallery:first-child {
+  padding-top: 40px;
+}
+
+.shop {
+  width: 100%;
+  max-width: 335px;
+  height: 170px;
+  border-radius: 16px;
+  border: 2px solid var(--secondary-font-color);
+  background-color: var(--quaternary-object-background-color);
+  margin: auto;
+  cursor: auto;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+
+  &__btn-close {
+    background-color: var(--secondary-font-color);
+    border-radius: 50px;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__icon-close {
+    fill: var(--quaternary-font-color);
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover,
+    &:focus {
+      fill: var(--denary-font-color);
+      cursor: pointer;
+    }
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__photo {
+    width: 100px;
+    height: 142px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 14px;
+  }
+
+  &__description {
+    width: 100%;
+  }
+
+  &__title {
+    font-size: 16px;
+    text-transform: uppercase;
+    line-height: 18px;
+    letter-spacing: -0.64px;
+    margin-bottom: 4px;
+    margin-top: 14px;
+    letter-spacing: -0.04em;
+  }
+
+  &__category {
+    color: var(--tenth-font-color);
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.03em;
+  }
+
+  &__text {
+    font-size: 14px;
+    line-height: 18px;
+    margin: 8px 14px 14px 0;
+    letter-spacing: -0.04em;
+  }
+
+  &__shops {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  &__author {
+    color: var(--tenth-font-color);
+    font-size: 12px;
+    font-style: italic;
+    line-height: 14px;
+    letter-spacing: -0.04em;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+
+  &__amazon-book {
+    display: flex;
+    justify-content: flex-end;
+    width: 56px;
+    justify-content: space-between;
+  }
+
+  &__amazon {
+    width: 32px;
+    height: 11px;
+    background-image: url('/src/images/amazon.png');
+    background-repeat: no-repeat;
+  }
+
+  &__icon-book {
+    width: 16px;
+    height: 16px;
+    background-image: url('/src/images/amazon-book.png');
+  }
+}
+
+/*.popup-dark-theme {
+  background-color: var(--main-dark-background-color);
+  border: 2px solid var(--quaternary-border-color);
+  color: var(--quaternary-font-color);
+}
+
+.icon-close-dark-theme {
+  fill: var(--quaternary-font-color);
+}
+
+.amazon-dark-theme {
+  background-image: url('/src/images/amazon-white.png');
+}
+
+.btn-add-dark-theme,
+.btn-remove-dark-theme {
+  color: var(--quaternary-font-color);
+.comment-dark-theme {
+  color: var(--nonary-font-color);
+}*/
+
 @include medium {
+  .shopping-gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .title-shopping {
+    padding-left: 32px;
+    padding-bottom: 140px;
+    padding-top: 40px;
+    width: 292px;
+    height: 52px;
+    font-size: 48px;
+    line-height: 52px;
+    color: #111111;
+  }
+
   .empty-list {
     width: 349px;
     height: 309px;
@@ -103,291 +257,64 @@
     width: 322px;
     height: 241px;
   }
+
+  .shop {
+    max-width: 704px;
+    height: 213px;
+
+    &__btn-close {
+      width: 34px;
+      height: 34px;
+    }
+
+    &__photo {
+      width: 116px;
+      height: 165px;
+      margin: 24px;
+    }
+
+    &__title {
+      margin-top: 24px;
+    }
+
+    &__text {
+      margin: 14px 32px 35px 0;
+    }
+
+    &__amazon-book {
+      width: 92px;
+    }
+
+    &__author {
+      margin-bottom: 24px;
+    }
+
+    &__amazon {
+      width: 48px;
+      height: 15px;
+    }
+
+    &__icon-book {
+      width: 28px;
+      height: 27px;
+    }
+  }
 }
 
 @include large {
   .empty-list {
     padding-left: 355px;
   }
-}
 
-/*.backdrop-shop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 550;
-  background-color: var(--inactive-background-color);
-  cursor: not-allowed;
-  display: flex;
-  visibility: visible;
-  opacity: 1;
-  transform: scale(1);
-  transition: visibility 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.shop-is-hidden {
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(0);
-}
-
-.shop {
-  width: 335px;
-  height: 170px;
-  top: 182px;
-  left: 20px;
-  //padding: 20px 40px 20px 20px;
-  border-radius: 16px;
-  border: 2px solid #4f2ee8;
-  background-color: var(--quaternary-object-background-color);
-  cursor: auto;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  overflow-y: auto;
-
-  &__btn-trash {
-    background-color: #4f2ee8;
-    border-radius: 50%;
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    width: 34px;
-    height: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-
-  &__icon-trash {
-    fill: #ffffff;
-    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-    &:hover,
-    &:focus {
-      fill: var(--secondary-font-color);
-    }
-  }
-  &__details {
+  .support-shopping {
     display: block;
-    flex-direction: column;
-    width: 335px;
-    height: 170px;
   }
 
-  &__photo {
-    width: 100px;
-    height: 142px;
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 14px 14px;
-  }
-
-  &__description {
-    width: 193px;
-    height: 68px;
-  }
-
-  &__title {
-    font-size: 16px;
-    text-transform: uppercase;
-    line-height: 18px;
-    letter-spacing: -0.64px;
-    margin-bottom: 4px;
-    margin-top: 14px;
-  }
-
-  &__author {
-    color: var(--tenth-font-color);
-    font-size: 12px;
-    font-style: italic;
-    line-height: 14px;
-    letter-spacing: -0.48px;
-  }
-
-  &__text {
-    font-size: 14px;
-    line-height: 18px;
-    letter-spacing: -0.56px;
-    margin: 18px 0;
-  }
-
-  &__books {
-    display: flex;
-    align-items: first baseline;
-  }
-
-  &__amazon-book {
-    display: flex;
-    align-items: center;
-    width: 115px;
-    justify-content: space-between;
-  }
-
-  &__amazon {
-    width: 62px;
-    height: 28px;
-    // background-color: var(--quaternary-object-background-color);
-    //background-image: url('../images/amazon.png');
-    //background-repeat: no-repeat;
-    background-position: bottom;
-    border-radius: 8px;
-  }
-
-  &__icon-book {
-    width: 32px;
-    height: 32px;
-    //background-image: url('../images/amazon-book.png');
-  }
-
-  &__books-list {
-    font-size: 16px;
-    line-height: 25px;
-    letter-spacing: -0.56px;
-    margin-left: 5px;
-    font-weight: 500;
-  }
-
-  &__books-link {
-    color: orange;
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-    &:hover,
-    &:focus {
-      color: var(--secondary-font-color);
-    }
-  }
-
-  &__btn-add,
-  &__btn-remove {
-    display: block;
-    margin: 0 auto;
-    margin-top: 40px;
-    border: 2px solid var(--secondary-border-color);
-    padding: 14px 23px;
-    border-radius: 40px;
-    font-size: 13px;
-    font-weight: 700;
-    line-height: 18px;
-    letter-spacing: -0.14px;
-    text-transform: uppercase;
-    background-color: transparent;
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-      color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-    &:hover,
-    &:focus {
-      background-color: var(--secondary-object-background-color);
-      color: var(--quaternary-font-color);
-      cursor: pointer;
-    }
-  }
-
-  &__btn-text-hidden {
-    display: none;
-  }
-
-  &__comment {
-    text-align: center;
-    font-size: 10px;
-    color: var(--tertiary-font-color);
-    line-height: 12px;
-    letter-spacing: -0.4px;
-    max-width: 235px;
-    width: 100%;
-    margin: 0 auto;
-    margin-top: 8px;
-  }
-}
-
-.shop-dark-theme {
-  background-color: var(--main-dark-background-color);
-  border: 2px solid var(--quaternary-border-color);
-  color: var(--quaternary-font-color);
-}
-
-.icon-close-dark-theme {
-  fill: var(--quaternary-font-color);
-}
-
-.btn-add-dark-theme,
-.btn-remove-dark-theme {
-  color: var(--quaternary-font-color);
-}
-
-.comment-dark-theme {
-  color: var(--nonary-font-color);
-}
-
-@include medium {
   .shop {
-    width: 100%;
-    max-width: 579px;
-    padding: 40px;
-    position: relative;
-
-    &__btn-close {
-      top: 20px;
-      right: 20px;
-      width: 28px;
-      height: 28px;
-      cursor: pointer;
-    }
-
-    &__details {
-      flex-direction: row;
-    }
-
-    &__photo {
-      width: 192px;
-      height: 281px;
-      border-radius: 8px;
-      overflow: hidden;
-      margin-right: 24px;
-    }
-
-    &__description {
-      max-width: 279px;
-    }
-
-    &__title {
-      font-size: 24px;
-      line-height: 28px;
-      letter-spacing: -0.96px;
-      margin-bottom: 8px;
-      margin-top: 0;
-    }
-
-    &__author {
-      font-size: 14px;
-      line-height: 18px;
-      letter-spacing: -0.56px;
-    }
+    max-width: 996px;
 
     &__text {
-      margin: 20px 0;
-    }
-
-    &__btn-add,
-    &__btn-remove {
-      max-width: 499px;
-      width: 100%;
-      padding: 20px 0;
-      font-size: 18px;
-      line-height: 24px;
-      letter-spacing: -0.18px;
-    }
-
-    &__comment {
-      font-size: 12px;
-      line-height: 14px;
-      letter-spacing: -0.48px;
-      max-width: 324px;
+      margin: 14px 24px 35px 0;
     }
   }
-}*/
+}

@@ -1,33 +1,14 @@
-/*'use strict';
+'use strict';
 import { fetchBookById } from './api';
 
-let currentBookData = null;
-
-const bookCover = document.querySelector('.shop__img');
-const bookAmazon = document.querySelector('.shop__amazon');
-const bookDescription = document.querySelector('.shop__description-details');
-const btnCloseShop = document.querySelector('.shop__btn-trash');
-const backdropShop = document.querySelector('.backdrop-shop');
+const shoppingTitle = document.querySelector('.title-shopping');
+const emptyList = document.querySelector('.empty-list');
+const shoppingGallery = document.querySelector('.shopping-gallery');
 const shop = document.querySelector('.shop');
-const comment = document.querySelector('.shop__comment');
-const shopsList = document.querySelector('.shop__shops-list');
-
-const listBooks = document.querySelector('.category__list');
-const listBooksInCategories = document.querySelector('.books-gallery__section');
-
-let isBookAlreadyInShoppingList = false;
-
-const toggleButtonsVisibility = () => {
-  if (isBookAlreadyInShoppingList) {
-    document.querySelector('.shop__btn-add').classList.add('shop__btn-text-hidden');
-    document.querySelector('.shop__btn-remove').classList.remove('shop__btn-text-hidden');
-    comment.classList.remove('shop__btn-text-hidden');
-  } else {
-    document.querySelector('.shop__btn-add').classList.remove('shop__btn-text-hidden');
-    document.querySelector('.shop__btn-remove').classList.add('shop__btn-text-hidden');
-    comment.classList.add('shop__btn-text-hidden');
-  }
-};
+const shopBtnTrash = document.querySelector('.shop__btn-trash');
+const shopImg = document.querySelector('.shop__img');
+const shopDescriptionDetails = document.querySelector('.shop__description-details');
+const shopAmazon = document.querySelector('.shop__amazon');
 
 const addToLocalStorage = () => {
   if (!currentBookData) return;
@@ -44,89 +25,69 @@ const addToLocalStorage = () => {
   toggleButtonsVisibility();
 };
 
-const removeFromLocalStorage = () => {
-  if (!currentBookData) return;
+const renderShoppingList = storedBooks => {
+  shoppingGallery.innerHTML = '';
 
-  const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
-  const updatedBooks = storedBooks.filter(book => book._id !== currentBookData._id);
+  if (storedBooks.length === 0) {
+    emptyList.classList.remove('hidden');
 
-  localStorage.setItem('books', JSON.stringify(updatedBooks));
+    const emptyListText = document.querySelector('.empty-list__text');
+    emptyListText.textContent = 'Ta strona jest pusta, dodaj książki i przejdź do zamówienia.';
 
-  isBookAlreadyInShoppingList = false;
-  toggleButtonsVisibility();
-};
+    const emptyListImage = document.querySelector('.empty-list img');
+    emptyListImage.src = '/src/images/books-empty-page@1x.png';
+    emptyListImage.alt = 'Książki';
+  } else {
+    emptyList.classList.add('hidden');
+  }
 
-const createShop = async bookId => {
-  const bookData = await fetchBookById(bookId);
-  currentBookData = bookData;
+  storedBooks.forEach(bookData => {
+    const shopItem = document.createElement('div');
+    shopItem.classList.add('shop');
 
-  const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
-  isBookAlreadyInShoppingList = storedBooks.some(book => book._id === bookData._id);
-  toggleButtonsVisibility();
+    shopImg.src = bookData.book_image;
+    shopAmazon.href = bookData.amazon_product_url;
+    const markup = `<h2 class="shop__title">${bookData.title}</h2>
+                <p class="shop__category">${bookData.category}</p>
+                <p class="shop__text">${bookData.description}</p>
+                <p class="shop__author">${bookData.author}</p>`;
+    shopDescriptionDetails.innerHTML = markup;
 
-  bookCover.src = bookData.book_image;
-  bookAmazon.href = bookData.amazon_product_url;
-  const markup = `<h2 class='shop__title'>${bookData.title}</h2>
-                <p class='shop__author'>${bookData.author}</p>
-                <p class='shop__text'>${bookData.description}</p>`;
-  bookDescription.innerHTML = markup;
-
-  const shopsBooks = bookData.buy_links
-    .slice(1)
-    .map(
-      link =>
-        `<li class='shop__shops-item'><a class='shop__shops-link' href='${link.url}' target='_blank'>${link.name}</a></li>`,
-    )
-    .join('');
-  shopsList.innerHTML = shopsBooks;
+    shoppingGallery.appendChild(shopItem);
+  });
 };
 
 const closeShop = () => {
-  backdropShop.classList.add('shop-is-hidden');
-
-  btnCloseShop.removeEventListener('click', closeShop);
-  backdropShop.removeEventListener('click', backdropClickHandler);
+  shop.classList.add('shop-is-hidden');
+  shopBtnTrash.removeEventListener('click', removeFromShoppingList);
+  document.removeEventListener('keydown', keydownHandler);
 };
-
-const backdropClickHandler = event => {
-  if (event.target === backdropShop) {
-    closeShop();
-  }
-};
-shop.addEventListener('click', event => {
-  event.stopPropagation();
-});
 
 const openShop = e => {
-  if (e.target.closest('.shop__btn-add')) {
+  if (e.target.closest('li')) {
     const bookId = e.target.closest('li').dataset.id;
-    createShop(bookId);
-
-    btnCloseShop.addEventListener('click', closeShop);
-    backdropShop.addEventListener('click', backdropClickHandler);
+    shop.classList.remove('shop-is-hidden');
+    shopBtnTrash.addEventListener('click', removeFromShoppingList);
   }
 };
 
-listBooks.addEventListener('click', openShop);
-listBooksInCategories.addEventListener('click', openShop);
+/*const toggleDarkThemePopUp = () => {
+  const btnAddToShoppingList = document.querySelector('.popup__btn-add');
+  const btnRemoveFromShoppingList = document.querySelector('.popup__btn-remove');
+  const popUp = document.querySelector('.popup');
+  const comment = document.querySelector('.popup__comment');
+  const iconClose = document.querySelector('.popup__icon-close');
+  const amazonLogo = document.querySelector('.popup__amazon');
 
-// Obsługa pustej listy zakupów
-const emptyListContainer = document.querySelector('.centering');
-const supportShopping = document.querySelector('.support-shopping');
-const shoppingList = document.querySelector('.shopping');
-
-const checkEmptyShoppingList = () => {
-  const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
-  if (storedBooks.length === 0) {
-    emptyListContainer.classList.remove('centering-is-hidden');
-    supportShopping.classList.remove('support-shopping-is-hidden');
-    shoppingList.classList.add('shopping-is-hidden');
-  } else {
-    emptyListContainer.classList.add('centering-is-hidden');
-    supportShopping.classList.add('support-shopping-is-hidden');
-    shoppingList.classList.remove('shopping-is-hidden');
-  }
+  popUp.classList.toggle('popup-dark-theme');
+  iconClose.classList.toggle('icon-close-dark-theme');
+  btnAddToShoppingList.classList.toggle('btn-add-dark-theme');
+  btnRemoveFromShoppingList.classList.toggle('btn-remove-dark-theme');
+  comment.classList.toggle('comment-dark-theme');
+  amazonLogo.classList.toggle('amazon-dark-theme');
 };
 
-// Wywołaj funkcję, aby sprawdzić, czy lista zakupów jest pusta
-checkEmptyShoppingList();*/
+// toggleDarkThemePopUp();
+
+// openPopUp();
+// localStorage.clear();*/
