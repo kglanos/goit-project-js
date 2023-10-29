@@ -12,6 +12,10 @@ body {
 ul {
   list-style: none;
 }
+
+li:hover{
+  cursor: pointer;
+}
 svg {
   display: block;
 }
@@ -33,12 +37,20 @@ a {
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;
+  @include medium {
+    padding: 0 32px;
+  }
+  @include large{
+    padding: 0 24px;
+  }
+}
 
-  //   @include medium {
-  //   max-width: 768px;
-  // }
+::-webkit-scrollbar {
+  width: 8px;
+}
 
-  //   @include large {
-  //     max-width: 1440px;
-  // }
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-color);
+  border-radius: 12px;
+  height: 114px;
 }

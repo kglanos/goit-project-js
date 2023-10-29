@@ -1,4 +1,5 @@
 'use strict';
+import { indexOf } from 'lodash';
 import { fetchBooksByCategory } from './api';
 
 const title = document.querySelector('.category__title');
@@ -21,7 +22,9 @@ const createListBooksByCategory = async selectedCategory => {
 };
 
 const showBooksByCategory = async e => {
-  if (e.target.closest('li')) {
+
+  if (e.target.closest('li') && e.target.textContent != 'All categories') {
+    console.log(e.target.textContent == "All categories")
     bookGallery.classList.add('gallery-hidden');
     const selectedCategory = e.target.closest('li').textContent;
 
