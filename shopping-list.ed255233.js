@@ -117,7 +117,7 @@ i.addEventListener("focusout",e=>{c(i)||(i.style.borderColor="red",d("password",
 //     //User is signed out
 //   }
 // });
-}),o("ifJdc").register(new URL("",import.meta.url).toString(),JSON.parse('["f9Mh2","shopping-list.8d34aff2.js","2usor","save-the-children.e7cb9515.png","2AGy0","project-hope.65587b00.png","7adUJ","international-medical-corps.bb14a1fb.png","2KExU","razom.3639a3ee.png","30dzm","action-against-hunger.6319825b.png","e1omX","sergiy-prytula.d33ef8f5.png","8anbz","medecins-sans-frontieres.0a6ef6af.png","6tfSA","world-vision.8a329a07.png","g1g53","united24.9625498b.png","bSbOs","shopping-list.3ced18ef.css"]')),o("kM5jX"),o("haS5e"),o("fQwj1"),o("a7nVE"),o("1fSMk"),/*'use strict';
+}),o("ifJdc").register(new URL("",import.meta.url).toString(),JSON.parse('["f9Mh2","shopping-list.ed255233.js","2usor","save-the-children.e7cb9515.png","2AGy0","project-hope.65587b00.png","7adUJ","international-medical-corps.bb14a1fb.png","2KExU","razom.3639a3ee.png","30dzm","action-against-hunger.6319825b.png","e1omX","sergiy-prytula.d33ef8f5.png","8anbz","medecins-sans-frontieres.0a6ef6af.png","6tfSA","world-vision.8a329a07.png","g1g53","united24.9625498b.png","bSbOs","shopping-list.682e5f71.css"]')),o("kM5jX"),o("haS5e"),o("fQwj1"),o("a7nVE"),o("1fSMk"),/*'use strict';
 import { fetchBookById } from './api';
 
 let currentBookData = null;
@@ -248,6 +248,6 @@ const checkEmptyShoppingList = () => {
 };
 
 // Wywołaj funkcję, aby sprawdzić, czy lista zakupów jest pusta
-checkEmptyShoppingList();*/o("2DTLi");//# sourceMappingURL=shopping-list.8d34aff2.js.map
+checkEmptyShoppingList();*/o("2DTLi");//# sourceMappingURL=shopping-list.ed255233.js.map
 
-//# sourceMappingURL=shopping-list.8d34aff2.js.map
+//# sourceMappingURL=shopping-list.ed255233.js.map
