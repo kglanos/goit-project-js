@@ -68,6 +68,7 @@
     flex: 1;
     overflow: hidden;
     z-index: 1;
+    cursor: pointer;
 
     &::after {
       content: 'quick view';
@@ -92,6 +93,7 @@
       z-index: 10;
       visibility: hidden;
       opacity: 0;
+      
     }
   }
 
@@ -101,7 +103,7 @@
     border-radius: 8px;
     object-fit: cover;
     flex: 1;
-
+    
     @include medium {
       width: 218px;
       height: 316px;

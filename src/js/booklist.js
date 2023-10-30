@@ -8,7 +8,7 @@ const bookCategoriesList = document.querySelector('.side-bar__categories');
 const bookGallery = document.querySelector('.books-gallery');
 const category = document.querySelector('.category');
 
-const createListBooksByCategory = async selectedCategory => {
+export const createListBooksByCategory = async selectedCategory => {
   const books = await fetchBooksByCategory(selectedCategory);
   const list = books
     .map(
@@ -22,21 +22,37 @@ const createListBooksByCategory = async selectedCategory => {
   listBooksByCategory.innerHTML = list;
 };
 
-const showBooksByCategory = async e => {
+export const showBooksByCategory = async e => {
+  
   if (e.target.closest('li') && e.target.textContent != 'All categories') {
-    console.log(e.target.closest('li'))
     bookGallery.classList.add('gallery-hidden');
     category.classList.remove('gallery-hidden');
-    const selectedCategory = e.target.closest('li').textContent;
+    let selectedCategory = e.target.closest('li').textContent;
 
     const words = selectedCategory.split(' ');
     const lastWord = words.pop();
     const titleShort = words.join(' ');
     title.innerHTML = `${titleShort} <span class="last-word-color">${lastWord}</span>`;
+    listBooksByCategory.innerHTML = '';
+    createListBooksByCategory(selectedCategory);
+  }
 
+  else if (e.target.textContent === 'SEE MORE') {
+
+    bookGallery.classList.add('gallery-hidden');
+    category.classList.remove('gallery-hidden');
+
+    selectedCategory = e.target.name
+
+    const words = selectedCategory.split(' ');
+    const lastWord = words.pop();
+    const titleShort = words.join(' ');
+    title.innerHTML = `${titleShort} <span class="last-word-color">${lastWord}</span>`;
     listBooksByCategory.innerHTML = '';
     createListBooksByCategory(selectedCategory);
   }
 };
+
+const seeMoreBtn = document.querySelector('.books-gallery__button')
 
 bookCategoriesList.addEventListener('click', showBooksByCategory);

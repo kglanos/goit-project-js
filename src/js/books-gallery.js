@@ -1,15 +1,27 @@
+import { each } from "lodash";
 import { fetchTopBooksInCategories } from "./api";
-
+import { createListBooksByCategory, showBooksByCategory } from "./booklist";
 
 const booksGallery = document.querySelector('.books-gallery')
 const allCategories = document.querySelector('.side-bar__categories-item')
 const category = document.querySelector('.category')
 
+
+
+
+
+
+function seeMore () {
+    const seeMoreBtn = document.querySelectorAll('.books-gallery button')
+    seeMoreBtn.forEach((button) => button.addEventListener('click', showBooksByCategory))
+}
+
+
 async function renderBestsellerGallery () {
     const bestsellers = await fetchTopBooksInCategories();
     const bestsellersSliced = bestsellers.slice(0,4)
-    console.log(bestsellersSliced)
     const bestsellersCategory = bestsellersSliced
+
     .map(bestseller =>
         `<div>
         <h2 class="books-gallery__category-title">${bestseller.list_name}</h2>
@@ -27,12 +39,15 @@ async function renderBestsellerGallery () {
 
     </ul>
     
-    <div class="books-gallery__button-wrapper"><button type="button" class="books-gallery__button">SEE MORE </button></div>
+    <div class="books-gallery__button-wrapper"><button name="${bestseller.list_name}" type="button" class="books-gallery__button">SEE MORE</button></div>
     </div>` )
     .join('')
 
     booksGallery.insertAdjacentHTML('beforeend', bestsellersCategory);
 
+    seeMore ()
+    
+    
 }
  
 
