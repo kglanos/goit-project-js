@@ -201,12 +201,12 @@
   background-image: url('../images/amazon-white.png');
 }
 
-.dark-theme .btn-add,
-.dark-theme .btn-remove {
+.dark-theme .popup__btn-add,
+.dark-theme .popup__btn-remove {
   color: var(--quaternary-font-color);
 }
 
-.dark-theme .comment {
+.dark-theme .popup__comment {
   color: var(--nonary-font-color);
 }
 
