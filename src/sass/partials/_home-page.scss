@@ -43,4 +43,7 @@
     color: var(--category-on-focus-color);
     text-transform: uppercase;
   }
+  &__categories-item:hover{
+    cursor: pointer;
+  }
 }
