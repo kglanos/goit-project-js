@@ -14,7 +14,7 @@
   }
   @include large {
     flex-direction: column;
-    row-gap: 32px;
+    row-gap: 86px;
   }
   &__categories {
     display: flex;
@@ -40,7 +40,7 @@
   }
   &__categories-item:focus {
     font-weight: 700;
-    color: var(--secondary-border-color);
+    color: var(--category-on-focus-color);
     text-transform: uppercase;
   }
 }
