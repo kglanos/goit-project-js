@@ -3,6 +3,6 @@ var e=globalThis,t={},a={},o=e.parcelRequired7c6;null==o&&((o=function(e){if(e i
     <p class="shop__category">${e.category}</p>
     <p class="shop__text">${e.description}</p>
     <p class="shop__author">${e.author}</p>
-  `,d=document.createElement("div");d.innerHTML=i,t.appendChild(d),n.appendChild(t)},d=async()=>{let e=r();if(0===e.length){l.classList.remove("hidden");let e=document.querySelector(".empty-list__text");e.textContent="Ta strona jest pusta, dodaj książki i przejdź do zam\xf3wienia.";let t=document.querySelector(".empty-list__image");t.src="/src/images/books-empty-page@1x.png",t.alt="Książki";return}l.classList.add("hidden"),e.forEach(async e=>{let t=await (0,s.fetchBookById)(e);i(t)})};d(),o("2DTLi");//# sourceMappingURL=shopping-list.e7ab811f.js.map
+  `,d=document.createElement("div");d.innerHTML=i,t.appendChild(d),n.appendChild(t)},d=async()=>{let e=r();if(0===e.length){l.classList.remove("hidden");let e=document.querySelector(".empty-list__text");e.textContent="Ta strona jest pusta, dodaj książki i przejdź do zam\xf3wienia.";let t=document.querySelector(".empty-list__image");t.src="/src/images/books-empty-page@1x.png",t.alt="Książki";return}l.classList.add("hidden"),e.forEach(async e=>{let t=await (0,s.fetchBookById)(e);i(t)})};d(),o("2DTLi"),o("eNCUi");//# sourceMappingURL=shopping-list.6cb4e059.js.map
 
-//# sourceMappingURL=shopping-list.e7ab811f.js.map
+//# sourceMappingURL=shopping-list.6cb4e059.js.map
