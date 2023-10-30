@@ -30,7 +30,7 @@
   max-width: 335px;
   padding: 16px 20px 40px 20px;
   border: 2px solid var(--primary-border-color);
-  background-color: var(--tertiary-object-background-color);
+  background-color: var(--main-background-color);
   border-radius: 18px;
 
   @include medium {
@@ -155,7 +155,7 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 18px;
-  background-color: rgba(17, 17, 17, 1);
+  background-color: var(--main-background-color);
   letter-spacing: -1px;
   border-radius: 40px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -196,7 +196,7 @@
   border: none;
   font-weight: 600;
   text-transform: uppercase;
-  color: rgba(17, 17, 17, 0.5);
+  color: var(--tertiary-font-color);
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), border 250ms cubic-bezier(0.4, 0, 0.2, 1);
   background-color: transparent;
   cursor: pointer;
