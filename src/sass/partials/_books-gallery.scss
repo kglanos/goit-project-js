@@ -58,6 +58,7 @@
   &__button {
     margin-top: 8px;
     border: 2px solid var(--secondary-border-color);
+    background: none;
     border-radius: 40px;
     font-size: 50px;
     width: 124px;
@@ -65,6 +66,7 @@
     font-size: 14px;
     line-height: 18px;
     font-weight: 700;
+    color: var(--denary-font-color);
   }
   &__button-wrapper {
     max-width: 335px;
