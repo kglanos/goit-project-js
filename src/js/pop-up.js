@@ -120,8 +120,8 @@ const openPopUp = e => {
   }
 };
 
-listBooks.addEventListener('click', openPopUp);
-listBooksInCategories.addEventListener('click', openPopUp);
+listBooks?.addEventListener('click', openPopUp);
+listBooksInCategories?.addEventListener('click', openPopUp);
 
 btnRemoveFromShoppingList.addEventListener('click', removeFromLocalStorage);
 btnAddToShoppingList.addEventListener('click', addToLocalStorage);
