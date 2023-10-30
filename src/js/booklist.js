@@ -14,13 +14,8 @@ const createListBooksByCategory = async selectedCategory => {
     .map(
       book => `<li class="category__item" data-id="${book._id}">
         <div class="category__cover"><img class="category__image" alt="book cover" src="${book.book_image}"/></div>
-     <div class="actions-card">
-        <div class="discription">
-        <p>quick view</p>
-        </div>
-        </div>
         <div class="category__image-description"><h4 class="category__book-title">${book.title}</h4>
-        <p class="category__book-author">${book.author}</p></div>
+        <p class="category__book-author">${book.author}</p></div> 
     </li>`,
     )
     .join('');
@@ -38,7 +33,6 @@ const showBooksByCategory = async e => {
     const titleShort = words.join(' ');
     title.innerHTML = `${titleShort} <span class="last-word-color">${lastWord}</span>`;
 
-    // title.textContent = selectedCategory;
     listBooksByCategory.innerHTML = '';
     createListBooksByCategory(selectedCategory);
   }
