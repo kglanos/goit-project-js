@@ -24,6 +24,7 @@ const createListBooksByCategory = async selectedCategory => {
 
 const showBooksByCategory = async e => {
   if (e.target.closest('li') && e.target.textContent != 'All categories') {
+    console.log(e.target.closest('li'))
     bookGallery.classList.add('gallery-hidden');
     category.classList.remove('gallery-hidden');
     const selectedCategory = e.target.closest('li').textContent;

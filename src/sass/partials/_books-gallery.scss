@@ -26,19 +26,19 @@
       line-height: 24px;
     }
   }
-  &__image {
-    width: 335px;
-    height: 485px;
-    border-radius: 8px;
-    @include medium {
-      width: 218px;
-      height: 316px;
-    }
-    @include large {
-      width: 180px;
-      height: 256px;
-    }
-  }
+  // &__image {
+  //   width: 335px;
+  //   height: 485px;
+  //   border-radius: 8px;
+  //   @include medium {
+  //     width: 218px;
+  //     height: 316px;
+  //   }
+  //   @include large {
+  //     width: 180px;
+  //     height: 256px;
+  //   }
+  // }
   &__book-title {
     font-size: 16px;
     line-height: 18px;
@@ -67,7 +67,14 @@
     font-weight: 700;
   }
   &__button-wrapper {
+    max-width: 335px;
     text-align: right;
+    @include medium {
+      max-width: 704px;
+    }
+    @include large {
+      max-width: 996px
+    }
   }
 }
 
