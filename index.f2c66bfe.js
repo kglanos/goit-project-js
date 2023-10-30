@@ -8025,6 +8025,11 @@ clearTimeout(f),f=setTimeout(y,n),g(l))}return void 0===f&&(f=setTimeout(y,n)),o
     <li class="is-hidden-desktop" data-id="${t.books[4]._id}"><img class="books-gallery__image" alt="book cover" src="${t.books[4].book_image}"> <h3 class="books-gallery__book-title">${t.books[4].title}</h3><h4 class="books-gallery__book-author">${t.books[4].author}</h4> <div class="books-gallery__button-wrapper"><button type="button" class="books-gallery__button">SEE MORE </button></div></li>
     </ul></div>`).join("");B.insertAdjacentHTML("beforeend",r)}(),U.addEventListener("click",()=>{B.classList.remove("gallery-hidden"),D.classList.add("gallery-hidden")});var M=u("lXnOV");const N=document.querySelector(".side-bar__categories");(async function(){let t=await (0,M.fetchBooksCategoryList)(),n=t.map(t=>`<li tabindex='-1' class="side-bar__categories-item">${t.list_name}</li>`).join("");N.insertAdjacentHTML("beforeend",n)})(),u("a7nVE"),u("aHLOA");var M=u("lXnOV");const F=document.querySelector(".category__title"),P=document.querySelector(".category__list"),H=document.querySelector(".side-bar__categories"),V=document.querySelector(".books-gallery"),Z=document.querySelector(".category"),J=async t=>{let n=await (0,M.fetchBooksByCategory)(t),r=n.map(t=>`<li class="category__item" data-id="${t._id}">
         <div class="category__cover"><img class="category__image" alt="book cover" src="${t.book_image}"/></div>
+     <div class="actions-card">
+        <div class="discription">
+        <p>quick view</p>
+        </div>
+        </div>
         <div class="category__image-description"><h4 class="category__book-title">${t.title}</h4>
         <p class="category__book-author">${t.author}</p></div>
     </li>`).join("");P.innerHTML=r},K=async t=>{if(t.target.closest("li")&&"All categories"!=t.target.textContent){V.classList.add("gallery-hidden"),Z.classList.remove("gallery-hidden");let n=t.target.closest("li").textContent,r=n.split(" "),e=r.pop(),u=r.join(" ");F.innerHTML=`${u} <span class="last-word-color">${e}</span>`,// title.textContent = selectedCategory;
@@ -8048,6 +8053,6 @@ let G=null;const X=document.querySelector(".popup__img"),Y=document.querySelecto
 // toggleDarkThemePopUp();
 // openPopUp();
 // localStorage.clear();
-//# sourceMappingURL=index.23cd427a.js.map
+//# sourceMappingURL=index.f2c66bfe.js.map
 
-//# sourceMappingURL=index.23cd427a.js.map
+//# sourceMappingURL=index.f2c66bfe.js.map
