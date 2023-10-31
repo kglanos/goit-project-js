@@ -1,31 +1,40 @@
 .books-gallery {
   display: flex;
   flex-direction: column;
+  padding-bottom: 50px;
+
   @include large {
     margin-top: 115px;
   }
+
   &__title {
     font-size: 32px;
     line-height: 38px;
+
     @include medium {
       font-size: 48px;
       line-height: 52px;
     }
+
     color: var(--denary-font-color);
+
     &--accent {
       color: var(--secondary-font-color);
     }
   }
+
   &__category-title {
     font-size: 14px;
     line-height: 18px;
     text-transform: uppercase;
     color: var(--tenth-font-color);
     margin: 40 0 18 0;
+
     @include medium {
       line-height: 24px;
     }
   }
+
   // &__image {
   //   width: 335px;
   //   height: 485px;
@@ -47,6 +56,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+
   &__book-author {
     font-size: 12px;
     line-height: 14px;
@@ -55,8 +65,9 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+
   &__button {
-    margin-top: 8px;
+    margin-top: 32px;
     border: 2px solid var(--secondary-border-color);
     background: none;
     border-radius: 40px;
@@ -69,12 +80,15 @@
     color: var(--denary-font-color);
     cursor: pointer;
   }
+
   &__button-wrapper {
     max-width: 335px;
     text-align: right;
+
     @include medium {
       max-width: 704px;
     }
+
     @include large {
       max-width: 996px
     }
@@ -83,9 +97,11 @@
 
 .books-gallery__section {
   display: flex;
+
   @include medium {
     column-gap: 25px;
   }
+
   @include large {
     column-gap: 24px;
   }
@@ -93,9 +109,11 @@
 
 .books-gallery__section li {
   max-width: 335px;
+
   @include medium {
     max-width: 218px;
   }
+
   @include large {
     max-width: 180px;
   }
@@ -103,6 +121,7 @@
 
 .is-hidden-tablet {
   display: none;
+
   @include medium {
     display: block;
   }
@@ -110,6 +129,7 @@
 
 .is-hidden-desktop {
   display: none;
+
   @include large {
     display: block;
   }

@@ -1,6 +1,5 @@
-import { each } from 'lodash';
 import { fetchTopBooksInCategories } from './api';
-import { createListBooksByCategory, showBooksByCategory } from './booklist';
+import { showBooksByCategory } from './booklist';
 import Notiflix from 'notiflix';
 import 'notiflix/dist/notiflix-3.2.6.min.css';
 
@@ -9,7 +8,7 @@ const allCategories = document.querySelector('.side-bar__categories-item');
 const category = document.querySelector('.category');
 
 function seeMore() {
-  const seeMoreBtn = document.querySelectorAll('.books-gallery button');
+  const seeMoreBtn = document.querySelectorAll('.books-gallery__button');
   seeMoreBtn.forEach(button => button.addEventListener('click', showBooksByCategory));
 }
 

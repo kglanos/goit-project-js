@@ -1,5 +1,5 @@
 'use strict';
-import { indexOf } from 'lodash';
+
 import { fetchBooksByCategory } from './api';
 import Notiflix from 'notiflix';
 import 'notiflix/dist/notiflix-3.2.6.min.css';
@@ -54,7 +54,5 @@ export const showBooksByCategory = async e => {
     createListBooksByCategory(selectedCategory);
   }
 };
-
-const seeMoreBtn = document.querySelector('.books-gallery__button');
 
 bookCategoriesList.addEventListener('click', showBooksByCategory);
