@@ -118,6 +118,9 @@ body.dark-theme .theme-button {
     display: none;
   }
 }
+.login-buttons {
+  position: relative;
+}
 .sign-up-btn {
   display: none;
   @include medium {
@@ -142,6 +145,8 @@ body.dark-theme .theme-button {
   display: none;
   @include medium {
     display: flex;
+    position: absolute;
+
     align-items: center;
     justify-content: space-between;
     background-color: var(--quaternary-object-background-color);
@@ -158,6 +163,9 @@ body.dark-theme .theme-button {
   &__icon {
     fill: var(--primary-object-background-color);
   }
+}
+.dark-theme .log-out-btn {
+  color: black;
 }
 
 .user-btn {
