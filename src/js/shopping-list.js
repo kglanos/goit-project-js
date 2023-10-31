@@ -4,21 +4,6 @@ import { fetchBookById } from './api';
 const emptyList = document.querySelector('.empty-list');
 const shoppingGallery = document.querySelector('.shopping-gallery');
 
-/*const addToLocalStorage = () => {
-  if (!currentBookData) return;
-
-  const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
-  const bookExists = storedBooks.some(book => book._id === currentBookData._id);
-
-  if (!bookExists) {
-    storedBooks.push(currentBookData);
-    localStorage.setItem('books', JSON.stringify(storedBooks));
-  }
-
-  isBookAlreadyInShoppingList = true;
-  toggleButtonsVisibility();
-};*/
-
 const getFromLocalStorage = () => {
   const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
   const storedBooksId = storedBooks.map(book => book._id);
@@ -30,11 +15,11 @@ const renderBook = bookData => {
   shopItem.classList.add('shop');
 
   const btnTrash = document.createElement('button');
-  btnTrash.classList.add('btn-trash');
-  btnTrash.textContent = 'Usuń';
+  btnTrash.classList.add('shop__btn-trash');
   shopItem.appendChild(btnTrash);
 
   const shopImg = document.createElement('img');
+  shopImg.classList.add('shop__photo');
   shopImg.src = bookData.book_image;
   shopItem.appendChild(shopImg);
 
@@ -57,6 +42,20 @@ const renderBook = bookData => {
     <p class="shop__text">${bookData.description}</p>
     <p class="shop__author">${bookData.author}</p>
   `;
+  const shopTextElements = document.querySelectorAll('.shop__text');
+
+  shopTextElements.forEach(shopTextElement => {
+    const text = shopTextElement.textContent;
+    const firstSentenceEnd = text.indexOf('. ') + 1;
+
+    if (firstSentenceEnd > 0) {
+      const truncatedText = text.substring(0, firstSentenceEnd);
+      const ellipsis = document.createElement('span');
+      ellipsis.textContent = '...';
+      shopTextElement.textContent = truncatedText;
+      shopTextElement.appendChild(ellipsis);
+    }
+  });
 
   const shopDescriptionDetails = document.createElement('div');
   shopDescriptionDetails.innerHTML = markup;
