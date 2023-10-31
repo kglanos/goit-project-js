@@ -1,6 +1,6 @@
-<div class="registration-backdrop registration-hidden" registration-data-modal>
+<div class="registration-backdrop registration-hidden">
   <div class="registration-modal">
-    <button class="registration-close-btn" type="button" registration-data-modal-close>
+    <button class="registration-close-btn" type="button">
       <svg class="registration-close-icon" width="28" height="28">
         <use href="./images/icons.svg#icon-x-close"></use>
       </svg>
@@ -17,12 +17,28 @@
           placeholder="Name"
           title="Please enter your name"
         />
+        <input
+          type="text"
+          id="user-name"
+          class="registration-modal-input input-name valid"
+          name="userName"
+          placeholder="Name"
+          title="Please enter your name"
+        />
       </div>
       <p class="name-error warning-valid">Please fill in the correct format</p>
 
-      <div class="registration-modal-field">
+      <div class="registration-modal-field" registration-data-modal>
         <label for="user-email"></label>
         <div class="registration-modal-field-wrapper">
+          <input
+            type="text"
+            id="user-email"
+            class="registration-modal-input input-email valid"
+            placeholder="Email"
+            name="userEmail"
+            title="Please enter your email"
+          />
           <input
             type="text"
             id="user-email"
@@ -56,7 +72,7 @@
         <p class="password-error warning-valid">Please fill in the correct format</p>
       </div>
       <button class="sign-up-modal" type="submit">Sign up</button>
-      <button class="sign-in-modal btn-sign-in-up-hidden" type="submit">Sign in</button>
+      <button class="sign-in-modal btn-sing-in-up-hidden" type="submit">Sign in</button>
     </form>
 
     <div class="registration-sending">
