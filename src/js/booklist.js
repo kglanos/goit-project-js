@@ -1,6 +1,8 @@
 'use strict';
 import { indexOf } from 'lodash';
 import { fetchBooksByCategory } from './api';
+import Notiflix from 'notiflix';
+import 'notiflix/dist/notiflix-3.2.6.min.css';
 
 const title = document.querySelector('.category__title');
 const listBooksByCategory = document.querySelector('.category__list');
@@ -10,6 +12,10 @@ const category = document.querySelector('.category');
 
 export const createListBooksByCategory = async selectedCategory => {
   const books = await fetchBooksByCategory(selectedCategory);
+  if (books.length === 0) {
+    Notiflix.Notify.info(`Unfortunately, we do not have these books at the moment.`);
+    return;
+  }
   const list = books
     .map(
       book => `<li class="category__item" data-id="${book._id}">
@@ -23,7 +29,6 @@ export const createListBooksByCategory = async selectedCategory => {
 };
 
 export const showBooksByCategory = async e => {
-  
   if (e.target.closest('li') && e.target.textContent != 'All categories') {
     bookGallery.classList.add('gallery-hidden');
     category.classList.remove('gallery-hidden');
@@ -35,14 +40,11 @@ export const showBooksByCategory = async e => {
     title.innerHTML = `${titleShort} <span class="last-word-color">${lastWord}</span>`;
     listBooksByCategory.innerHTML = '';
     createListBooksByCategory(selectedCategory);
-  }
-
-  else if (e.target.textContent === 'SEE MORE') {
-
+  } else if (e.target.textContent === 'SEE MORE') {
     bookGallery.classList.add('gallery-hidden');
     category.classList.remove('gallery-hidden');
 
-    selectedCategory = e.target.name
+    selectedCategory = e.target.name;
 
     const words = selectedCategory.split(' ');
     const lastWord = words.pop();
@@ -53,6 +55,6 @@ export const showBooksByCategory = async e => {
   }
 };
 
-const seeMoreBtn = document.querySelector('.books-gallery__button')
+const seeMoreBtn = document.querySelector('.books-gallery__button');
 
 bookCategoriesList.addEventListener('click', showBooksByCategory);

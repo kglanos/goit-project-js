@@ -1,28 +1,29 @@
-import { each } from "lodash";
-import { fetchTopBooksInCategories } from "./api";
-import { createListBooksByCategory, showBooksByCategory } from "./booklist";
+import { each } from 'lodash';
+import { fetchTopBooksInCategories } from './api';
+import { createListBooksByCategory, showBooksByCategory } from './booklist';
+import Notiflix from 'notiflix';
+import 'notiflix/dist/notiflix-3.2.6.min.css';
 
-const booksGallery = document.querySelector('.books-gallery')
-const allCategories = document.querySelector('.side-bar__categories-item')
-const category = document.querySelector('.category')
+const booksGallery = document.querySelector('.books-gallery');
+const allCategories = document.querySelector('.side-bar__categories-item');
+const category = document.querySelector('.category');
 
-
-
-
-
-
-function seeMore () {
-    const seeMoreBtn = document.querySelectorAll('.books-gallery button')
-    seeMoreBtn.forEach((button) => button.addEventListener('click', showBooksByCategory))
+function seeMore() {
+  const seeMoreBtn = document.querySelectorAll('.books-gallery button');
+  seeMoreBtn.forEach(button => button.addEventListener('click', showBooksByCategory));
 }
 
+async function renderBestsellerGallery() {
+  const bestsellers = await fetchTopBooksInCategories();
+  const bestsellersSliced = bestsellers.slice(0, 4);
+  if (bestsellersSliced.length === 0) {
+    Notiflix.Notify.info(`Unfortunately, we do not have these books at the moment.`);
+    return;
+  }
+  const bestsellersCategory = bestsellersSliced
 
-async function renderBestsellerGallery () {
-    const bestsellers = await fetchTopBooksInCategories();
-    const bestsellersSliced = bestsellers.slice(0,4)
-    const bestsellersCategory = bestsellersSliced
-
-    .map(bestseller =>
+    .map(
+      bestseller =>
         `<div>
         <h2 class="books-gallery__category-title">${bestseller.list_name}</h2>
     <ul class="books-gallery__section">
@@ -40,22 +41,20 @@ async function renderBestsellerGallery () {
     </ul>
     
     <div class="books-gallery__button-wrapper"><button name="${bestseller.list_name}" type="button" class="books-gallery__button">SEE MORE</button></div>
-    </div>` )
-    .join('')
+    </div>`,
+    )
+    .join('');
 
-    booksGallery.insertAdjacentHTML('beforeend', bestsellersCategory);
+  booksGallery.insertAdjacentHTML('beforeend', bestsellersCategory);
 
-    seeMore ()
-    
-    
+  seeMore();
 }
- 
 
-renderBestsellerGallery()
+renderBestsellerGallery();
 
 const showAllCategories = () => {
-    booksGallery.classList.remove('gallery-hidden')
-    category.classList.add('gallery-hidden')
-}
+  booksGallery.classList.remove('gallery-hidden');
+  category.classList.add('gallery-hidden');
+};
 
 allCategories.addEventListener('click', showAllCategories);

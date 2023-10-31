@@ -1,11 +1,11 @@
 'use strict';
 import axios from 'axios';
+import Notiflix from 'notiflix';
+import 'notiflix/dist/notiflix-3.2.6.min.css';
 
 const fetchBooksCategoryList = async () => {
   try {
-    const response = await axios.get(
-      'https://books-backend.p.goit.global/books/category-list'
-    );
+    const response = await axios.get('https://books-backend.p.goit.global/books/category-list');
     return response.data;
   } catch (error) {
     console.log(error);
@@ -14,24 +14,34 @@ const fetchBooksCategoryList = async () => {
 // console.log(fetchBooksCategoryList());
 
 const fetchTopBooksInCategories = async () => {
+  Notiflix.Loading.circle('Loading...', {
+    backgroundColor: 'rgba(0,0,0,0.8)',
+    svgColor: '#fff',
+  });
   try {
-    const response = await axios.get(
-      'https://books-backend.p.goit.global/books/top-books'
-    );
+    const response = await axios.get('https://books-backend.p.goit.global/books/top-books');
+    Notiflix.Loading.remove();
     return response.data;
   } catch (error) {
+    Notiflix.Loading.remove();
     console.log(error);
   }
 };
 // console.log(fetchTopBooksInCategories());
 
 const fetchBooksByCategory = async selectedCategory => {
+  Notiflix.Loading.circle('Loading...', {
+    backgroundColor: 'rgba(0,0,0,0.8)',
+    svgColor: '#fff',
+  });
   try {
     const response = await axios.get(
-      `https://books-backend.p.goit.global/books/category?category=${selectedCategory}`
+      `https://books-backend.p.goit.global/books/category?category=${selectedCategory}`,
     );
+    Notiflix.Loading.remove();
     return response.data;
   } catch (error) {
+    Notiflix.Loading.remove();
     console.log(error);
   }
 };
@@ -39,9 +49,7 @@ const fetchBooksByCategory = async selectedCategory => {
 
 const fetchBookById = async id => {
   try {
-    const response = await axios.get(
-      `https://books-backend.p.goit.global/books/${id}`
-    );
+    const response = await axios.get(`https://books-backend.p.goit.global/books/${id}`);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -49,9 +57,4 @@ const fetchBookById = async id => {
 };
 // console.log(fetchBookById('643282b1e85766588626a07d'));
 
-export {
-  fetchBooksCategoryList,
-  fetchTopBooksInCategories,
-  fetchBooksByCategory,
-  fetchBookById,
-};
+export { fetchBooksCategoryList, fetchTopBooksInCategories, fetchBooksByCategory, fetchBookById };
