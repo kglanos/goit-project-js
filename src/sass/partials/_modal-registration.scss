@@ -95,8 +95,8 @@
   top: 50%;
   transform: translateY(-50%);
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  stroke: var(--main-background-color);
-  fill: white;
+  stroke: var(--denary-font-color);
+  fill: var(--main-background-color);
 
   @include medium {
     width: 24px;
@@ -175,7 +175,7 @@
   }
 }
 
-.btn-sing-in-up-hidden {
+.btn-sign-in-up-hidden {
   display: none;
 }
 
