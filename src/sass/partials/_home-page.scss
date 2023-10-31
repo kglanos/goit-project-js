@@ -41,6 +41,7 @@
     overflow: auto;
     line-height: 18px;
     color: var(--tertiary-font-color);
+    padding-right: 15px;
 
     @include medium {
       max-height: 472px;
