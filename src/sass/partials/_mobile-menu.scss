@@ -88,7 +88,7 @@
   position: absolute;
   left: 20px;
   bottom: 100px;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   z-index: 301;
@@ -106,6 +106,12 @@
   &__icon {
     fill: var(--primary-object-background-color);
   }
+  @include medium {
+    display: none;
+  }
+}
+.dark-theme .log-out-mobile-btn {
+  color: rgba(17, 17, 17, 1);
 }
 
 .user-mobile-btn {
@@ -113,7 +119,7 @@
   position: absolute;
   left: 20px;
   top: 40px;
-  display: none;
+  display: flex;
   align-items: center;
   column-gap: 9px;
   background-color: inherit;
@@ -132,4 +138,10 @@
     font-size: 22px;
     line-height: 1.4;
   }
+  @include medium {
+    display: none;
+  }
+}
+.visually-hidden {
+  display: none;
 }
