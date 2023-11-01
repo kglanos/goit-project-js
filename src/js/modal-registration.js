@@ -157,6 +157,7 @@ const submitRegistrationForm = e => {
   headerUserBtn.classList.toggle('visually-hidden');
   mobileSignUpBtn.classList.toggle('visually-hidden');
   mobileUserBtn.classList.toggle('visually-hidden');
+  mobileLogOut.classList.toggle('visually-hidden');
   headerUserBtn.textContent = name;
   formRegistration.reset();
   Notify.success(`You are sign in!`);
@@ -168,10 +169,10 @@ const logOutUser = () => {
 };
 
 const afterLogOut = () => {
-  logOutBtn.classList.toggle('visually-hidden');
+  logOutBtn.classList.add('visually-hidden');
   headerUserBtn.classList.toggle('visually-hidden');
   headerSignUpBtn.classList.toggle('visually-hidden');
-  mobileLogOut.classList.toggle('visually-hidden');
+  mobileLogOut.classList.add('visually-hidden');
   mobileUserBtn.classList.toggle('visually-hidden');
   mobileSignUpBtn.classList.toggle('visually-hidden');
   Notify.info(`You are logged out!`);
@@ -184,6 +185,6 @@ signUpLink.addEventListener('click', toggleBtnRegistrationSignUp);
 btnCloseRegistrationModal.addEventListener('click', closeRegistrationModal);
 formRegistration.addEventListener('submit', submitRegistrationForm);
 headerUserBtn.addEventListener('click', logOutUser);
-mobileUserBtn.addEventListener('click', logOutUser);
+// mobileUserBtn.addEventListener('click', logOutUser);
 logOutBtn.addEventListener('click', afterLogOut);
 mobileLogOut.addEventListener('click', afterLogOut);
