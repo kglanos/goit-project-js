@@ -82,7 +82,7 @@ const loadBooks = async () => {
 loadBooks();
 
 // Funkcja do sprawdzania dostępności książek w liście
-function checkIfBooksExist() {
+/*function checkIfBooksExist() {
   const storedBooksId = getFromLocalStorage();
   return storedBooksId.length > 0;
 }
@@ -176,4 +176,4 @@ nextPageButton.addEventListener('click', () => {
 });
 
 // Inicjalizacja paginacji przy załadowaniu strony
-initializePagination();
+initializePagination();*/
