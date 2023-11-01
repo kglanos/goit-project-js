@@ -18,31 +18,32 @@ const renderBook = bookData => {
   btnTrash.classList.add('shop__btn-trash');
   shopItem.appendChild(btnTrash);
 
+  btnTrash.addEventListener('click', () => {
+    const shopItem = btnTrash.closest('.shop');
+    if (shopItem) {
+      shopItem.remove();
+    }
+  });
+
   const shopImg = document.createElement('img');
   shopImg.classList.add('shop__photo');
   shopImg.src = bookData.book_image;
   shopItem.appendChild(shopImg);
 
-  const shopAmazonBook = document.createElement('div');
-  shopAmazonBook.classList.add('shop__amazon-book');
-
-  const shopAmazonName = document.createElement('img');
-  shopAmazonName.classList.add('shop__amazon');
-  shopAmazonBook.appendChild(shopAmazonName);
-
-  const shopAmazonIcon = document.createElement('img');
-  shopAmazonIcon.classList.add('shop__icon-book');
-  shopAmazonBook.appendChild(shopAmazonIcon);
-
-  shopItem.appendChild(shopAmazonBook);
-
   const markup = `
     <h2 class="shop__title">${bookData.title}</h2>
-    <p class="shop__category">${bookData.category}</p>
+    <p class="shop__category">${bookData.list_name}</p>
     <p class="shop__text">${bookData.description}</p>
+    <div class="shop__author-inline">
     <p class="shop__author">${bookData.author}</p>
+    <div class="shop__amazon-book">
+   <img class="shop__amazon" src="../images/amazon.png" alt="Amazon" />
+  <img class="shop__book-icon" src="../images/amazon-book.png" alt="Book" />
+</div>
+</div>
   `;
-  const shopTextElements = document.querySelectorAll('.shop__text');
+
+  /*const shopTextElements = document.querySelectorAll('.shop__text');
 
   shopTextElements.forEach(shopTextElement => {
     const text = shopTextElement.textContent;
@@ -55,7 +56,7 @@ const renderBook = bookData => {
       shopTextElement.textContent = truncatedText;
       shopTextElement.appendChild(ellipsis);
     }
-  });
+  });*/
 
   const shopDescriptionDetails = document.createElement('div');
   shopDescriptionDetails.innerHTML = markup;
@@ -75,7 +76,7 @@ const loadBooks = async () => {
 
     const emptyListImage = document.querySelector('.empty-list__image');
     emptyListImage.src = '/src/images/books-empty-page@1x.png';
-    emptyListImage.alt = 'Książki';
+    emptyListImage.alt = 'book image';
     return;
   }
   emptyList.classList.add('hidden');
@@ -87,11 +88,3 @@ const loadBooks = async () => {
 };
 
 loadBooks();
-
-const openShop = e => {
-  const shopBtnTrash = e.target.closest('.shop__btn-trash');
-  if (shopBtnTrash) {
-    shopBtnTrash.classList.remove('shop__btn-trash');
-    shoppingGallery.classList.remove('hidden');
-  }
-};
