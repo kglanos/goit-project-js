@@ -25,22 +25,21 @@ const renderBook = bookData => {
   const btnTrash = document.createElement('button');
   btnTrash.classList.add('shop__btn-trash');
   shopItem.appendChild(btnTrash);
+
   btnTrash.addEventListener('click', () => {
     const shopItem = btnTrash.closest('.shop');
     if (shopItem) {
+      const bookId = bookData._id;
+      const storedBooks = JSON.parse(localStorage.getItem('books'));
+      const updatedBooks = storedBooks.filter(book => book._id !== bookId);
+      localStorage.setItem('books', JSON.stringify(updatedBooks));
       shopItem.remove();
-      const removeBookFromshoppingGallery = e => {
-        if (e.target.classList.contains('shop__btn-trash')) {
-          const bookId = e.target.dataset.id;
-          const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
-          const updatedBooks = storedBooks.filter(book => book._id !== bookId);
-          localStorage.setItem('books', JSON.stringify(updatedBooks));
-          getBooksFromStorage();
-        }
-      };
-      shoppingGallery.addEventListener('click', removeBookFromshoppingGallery);
+      if (updatedBooks.length === 0) {
+        emptyList.classList.remove('hidden');
+      }
     }
   });
+
   const shopImg = document.createElement('img');
   shopImg.classList.add('shop__photo');
   shopImg.src = bookData.book_image;
@@ -57,7 +56,9 @@ const renderBook = bookData => {
       </div>
     </div>
   `;
+
   const shopDescriptionDetails = document.createElement('div');
+  shopDescriptionDetails.classList.add('shop__content');
   shopDescriptionDetails.innerHTML = markup;
   shopItem.appendChild(shopDescriptionDetails);
   shoppingGallery.appendChild(shopItem);
@@ -66,11 +67,6 @@ const loadBooks = async () => {
   const storedBooksId = getFromLocalStorage();
   if (storedBooksId.length === 0) {
     emptyList.classList.remove('hidden');
-    const emptyListText = document.querySelector('.empty-list__text');
-    emptyListText.textContent = 'Ta strona jest pusta, dodaj książki i przejdź do zamówienia.';
-    const emptyListImage = document.querySelector('.empty-list__image');
-    emptyListImage.src = '/src/images/books-empty-page@1x.png';
-    emptyListImage.alt = 'book image';
     return;
   }
   emptyList.classList.add('hidden');
