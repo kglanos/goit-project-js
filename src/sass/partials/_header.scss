@@ -198,9 +198,7 @@ body.dark-theme .theme-button {
   }
 }
 .visually-hidden {
-  @include medium {
-    display: none;
-  }
+  display: none;
 }
 
 .js-open-menu:disabled,
