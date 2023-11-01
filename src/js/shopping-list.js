@@ -1,8 +1,17 @@
 'use strict';
+
 import { fetchBookById } from './api';
 
 const emptyList = document.querySelector('.empty-list');
 const shoppingGallery = document.querySelector('.shopping-gallery');
+const pageNumbers = document.getElementById('pageNumbers');
+const prevButton = document.getElementById('prev');
+const nextButton = document.getElementById('next');
+const prevPageButton = document.getElementById('prevPage');
+const nextPageButton = document.getElementById('nextPage');
+
+const itemsPerPage = 4;
+let currentPage = 1;
 
 const getFromLocalStorage = () => {
   const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
@@ -13,85 +22,158 @@ const getFromLocalStorage = () => {
 const renderBook = bookData => {
   const shopItem = document.createElement('div');
   shopItem.classList.add('shop');
-
   const btnTrash = document.createElement('button');
   btnTrash.classList.add('shop__btn-trash');
   shopItem.appendChild(btnTrash);
-
+  btnTrash.addEventListener('click', () => {
+    const shopItem = btnTrash.closest('.shop');
+    if (shopItem) {
+      shopItem.remove();
+      const removeBookFromshoppingGallery = e => {
+        if (e.target.classList.contains('shop__btn-trash')) {
+          const bookId = e.target.dataset.id;
+          const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
+          const updatedBooks = storedBooks.filter(book => book._id !== bookId);
+          localStorage.setItem('books', JSON.stringify(updatedBooks));
+          getBooksFromStorage();
+        }
+      };
+      shoppingGallery.addEventListener('click', removeBookFromshoppingGallery);
+    }
+  });
   const shopImg = document.createElement('img');
   shopImg.classList.add('shop__photo');
   shopImg.src = bookData.book_image;
   shopItem.appendChild(shopImg);
-
-  const shopAmazonBook = document.createElement('div');
-  shopAmazonBook.classList.add('shop__amazon-book');
-
-  const shopAmazonName = document.createElement('img');
-  shopAmazonName.classList.add('shop__amazon');
-  shopAmazonBook.appendChild(shopAmazonName);
-
-  const shopAmazonIcon = document.createElement('img');
-  shopAmazonIcon.classList.add('shop__icon-book');
-  shopAmazonBook.appendChild(shopAmazonIcon);
-
-  shopItem.appendChild(shopAmazonBook);
-
   const markup = `
     <h2 class="shop__title">${bookData.title}</h2>
-    <p class="shop__category">${bookData.category}</p>
+    <p class="shop__category">${bookData.list_name}</p>
     <p class="shop__text">${bookData.description}</p>
-    <p class="shop__author">${bookData.author}</p>
+  <div class="author-inline">
+      <p class="shop__author">${bookData.author}</p>
+      <div class="shop__amazon-book">
+        <a class="shop__amazon" href="${bookData.amazon_product_url}" target="_blank"></a>
+        <div class="shop__book-icon"></div>
+      </div>
+    </div>
   `;
-  const shopTextElements = document.querySelectorAll('.shop__text');
-
-  shopTextElements.forEach(shopTextElement => {
-    const text = shopTextElement.textContent;
-    const firstSentenceEnd = text.indexOf('. ') + 1;
-
-    if (firstSentenceEnd > 0) {
-      const truncatedText = text.substring(0, firstSentenceEnd);
-      const ellipsis = document.createElement('span');
-      ellipsis.textContent = '...';
-      shopTextElement.textContent = truncatedText;
-      shopTextElement.appendChild(ellipsis);
-    }
-  });
-
   const shopDescriptionDetails = document.createElement('div');
   shopDescriptionDetails.innerHTML = markup;
   shopItem.appendChild(shopDescriptionDetails);
-
   shoppingGallery.appendChild(shopItem);
 };
-
 const loadBooks = async () => {
   const storedBooksId = getFromLocalStorage();
-
   if (storedBooksId.length === 0) {
     emptyList.classList.remove('hidden');
-
     const emptyListText = document.querySelector('.empty-list__text');
     emptyListText.textContent = 'Ta strona jest pusta, dodaj książki i przejdź do zamówienia.';
-
     const emptyListImage = document.querySelector('.empty-list__image');
     emptyListImage.src = '/src/images/books-empty-page@1x.png';
-    emptyListImage.alt = 'Książki';
+    emptyListImage.alt = 'book image';
     return;
   }
   emptyList.classList.add('hidden');
-
   storedBooksId.forEach(async id => {
     const bookDetails = await fetchBookById(id);
     renderBook(bookDetails);
   });
 };
-
 loadBooks();
 
-const openShop = e => {
-  const shopBtnTrash = e.target.closest('.shop__btn-trash');
-  if (shopBtnTrash) {
-    shopBtnTrash.classList.remove('shop__btn-trash');
-    shoppingGallery.classList.remove('hidden');
+// Funkcja do sprawdzania dostępności książek w liście
+function checkIfBooksExist() {
+  const storedBooksId = getFromLocalStorage();
+  return storedBooksId.length > 0;
+}
+
+// Funkcja do generowania numerów stron
+function setupPagination(data, itemsPerPage) {
+  pageNumbers.innerHTML = '';
+  const pageCount = Math.ceil(data.length / itemsPerPage);
+
+  for (let i = 1; i <= pageCount; i++) {
+    const button = paginationButton(i);
+    pageNumbers.appendChild(button);
   }
-};
+}
+
+// Funkcja do tworzenia przycisków numerów stron
+function paginationButton(page) {
+  const button = document.createElement('button');
+  button.innerText = page;
+  button.addEventListener('click', () => {
+    currentPage = page;
+    displayPage(currentPage);
+  });
+  return button;
+}
+
+// Funkcja do wyświetlania danej strony
+function displayPage(page) {
+  const storedBooksId = getFromLocalStorage();
+  const start = (page - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const booksToDisplay = storedBooksId.slice(start, end);
+
+  shoppingGallery.innerHTML = '';
+  booksToDisplay.forEach(async id => {
+    const bookDetails = await fetchBookById(id);
+    renderBook(bookDetails);
+  });
+
+  const currentButton = document.querySelector(`#pageNumbers button.active`);
+  if (currentButton) {
+    currentButton.classList.remove('active');
+  }
+  document.querySelector(`#pageNumbers button:nth-child(${page})`).classList.add('active');
+}
+
+// Inicjalizacja paginacji
+function initializePagination() {
+  if (checkIfBooksExist()) {
+    const storedBooksId = getFromLocalStorage();
+    setupPagination(storedBooksId, itemsPerPage);
+    displayPage(currentPage);
+    pageNumbers.style.display = 'block'; // Pokaż paginację
+  } else {
+    pageNumbers.style.display = 'none'; // Ukryj paginację
+  }
+}
+
+// Przewijanie do poprzedniej strony
+prevButton.addEventListener('click', () => {
+  if (currentPage > 1) {
+    currentPage--;
+    displayPage(currentPage);
+  }
+});
+
+prevPageButton.addEventListener('click', () => {
+  if (currentPage > 1) {
+    currentPage--;
+    displayPage(currentPage);
+  }
+});
+
+// Przewijanie do następnej strony
+nextButton.addEventListener('click', () => {
+  const storedBooksId = getFromLocalStorage();
+  const pageCount = Math.ceil(storedBooksId.length / itemsPerPage);
+  if (currentPage < pageCount) {
+    currentPage++;
+    displayPage(currentPage);
+  }
+});
+
+nextPageButton.addEventListener('click', () => {
+  const storedBooksId = getFromLocalStorage();
+  const pageCount = Math.ceil(storedBooksId.length / itemsPerPage);
+  if (currentPage < pageCount) {
+    currentPage++;
+    displayPage(currentPage);
+  }
+});
+
+// Inicjalizacja paginacji przy załadowaniu strony
+initializePagination();
