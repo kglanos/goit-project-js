@@ -4,6 +4,7 @@
   align-items: baseline;
   flex-direction: row;
   flex-wrap: wrap;
+  //padding-right: 24px;
   padding-top: 112px;
   padding-left: 24px;
 }
@@ -23,9 +24,7 @@
   justify-content: space-between;
   gap: 10px;
   padding-left: 20px;
-  padding-bottom: 120px;
   width: 193px;
-  height: 38px;
   font-family: DM Sans;
   font-size: 32px;
   font-weight: 700;
@@ -82,10 +81,10 @@
   flex-direction: column;
   gap: 20px;
   padding-left: 20px;
+  padding-right: 20px;
 }
 
 .shop {
-  width: 335px;
   height: 170px;
   border-radius: 16px;
   border: 2px solid var(--secondary-font-color);
@@ -96,8 +95,8 @@
 
   &__btn-trash {
     position: absolute;
-    right: 14px;
-    top: 14px;
+    right: 8px;
+    top: 8px;
     width: 34px;
     height: 34px;
     border-radius: 50%;
@@ -117,6 +116,10 @@
   }
 
   &__title {
+    max-width: 144px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 16px;
     text-transform: uppercase;
     line-height: 18px;
@@ -131,16 +134,26 @@
     font-size: 12px;
     line-height: 14px;
     letter-spacing: 0.03em;
-    margin: 4px 0 14px 0;
+    margin-bottom: 8px;
   }
 
   &__text {
+    max-width: 193px;
+    max-height: 58px;
+    white-space: wrap;
     overflow: hidden;
-    //height: 18%;
+    text-overflow: ellipsis;
     font-size: 14px;
     line-height: 18px;
-    margin: 8px 14px 14px 0;
+    margin-bottom: 14px;
     letter-spacing: -0.04em;
+  }
+
+  &__author-inline {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-bottom: 14px;
   }
 
   &__author {
@@ -155,28 +168,31 @@
     letter-spacing: -0.04em;
   }
 
-  /*&__amazon-book {
+  &__amazon-book {
     display: flex;
     align-items: center;
-    width: 92px;
     justify-content: space-between;
+    width: 56px;
+    margin-right: 14px;
   }
+
   ​ &__amazon {
-    width: 48px;
-    height: 15px;
-    background-image: url('/src/images/amazon.png');
+    width: 32px;
+    height: 11px;
+    //background-image: url('/src/images/amazon.png');
     background-repeat: no-repeat;
     background-size: cover;
   }
+
   ​ &__book-icon {
-    width: 28px;
-    height: 28px;
-    background-image: url('/src/images/amazon-book.png');
+    width: 16px;
+    height: 16px;
+    //background-image: url('/src/images/amazon-book.png');
     background-size: cover;
   }
-}*/
+}
 
-  /*.popup-dark-theme {
+/*.popup-dark-theme {
   background-color: var(--main-dark-background-color);
   border: 2px solid var(--quaternary-border-color);
   color: var(--quaternary-font-color);
@@ -196,95 +212,97 @@
 .comment-dark-theme {
   color: var(--nonary-font-color);
 }*/
-  @include medium {
-    .title-shopping {
-      padding-left: 32px;
-      padding-bottom: 140px;
-      padding-top: 40px;
-      width: 292px;
-      height: 52px;
-      font-size: 48px;
-      line-height: 52px;
-      color: #111111;
-    }
 
-    .empty-list {
-      width: 349px;
-      height: 309px;
-      gap: 20px;
-      padding-left: 210px;
-    }
-
-    .empty-list__text {
-      width: 349px;
-      height: 48px;
-      font-size: 18px;
-      line-height: 24px;
-    }
-
-    .empty-list__image {
-      width: 322px;
-      height: 241px;
-    }
-
-    .shop {
-      max-width: 704px;
-      height: 213px;
-
-      &__btn-close {
-        width: 34px;
-        height: 34px;
-      }
-
-      &__photo {
-        width: 116px;
-        height: 165px;
-        margin: 24px;
-      }
-
-      &__title {
-        margin-top: 24px;
-      }
-
-      &__text {
-        margin: 14px 32px 35px 0;
-      }
-
-      &__amazon-book {
-        width: 92px;
-      }
-
-      &__author {
-        margin-bottom: 24px;
-      }
-
-      &__amazon {
-        width: 48px;
-        height: 15px;
-      }
-
-      &__icon-book {
-        width: 28px;
-        height: 27px;
-      }
-    }
+@include medium {
+  .title-shopping {
+    padding-left: 32px;
+    padding-bottom: 140px;
+    padding-top: 40px;
+    width: 292px;
+    height: 52px;
+    font-size: 48px;
+    line-height: 52px;
+    color: #111111;
   }
 
-  @include large {
-    .empty-list {
-      padding-left: 355px;
+  .empty-list {
+    width: 349px;
+    height: 309px;
+    gap: 20px;
+    padding-left: 210px;
+  }
+
+  .empty-list__text {
+    width: 349px;
+    height: 48px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .empty-list__image {
+    width: 322px;
+    height: 241px;
+  }
+
+  .shop {
+    max-width: 704px;
+    height: 213px;
+
+    &__btn-close {
+      width: 34px;
+      height: 34px;
     }
 
-    .support-shopping {
-      display: block;
+    &__photo {
+      width: 116px;
+      height: 165px;
+      margin: 24px;
     }
 
-    .shop {
-      max-width: 996px;
+    &__title {
+      max-width: max-content;
+    }
 
-      &__text {
-        margin: 14px 24px 35px 0;
-      }
+    &__text {
+      max-width: 508px;
+      max-height: 53px;
+    }
+
+    &__amazon-book {
+      width: 92px;
+    }
+
+    &__author {
+      margin-bottom: 24px;
+    }
+
+    &__amazon {
+      width: 48px;
+      height: 15px;
+    }
+
+    &__icon-book {
+      width: 28px;
+      height: 27px;
+    }
+  }
+}
+
+@include large {
+  .empty-list {
+    padding-left: 355px;
+  }
+
+  .support-shopping {
+    display: block;
+  }
+
+  .shop {
+    max-width: 996px;
+
+    &__text {
+      max-width: 808px;
+      max-height: 53px;
     }
   }
 }
