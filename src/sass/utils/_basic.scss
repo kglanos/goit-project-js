@@ -1,6 +1,12 @@
+html {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
 body {
   background-color: var(--main-background-color);
   color: var(--denary-font-color);
+  margin: 0 auto;
 }
 
 * {
@@ -12,7 +18,6 @@ body {
 ul {
   list-style: none;
 }
-
 
 svg {
   display: block;
@@ -31,14 +36,13 @@ a {
 }
 
 .container {
-  max-width: 100%;
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;
   @include medium {
     padding: 0 32px;
   }
-  @include large{
+  @include large {
     padding: 0 24px;
   }
 }
