@@ -44,7 +44,7 @@ export const showBooksByCategory = async e => {
     bookGallery.classList.add('gallery-hidden');
     category.classList.remove('gallery-hidden');
 
-    selectedCategory = e.target.name;
+  let selectedCategory = e.target.name;
 
     const words = selectedCategory.split(' ');
     const lastWord = words.pop();
