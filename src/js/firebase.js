@@ -1,8 +1,8 @@
 // import { Notify } from 'notiflix';
 // import { initializeApp } from 'firebase/app';
+// import { getDatabase, ref, set, onValue } from 'firebase/database';
 // import {
 //   getAuth,
-//   onAuthStateChanged,
 //   signOut,
 //   createUserWithEmailAndPassword,
 //   signInWithEmailAndPassword,
@@ -17,6 +17,9 @@
 //   appId: '1:93438368377:web:063f56aa4bd4ee23e1d2a8',
 //   measurementId: 'G-BRZ6Z5X8NQ',
 // };
+// initializeApp(firebaseConfig);
+// const auth = getAuth();
+// const database = getDatabase();
 
 // const signUpBtnModal = document.querySelector('.sign-up-modal');
 // const signUpLink = document.querySelector('.sign-up-link');
@@ -28,86 +31,151 @@
 // const inputEmail = document.querySelector('#user-email');
 // const inputPassword = document.querySelector('#user-password');
 // const registrationForm = document.querySelector('.registration-modal-form');
-// let user;
+// const authorizationModal = document.querySelector('.registration-backdrop');
+// const closeBtn = document.querySelector('.registration-close-btn');
+// const signUpBtn = [...document.querySelectorAll('.sign-up-btn')];
+// const signOutBtn = [...document.querySelectorAll('.log-out-btn')];
 
-// const app = initializeApp(firebaseConfig);
-// const auth = getAuth(app);
+// signUpBtn.forEach(el => el.addEventListener('click', onOpenAuthMenu));
+// registrationForm.addEventListener('submit', signUp);
 
-// signInLink.addEventListener('click', e => {
-//   e.preventDefault();
-//   registrationForm.elements.inputName.style.display = 'none';
-//   signUpBtnModal.textContent = 'Sign in';
-// });
+// let isAuth = JSON.parse(localStorage.getItem('userAuth'));
+// let bookListRef;
+// let userRef;
+// if (isAuth) {
+//   userRef = ref(database, 'users/' + JSON.parse(localStorage.getItem('userAuth')));
+//   bookListRef = ref(database, 'usersBookList/' + JSON.parse(localStorage.getItem('userAuth')));
+//   signUpBtn.forEach(el => el.removeEventListener('click', onOpenAuthMenu));
+//   signOutBtn.forEach(el => el.addEventListener('click', signOuting));
+// } else {
+//   signUpBtn.forEach(el => el.addEventListener('click', onOpenAuthMenu));
+// }
 
-// signUpLink.addEventListener('click', e => {
-//   e.preventDefault();
+// function signUpModalMarkup(event) {
+//   event.preventDefault();
+//   registrationForm.elements.userName.style.display = '';
 //   signUpBtnModal.textContent = 'Sign up';
-// });
+//   registrationForm.removeEventListener('submit', signIn);
+//   registrationForm.removeEventListener('submit', signUp);
+//   registrationForm.addEventListener('submit', signUp);
+// }
 
-// // Sign up
+// function signInModalMarkup(event) {
+//   event.preventDefault();
+//   registrationForm.elements.userName.style.display = 'none';
+//   signUpBtnModal.textContent = 'Sign in';
+//   registrationForm.removeEventListener('submit', signUp);
+//   registrationForm.removeEventListener('submit', signIn);
+//   registrationForm.addEventListener('submit', signIn);
+// }
 
-// signUpBtnModal.addEventListener('click', e => {
-//   e.preventDefault(),
-//     createUserWithEmailAndPassword(auth, inputEmail.value, inputPassword.value)
-//       .then(userCredential => {
-//         (user = userCredential.user), registrationForm.classList.toggle('is-hidden');
-//         signUpHeader.classList.toggle('visually-hidden');
-//         userStephen.classList.remove('visually-hidden');
-//         document.querySelector('.log-out-btn').classList.remove('visually-hidden');
+// function signUp(event) {
+//   event.preventDefault();
+//   const { userPassword, userEmail, userName } = event.target.elements;
+//   createUserWithEmailAndPassword(auth, userEmail.value, userPassword.value)
+//     .then(userCredential => {
+//       const user = userCredential.user;
+//       localStorage.setItem('userAuth', JSON.stringify(user.uid));
+//       userRef = ref(database, 'users/' + user.uid);
+//       bookListRef = ref(database, 'usersBookList/' + user.uid);
+//       const userData = JSON.stringify({
+//         userName: userName.value,
+//         userEmail: userEmail.value,
+//       });
+//       set(userRef, userData);
+//       set(bookListRef, JSON.parse(localStorage.getItem('bookList')));
+//       document.querySelector('.user-info').classList.remove('visually-hidden');
+//       registrationForm.reset();
+//       setUserInfo();
+//       onCloseAuthMenu();
+//     })
+//     .catch(error => {
+//       const errorCode = error.code;
+//       const errorMessage = error.message;
+//       console.log(errorCode);
+//       Notify.failure(
+//         'Sorry, you entered incorrect data. Please check the entered data for errors and try again.',
+//       );
+//     });
+// }
+
+// function signIn(event) {
+//   event.preventDefault();
+//   const { userPassword, userEmail } = event.target.elements;
+//   signInWithEmailAndPassword(auth, userEmail.value, userPassword.value, {
+//     remember: true,
+//   })
+//     .then(userCredential => {
+//       const user = userCredential.user;
+//       bookListRef = ref(database, 'usersBookList/' + user.uid);
+//       localStorage.setItem('userAuth', JSON.stringify(user.uid));
+//       onValue(bookListRef, snapshot => {
+//         const data = snapshot.val();
+//         localStorage.setItem('bookList', data);
+//         //dodać div z klasą user-info do info o userze w menu mobilnym
+//         // document.querySelector('.user-info').classList.remove('visually-hidden');
 //         registrationForm.reset();
-//         Notify.success(`You're signed up!`);
-//       })
-//       .catch(error => {
-//         const errorCode = error.code;
-//         const errorMessage = error.message;
-//         console.log(errorCode, errorMessage);
 //       });
-// });
+//       setUserInfo();
+//       onCloseAuthMenu();
+//     })
+//     .catch(error => {
+//       const errorCode = error.code;
+//       const errorMessage = error.message;
+//       console.log(errorMessage);
+//       Notify.failure(
+//         'Sorry, you entered incorrect data. Please check the entered data for errors and try again.',
+//       );
+//     });
+// }
 
-// // Sign in
+// function onCloseAuthMenu() {
+//   document.body.classList.remove('registration-modal');
+//   authorizationModal.classList.add('visually-hidden');
+//   signUpLink.removeEventListener('click', signUpModalMarkup);
+//   signInLink.removeEventListener('click', signInModalMarkup);
+//   closeBtn.removeEventListener('click', onCloseAuthMenu);
+// }
+// function onOpenAuthMenu() {
+//   document.body.classList.add('registration-modal');
+//   authorizationModal.classList.remove('registration-hidden');
+//   signUpLink.addEventListener('click', signUpModalMarkup);
+//   signInLink.addEventListener('click', signInModalMarkup);
+//   closeBtn.addEventListener('click', onCloseAuthMenu);
+// }
 
-// signInLink.addEventListener('click', e => {
-//   e.preventDefault(),
-//     signInWithEmailAndPassword(auth, inputEmail.value, inputPassword.value)
-//       .then(userCredential => {
-//         (user = userCredential.user),
-//           document.querySelector('[registration-data-modal]').classList.toggle('is-hidden'),
-//           document.querySelector('.sign-up-btn').classList.toggle('visually-hidden'),
-//           document.querySelector('.user-btn').classList.remove('visually-hidden'),
-//           document.querySelector('.log-out-btn').classList.remove('visually-hidden');
-//         registrationForm.reset();
-//         Notify.success(`You're logged in!`);
-//       })
-//       .catch(error => {
-//         // const errorCode = error.code;
-//         // const errorMessage = error.message;
-//         Notify.failure(`Wrong email or password. Try again.`);
-//       });
-// });
+// function signOuting() {
+//   signOut(auth)
+//     .then(() => {
+//       userRef = null;
+//       localStorage.removeItem('userAuth');
+//       localStorage.removeItem('userOption');
+//       localStorage.removeItem('bookList');
+//       //dodać div z klasą user-info do info o userze w menu mobilnym
+//       //   document.querySelector('.user-info').classList.add('visually-hidden');
+//       document.location.reload();
+//     })
+//     .catch(error => {
+//       console.log(error);
+//     });
+// }
+// function setUserInfo() {
+//   onValue(ref(database, 'users/' + JSON.parse(localStorage.getItem('userAuth'))), snapshot => {
+//     const data = snapshot.val();
+//     localStorage.setItem('userOption', data);
+//     const user = JSON.parse(data);
+//     window.setTimeout(() => document.location.reload(), 1000);
+//     // document.location.reload();
+//   });
+// }
 
-// // Log out
-
-// logOutHeader.addEventListener('click', e => {
-//   e.preventDefault(),
-//     signOut(auth)
-//       .then(() => {
-//         return (
-//           signUpBtnModal.classList.toggle('visually-hidden'),
-//           logOutHeader.classList.toggle('visually-hidden'),
-//           Notify.info('You are logged out!')
-//         );
-//       })
-//       .catch(error => {
-//         Notify.info('You are logged out!');
-//       });
-// });
-
-// onAuthStateChanged(auth, user => {
-//   if (user) {
-//     signUpHeader.classList.toggle('visually-hidden'),
-//       logOutHeader.classList.toggle('visually-hidden');
-//     const uid = user.uid;
+// export function addToFierbase() {
+//   if (isAuth) {
+//     const cartDataFromLocalStorage = localStorage.getItem('bookList');
+//     set(bookListRef, cartDataFromLocalStorage);
 //   } else {
-//     //User is signed out
+//     Notify.warning(
+//       'If you want to save changes in your Shopping List, please log in to your account or create it',
+//     );
 //   }
-// });
+// }

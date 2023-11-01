@@ -1,7 +1,7 @@
 'use strict';
 import { Notify } from 'notiflix';
 
-const headerSingUpBtn = document.querySelector('.sign-up-btn');
+const headerSignUpBtn = document.querySelector('.sign-up-btn');
 const headerUserBtn = document.querySelector('.user-btn');
 const mobileSignUpBtn = document.querySelector('.sign-up-mobile-btn');
 const mobileUserBtn = document.querySelector('.user-mobile-btn');
@@ -21,6 +21,7 @@ const messageErrorEmail = document.querySelector('.email-error');
 const messageErrorPassword = document.querySelector('.password-error');
 const logOutBtn = document.querySelector('.log-out-btn');
 const mobileLogOut = document.querySelector('.log-out-mobile-btn');
+const name = nameInput.value;
 
 const openRegistrationModal = () => {
   formRegistration.reset();
@@ -32,17 +33,17 @@ const openRegistrationModal = () => {
   registrationBackdrop.classList.toggle('registration-hidden');
 };
 
-const toggleBtnRegistrationSinIn = () => {
-  btnSignIn.classList.remove('btn-sing-in-up-hidden');
-  btnSignUp.classList.add('btn-sing-in-up-hidden');
+const toggleBtnRegistrationSignIn = () => {
+  btnSignIn.classList.remove('btn-sign-in-up-hidden');
+  btnSignUp.classList.add('btn-sign-in-up-hidden');
   nameInputContainer.classList.add('name-input-hidden');
   messageErrorName.classList.add('warning-valid');
   messageErrorName.classList.remove('warning-invalid');
 };
 
-const toggleBtnRegistrationSinUp = () => {
-  btnSignIn.classList.add('btn-sing-in-up-hidden');
-  btnSignUp.classList.remove('btn-sing-in-up-hidden');
+const toggleBtnRegistrationSignUp = () => {
+  btnSignIn.classList.add('btn-sign-in-up-hidden');
+  btnSignUp.classList.remove('btn-sign-in-up-hidden');
   nameInputContainer.classList.remove('name-input-hidden');
   btnSignUp.disabled = true;
   btnSignUp.classList.add('disabled');
@@ -152,10 +153,12 @@ const resetValidation = () => {
 const submitRegistrationForm = e => {
   e.preventDefault();
   closeRegistrationModal();
-  headerSingUpBtn.classList.toggle('visually-hidden');
+  headerSignUpBtn.classList.toggle('visually-hidden');
   headerUserBtn.classList.toggle('visually-hidden');
   mobileSignUpBtn.classList.toggle('visually-hidden');
   mobileUserBtn.classList.toggle('visually-hidden');
+  mobileLogOut.classList.toggle('visually-hidden');
+  headerUserBtn.textContent = name;
   formRegistration.reset();
   Notify.success(`You are sign in!`);
 };
@@ -166,22 +169,22 @@ const logOutUser = () => {
 };
 
 const afterLogOut = () => {
-  logOutBtn.classList.toggle('visually-hidden');
+  logOutBtn.classList.add('visually-hidden');
   headerUserBtn.classList.toggle('visually-hidden');
-  headerSingUpBtn.classList.toggle('visually-hidden');
-  mobileLogOut.classList.toggle('visually-hidden');
+  headerSignUpBtn.classList.toggle('visually-hidden');
+  mobileLogOut.classList.add('visually-hidden');
   mobileUserBtn.classList.toggle('visually-hidden');
   mobileSignUpBtn.classList.toggle('visually-hidden');
   Notify.info(`You are logged out!`);
 };
 
-headerSingUpBtn.addEventListener('click', openRegistrationModal);
+headerSignUpBtn.addEventListener('click', openRegistrationModal);
 mobileSignUpBtn.addEventListener('click', openRegistrationModal);
-signInLink.addEventListener('click', toggleBtnRegistrationSinIn);
-signUpLink.addEventListener('click', toggleBtnRegistrationSinUp);
+signInLink.addEventListener('click', toggleBtnRegistrationSignIn);
+signUpLink.addEventListener('click', toggleBtnRegistrationSignUp);
 btnCloseRegistrationModal.addEventListener('click', closeRegistrationModal);
 formRegistration.addEventListener('submit', submitRegistrationForm);
 headerUserBtn.addEventListener('click', logOutUser);
-mobileUserBtn.addEventListener('click', logOutUser);
+// mobileUserBtn.addEventListener('click', logOutUser);
 logOutBtn.addEventListener('click', afterLogOut);
 mobileLogOut.addEventListener('click', afterLogOut);
