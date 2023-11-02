@@ -70,23 +70,21 @@ const renderBook = bookData => {
   shoppingGallery.appendChild(shopItem);
 };
 
-const adjustPageAfterDeletion = updatedBooks => {
-  const start = (currentPage - 1) * ITEMS_PER_PAGE;
-  const end = start + ITEMS_PER_PAGE;
+  const adjustPageAfterDeletion = updatedBooks => {
+  const totalPages = Math.ceil(updatedBooks.length / ITEMS_PER_PAGE);
 
-  const remainingBooksOnPage = updatedBooks.slice(start, end);
-
-  if (remainingBooksOnPage.length === 0) {
-    const totalPages = Math.ceil(updatedBooks.length / ITEMS_PER_PAGE);
-    if (currentPage >= totalPages && totalPages > 0) {
-      currentPage = Math.max(totalPages, 1);
-    } else if (currentPage === 1 && totalPages > 1) {
-      currentPage = 1;
-      loadPage(currentPage);
+  if (updatedBooks.length === 0 && totalPages > 1) {
+    if (currentPage > totalPages) {
+      currentPage = totalPages;
     }
-    loadPage(currentPage);
+    return loadPage(currentPage);
+  } else if (currentPage > totalPages) {
+    currentPage = Math.max(totalPages, 1);
+    return loadPage(currentPage);
   }
+  renderPageNumbers(totalPages);
 };
+
 
 const loadPage = async pageNumber => {
   const storedBooksId = getFromLocalStorage();
