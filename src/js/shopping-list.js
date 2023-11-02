@@ -1,17 +1,20 @@
 'use strict';
 
 import { fetchBookById } from './api';
+import Notiflix from 'notiflix';
+import 'notiflix/dist/notiflix-3.2.6.min.css';
+
+const ITEMS_PER_PAGE = 3;
+let currentPage = 1;
 
 const emptyList = document.querySelector('.empty-list');
 const shoppingGallery = document.querySelector('.shopping-gallery');
-const pageNumbers = document.getElementById('pageNumbers');
-const prevButton = document.getElementById('prev');
-const nextButton = document.getElementById('next');
-const prevPageButton = document.getElementById('prevPage');
-const nextPageButton = document.getElementById('nextPage');
-
-const itemsPerPage = 4;
-let currentPage = 1;
+const btnFirstPage = document.querySelector('.btn-first-page');
+const btnPrevPage = document.querySelector('.btn-prev-page');
+const btnNextPage = document.querySelector('.btn-next-page');
+const btnLastPage = document.querySelector('.btn-last-page');
+const paginationContainer = document.querySelector('.shopping-pagination__btn-second');
+const shoppingButtons = document.querySelector('.shopping-pagination');
 
 const getFromLocalStorage = () => {
   const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
@@ -36,6 +39,7 @@ const renderBook = bookData => {
       shopItem.remove();
       if (updatedBooks.length === 0) {
         emptyList.classList.remove('hidden');
+        shoppingButtons.classList.add('hidden');
       }
     }
   });
@@ -63,113 +67,82 @@ const renderBook = bookData => {
   shopItem.appendChild(shopDescriptionDetails);
   shoppingGallery.appendChild(shopItem);
 };
-const loadBooks = async () => {
+
+const loadPage = async pageNumber => {
   const storedBooksId = getFromLocalStorage();
-  if (storedBooksId.length === 0) {
-    emptyList.classList.remove('hidden');
-    return;
-  }
-  emptyList.classList.add('hidden');
-  storedBooksId.forEach(async id => {
-    const bookDetails = await fetchBookById(id);
-    renderBook(bookDetails);
+  const start = (pageNumber - 1) * ITEMS_PER_PAGE;
+  const end = start + ITEMS_PER_PAGE;
+
+  Notiflix.Loading.circle('Loading...', {
+    backgroundColor: 'rgba(0,0,0,0.8)',
+    svgColor: '#fff',
   });
-};
-loadBooks();
-
-// Funkcja do sprawdzania dostępności książek w liście
-/*function checkIfBooksExist() {
-  const storedBooksId = getFromLocalStorage();
-  return storedBooksId.length > 0;
-}
-
-// Funkcja do generowania numerów stron
-function setupPagination(data, itemsPerPage) {
-  pageNumbers.innerHTML = '';
-  const pageCount = Math.ceil(data.length / itemsPerPage);
-
-  for (let i = 1; i <= pageCount; i++) {
-    const button = paginationButton(i);
-    pageNumbers.appendChild(button);
-  }
-}
-
-// Funkcja do tworzenia przycisków numerów stron
-function paginationButton(page) {
-  const button = document.createElement('button');
-  button.innerText = page;
-  button.addEventListener('click', () => {
-    currentPage = page;
-    displayPage(currentPage);
-  });
-  return button;
-}
-
-// Funkcja do wyświetlania danej strony
-function displayPage(page) {
-  const storedBooksId = getFromLocalStorage();
-  const start = (page - 1) * itemsPerPage;
-  const end = start + itemsPerPage;
-  const booksToDisplay = storedBooksId.slice(start, end);
 
   shoppingGallery.innerHTML = '';
-  booksToDisplay.forEach(async id => {
-    const bookDetails = await fetchBookById(id);
+
+  if (storedBooksId.length === 0) {
+    emptyList.classList.remove('hidden');
+    shoppingButtons.classList.add('hidden');
+    Notiflix.Loading.remove();
+    return;
+  }
+
+  emptyList.classList.add('hidden');
+
+  for (let i = start; i < end && i < storedBooksId.length; i++) {
+    const bookDetails = await fetchBookById(storedBooksId[i]);
     renderBook(bookDetails);
-  });
-
-  const currentButton = document.querySelector(`#pageNumbers button.active`);
-  if (currentButton) {
-    currentButton.classList.remove('active');
   }
-  document.querySelector(`#pageNumbers button:nth-child(${page})`).classList.add('active');
-}
 
-// Inicjalizacja paginacji
-function initializePagination() {
-  if (checkIfBooksExist()) {
-    const storedBooksId = getFromLocalStorage();
-    setupPagination(storedBooksId, itemsPerPage);
-    displayPage(currentPage);
-    pageNumbers.style.display = 'block'; // Pokaż paginację
-  } else {
-    pageNumbers.style.display = 'none'; // Ukryj paginację
-  }
-}
+  btnPrevPage.disabled = currentPage === 1;
+  btnFirstPage.disabled = currentPage === 1;
+  btnNextPage.disabled = currentPage === Math.ceil(storedBooksId.length / ITEMS_PER_PAGE);
+  btnLastPage.disabled = currentPage === Math.ceil(storedBooksId.length / ITEMS_PER_PAGE);
 
-// Przewijanie do poprzedniej strony
-prevButton.addEventListener('click', () => {
-  if (currentPage > 1) {
-    currentPage--;
-    displayPage(currentPage);
+  renderPageNumbers(Math.ceil(storedBooksId.length / ITEMS_PER_PAGE));
+
+  Notiflix.Loading.remove();
+};
+
+const renderPageNumbers = totalPages => {
+  paginationContainer.innerHTML = '';
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement('button');
+    btn.classList.add('shopping-pagination__btn');
+    btn.classList.add(
+      currentPage === i
+        ? 'shopping-pagination__btn-black-background'
+        : 'shopping-pagination__btn-white-color',
+    );
+    btn.textContent = i;
+    btn.addEventListener('click', () => {
+      currentPage = i;
+      loadPage(currentPage);
+    });
+    paginationContainer.appendChild(btn);
   }
+};
+
+btnFirstPage.addEventListener('click', () => {
+  currentPage = 1;
+  loadPage(currentPage);
 });
 
-prevPageButton.addEventListener('click', () => {
-  if (currentPage > 1) {
-    currentPage--;
-    displayPage(currentPage);
-  }
+btnPrevPage.addEventListener('click', () => {
+  currentPage = Math.max(1, currentPage - 1);
+  loadPage(currentPage);
 });
 
-// Przewijanie do następnej strony
-nextButton.addEventListener('click', () => {
-  const storedBooksId = getFromLocalStorage();
-  const pageCount = Math.ceil(storedBooksId.length / itemsPerPage);
-  if (currentPage < pageCount) {
-    currentPage++;
-    displayPage(currentPage);
-  }
+btnNextPage.addEventListener('click', () => {
+  const storedBooks = getFromLocalStorage();
+  currentPage = Math.min(currentPage + 1, Math.ceil(storedBooks.length / ITEMS_PER_PAGE));
+  loadPage(currentPage);
 });
 
-nextPageButton.addEventListener('click', () => {
-  const storedBooksId = getFromLocalStorage();
-  const pageCount = Math.ceil(storedBooksId.length / itemsPerPage);
-  if (currentPage < pageCount) {
-    currentPage++;
-    displayPage(currentPage);
-  }
+btnLastPage.addEventListener('click', () => {
+  const storedBooks = getFromLocalStorage();
+  currentPage = Math.ceil(storedBooks.length / ITEMS_PER_PAGE);
+  loadPage(currentPage);
 });
 
-// Inicjalizacja paginacji przy załadowaniu strony
-initializePagination();*/
+loadPage(currentPage);
