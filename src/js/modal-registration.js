@@ -150,18 +150,19 @@
 //   });
 // };
 
-// const submitRegistrationForm = e => {
-//   e.preventDefault();
-//   closeRegistrationModal();
-//   headerSignUpBtn.classList.toggle('visually-hidden');
-//   headerUserBtn.classList.toggle('visually-hidden');
-//   mobileSignUpBtn.classList.toggle('visually-hidden');
-//   mobileUserBtn.classList.toggle('visually-hidden');
-//   mobileLogOut.classList.toggle('visually-hidden');
-//   headerUserBtn.textContent = name;
-//   formRegistration.reset();
-//   Notify.success(`You are sign in!`);
-// };
+const submitRegistrationForm = e => {
+  e.preventDefault();
+  closeRegistrationModal();
+  headerSignUpBtn.classList.toggle('visually-hidden');
+  headerUserBtn.classList.toggle('visually-hidden');
+  mobileSignUpBtn.classList.toggle('visually-hidden');
+  mobileUserBtn.classList.toggle('visually-hidden');
+  mobileLogOut.classList.toggle('visually-hidden');
+  headerUserBtn.innerHTML = name;
+  mobileUserBtn.innerHTML = name;
+  formRegistration.reset();
+  Notify.success(`You are sign in!`);
+};
 
 // const logOutUser = () => {
 //   logOutBtn.classList.toggle('visually-hidden');
