@@ -40,6 +40,8 @@ const renderBook = bookData => {
       if (updatedBooks.length === 0) {
         emptyList.classList.remove('hidden');
         shoppingButtons.classList.add('hidden');
+      } else {
+        adjustPageAfterDeletion(updatedBooks);
       }
     }
   });
@@ -66,6 +68,24 @@ const renderBook = bookData => {
   shopDescriptionDetails.innerHTML = markup;
   shopItem.appendChild(shopDescriptionDetails);
   shoppingGallery.appendChild(shopItem);
+};
+
+const adjustPageAfterDeletion = updatedBooks => {
+  const start = (currentPage - 1) * ITEMS_PER_PAGE;
+  const end = start + ITEMS_PER_PAGE;
+
+  const remainingBooksOnPage = updatedBooks.slice(start, end);
+
+  if (remainingBooksOnPage.length === 0) {
+    const totalPages = Math.ceil(updatedBooks.length / ITEMS_PER_PAGE);
+    if (currentPage >= totalPages && totalPages > 0) {
+      currentPage = Math.max(totalPages, 1);
+    } else if (currentPage === 1 && totalPages > 1) {
+      currentPage = 1;
+      loadPage(currentPage);
+    }
+    loadPage(currentPage);
+  }
 };
 
 const loadPage = async pageNumber => {
