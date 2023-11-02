@@ -158,7 +158,8 @@ const submitRegistrationForm = e => {
   mobileSignUpBtn.classList.toggle('visually-hidden');
   mobileUserBtn.classList.toggle('visually-hidden');
   mobileLogOut.classList.toggle('visually-hidden');
-  headerUserBtn.textContent = name;
+  headerUserBtn.innerHTML = name;
+  mobileUserBtn.innerHTML = name;
   formRegistration.reset();
   Notify.success(`You are sign in!`);
 };
