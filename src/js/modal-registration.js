@@ -13,7 +13,7 @@ const btnSignIn = document.querySelector('.sign-in-modal');
 const nameInputContainer = document.querySelector('.name-input-container');
 const btnCloseRegistrationModal = document.querySelector('.registration-close-btn');
 const formRegistration = document.querySelector('.registration-modal-form');
-const nameInput = document.querySelector('.input-name');
+const nameInput = document.querySelector('#user-name');
 const emailInput = document.querySelector('.input-email');
 const passwordInput = document.querySelector('.input-password');
 const messageErrorName = document.querySelector('.name-error');
@@ -21,6 +21,8 @@ const messageErrorEmail = document.querySelector('.email-error');
 const messageErrorPassword = document.querySelector('.password-error');
 const logOutBtn = document.querySelector('.log-out-btn');
 const mobileLogOut = document.querySelector('.log-out-mobile-btn');
+const userName = document.querySelector('.user-btn__userName');
+const userMobileName = document.querySelector('.user-mobile-btn__userName');
 const name = nameInput.value;
 
 const openRegistrationModal = () => {
@@ -153,13 +155,14 @@ const resetValidation = () => {
 const submitRegistrationForm = e => {
   e.preventDefault();
   closeRegistrationModal();
+  userName.innerHTML = name;
+  userMobileName.innerHTML = name;
   headerSignUpBtn.classList.toggle('visually-hidden');
   headerUserBtn.classList.toggle('visually-hidden');
   mobileSignUpBtn.classList.toggle('visually-hidden');
   mobileUserBtn.classList.toggle('visually-hidden');
   mobileLogOut.classList.toggle('visually-hidden');
-  headerUserBtn.innerHTML = name;
-  mobileUserBtn.innerHTML = name;
+
   formRegistration.reset();
   Notify.success(`You are sign in!`);
 };
