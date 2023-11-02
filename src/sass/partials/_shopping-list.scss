@@ -32,10 +32,11 @@
   grid-row: inherit;
   text-align: center;
   flex-direction: column;
-  width: 265px;
+  width: 100%;
+  max-width: 265px;
   height: 248px;
   gap: 14px;
-  padding-left: 55px;
+  margin: 0 auto;
   padding-top: 120px;
 }
 
@@ -45,7 +46,8 @@
 
 .empty-list__text {
   font-family: DM Sans;
-  width: 244px;
+  width: 100%;
+  max-width: 244px;
   height: 36px;
   font-size: 14px;
   line-height: 18px;
@@ -187,8 +189,9 @@
     width: 349px;
     height: 309px;
     gap: 20px;
-    padding-left: 210px;
+    padding-left: 0;
     padding-top: 140px;
+    margin: 0 auto;
   }
 
   .empty-list__text {
@@ -261,6 +264,7 @@
 
   .empty-list {
     padding-left: 355px;
+    margin: 0;
   }
 
   .support-shopping {
@@ -365,6 +369,10 @@
       gap: 5px;
     }
   }
+}
+
+.hidden {
+  display: none;
 }
 
 .dark-theme .shop__amazon {

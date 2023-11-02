@@ -14,6 +14,7 @@ const btnPrevPage = document.querySelector('.btn-prev-page');
 const btnNextPage = document.querySelector('.btn-next-page');
 const btnLastPage = document.querySelector('.btn-last-page');
 const paginationContainer = document.querySelector('.shopping-pagination__btn-second');
+const shoppingButtons = document.querySelector('.shopping-pagination');
 
 const getFromLocalStorage = () => {
   const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
@@ -38,6 +39,7 @@ const renderBook = bookData => {
       shopItem.remove();
       if (updatedBooks.length === 0) {
         emptyList.classList.remove('hidden');
+        shoppingButtons.classList.add('hidden');
       }
     }
   });
@@ -80,6 +82,7 @@ const loadPage = async pageNumber => {
 
   if (storedBooksId.length === 0) {
     emptyList.classList.remove('hidden');
+    shoppingButtons.classList.add('hidden');
     Notiflix.Loading.remove();
     return;
   }
