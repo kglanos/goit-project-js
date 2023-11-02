@@ -155,6 +155,7 @@ const resetValidation = () => {
 const submitRegistrationForm = e => {
   e.preventDefault();
   closeRegistrationModal();
+  const name = nameInput.value;
   userName.innerHTML = name;
   userMobileName.innerHTML = name;
   headerSignUpBtn.classList.toggle('visually-hidden');
@@ -189,6 +190,5 @@ signUpLink.addEventListener('click', toggleBtnRegistrationSignUp);
 btnCloseRegistrationModal.addEventListener('click', closeRegistrationModal);
 formRegistration.addEventListener('submit', submitRegistrationForm);
 headerUserBtn.addEventListener('click', logOutUser);
-// mobileUserBtn.addEventListener('click', logOutUser);
 logOutBtn.addEventListener('click', afterLogOut);
 mobileLogOut.addEventListener('click', afterLogOut);
