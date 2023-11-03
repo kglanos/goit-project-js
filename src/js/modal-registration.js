@@ -1,7 +1,7 @@
 'use strict';
 import { Notify } from 'notiflix';
 
-let signIn = false;
+let signIn = localStorage.getItem('signIn') === 'true' ? true : false;
 
 const headerSignUpBtn = document.querySelector('.sign-up-btn');
 const headerUserBtn = document.querySelector('.user-btn');
@@ -159,6 +159,11 @@ const submitRegistrationForm = e => {
   const name = nameInput.value;
 
   signIn = true;
+  localStorage.setItem('signIn', signIn);
+  signIn = true;
+  localStorage.setItem('signIn', signIn.toString());
+  localStorage.setItem('userName', name);
+
   if (signIn) {
     userName.innerHTML = name;
     userMobileName.innerHTML = name;
@@ -180,6 +185,7 @@ const logOutUser = () => {
 
 const afterLogOut = () => {
   signIn = false;
+  localStorage.setItem('signIn', signIn);
   logOutBtn.classList.add('visually-hidden');
   headerUserBtn.classList.toggle('visually-hidden');
   headerSignUpBtn.classList.toggle('visually-hidden');
@@ -188,6 +194,19 @@ const afterLogOut = () => {
   mobileSignUpBtn.classList.toggle('visually-hidden');
   Notify.info(`You are logged out!`);
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+  signIn = localStorage.getItem('signIn') === 'true' ? true : false;
+  if (signIn) {
+    userName.innerHTML = localStorage.getItem('userName');
+    userMobileName.innerHTML = localStorage.getItem('userName');
+    headerSignUpBtn.classList.add('visually-hidden');
+    headerUserBtn.classList.remove('visually-hidden');
+    mobileSignUpBtn.classList.add('visually-hidden');
+    mobileUserBtn.classList.remove('visually-hidden');
+    mobileLogOut.classList.remove('visually-hidden');
+  }
+});
 
 headerSignUpBtn.addEventListener('click', openRegistrationModal);
 mobileSignUpBtn.addEventListener('click', openRegistrationModal);
