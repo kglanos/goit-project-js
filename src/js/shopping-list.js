@@ -70,26 +70,28 @@ const renderBook = bookData => {
   shoppingGallery.appendChild(shopItem);
 };
 
-  const adjustPageAfterDeletion = updatedBooks => {
+const adjustPageAfterDeletion = (updatedBooks, start, end) => {
   const totalPages = Math.ceil(updatedBooks.length / ITEMS_PER_PAGE);
 
-  if (updatedBooks.length === 0 && totalPages > 1) {
-    if (currentPage > totalPages) {
-      currentPage = totalPages;
-    }
-    return loadPage(currentPage);
-  } else if (currentPage > totalPages) {
-    currentPage = Math.max(totalPages, 1);
-    return loadPage(currentPage);
+  if (currentPage > totalPages) {
+    currentPage = totalPages;
   }
+
+  start = (currentPage - 1) * ITEMS_PER_PAGE;
+  end = start + ITEMS_PER_PAGE;
+
   renderPageNumbers(totalPages);
+  loadPage(currentPage, start, end);
 };
 
 
-const loadPage = async pageNumber => {
+const loadPage = async (pageNumber, start, end) => {
   const storedBooksId = getFromLocalStorage();
-  const start = (pageNumber - 1) * ITEMS_PER_PAGE;
-  const end = start + ITEMS_PER_PAGE;
+
+  if (start === undefined || end === undefined) {
+    start = (pageNumber - 1) * ITEMS_PER_PAGE;
+    end = start + ITEMS_PER_PAGE;
+  }
 
   Notiflix.Loading.circle('Loading...', {
     backgroundColor: 'rgba(0,0,0,0.8)',
