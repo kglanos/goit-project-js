@@ -159,15 +159,12 @@ const submitRegistrationForm = e => {
   const name = nameInput.value;
 
   signIn = true;
-  localStorage.setItem('signIn', signIn);
-  signIn = true;
   localStorage.setItem('signIn', signIn.toString());
   localStorage.setItem('userName', name);
 
-  if (signIn) {
-    userName.innerHTML = name;
-    userMobileName.innerHTML = name;
-  }
+  userName.innerHTML = name;
+  userMobileName.innerHTML = name;
+
   headerSignUpBtn.classList.toggle('visually-hidden');
   headerUserBtn.classList.toggle('visually-hidden');
   mobileSignUpBtn.classList.toggle('visually-hidden');
