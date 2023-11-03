@@ -1,6 +1,8 @@
 'use strict';
 import { Notify } from 'notiflix';
 
+let signIn = false;
+
 const headerSignUpBtn = document.querySelector('.sign-up-btn');
 const headerUserBtn = document.querySelector('.user-btn');
 const mobileSignUpBtn = document.querySelector('.sign-up-mobile-btn');
@@ -23,7 +25,6 @@ const logOutBtn = document.querySelector('.log-out-btn');
 const mobileLogOut = document.querySelector('.log-out-mobile-btn');
 const userName = document.querySelector('.user-btn__userName');
 const userMobileName = document.querySelector('.user-mobile-btn__userName');
-const name = nameInput.value;
 
 const openRegistrationModal = () => {
   formRegistration.reset();
@@ -156,8 +157,12 @@ const submitRegistrationForm = e => {
   e.preventDefault();
   closeRegistrationModal();
   const name = nameInput.value;
-  userName.innerHTML = name;
-  userMobileName.innerHTML = name;
+
+  signIn = true;
+  if (signIn) {
+    userName.innerHTML = name;
+    userMobileName.innerHTML = name;
+  }
   headerSignUpBtn.classList.toggle('visually-hidden');
   headerUserBtn.classList.toggle('visually-hidden');
   mobileSignUpBtn.classList.toggle('visually-hidden');
@@ -174,6 +179,7 @@ const logOutUser = () => {
 };
 
 const afterLogOut = () => {
+  signIn = false;
   logOutBtn.classList.add('visually-hidden');
   headerUserBtn.classList.toggle('visually-hidden');
   headerSignUpBtn.classList.toggle('visually-hidden');
